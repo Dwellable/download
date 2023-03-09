@@ -84,13 +84,11 @@
     }
 
     .page {
-        height: 100vh;
+        height: calc(100vh + 64px);
         flex-flow: column;
         scroll-snap-align: start;
-        display:flex;
-        justify-content: center;
-
-        animation: fadeInAnimation ease .5s;
+        display: flex;
+        justify-content: start;
         animation-iteration-count: 1;
         animation-fill-mode: forwards;
     }
@@ -101,11 +99,57 @@
         cursor: default;
     }
 
-    @keyframes fadeInAnimation {
+    .device-image {
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        width: 100%;
+        height: 80vw;
+        max-height: 72vh;
+        opacity: 0;
+        transform: translateX(50px);
+        -webkit-transform: translateX(50px);
+    }
+
+    #image_1 {
+        background-image: url("report_screenshot.png");
+    }
+
+    #image_2 {
+        background-image: url("listRooms_screenshot.png");
+    }
+
+    #image_3 {
+        background-image: url("checklist_screenshot.png");
+    }
+
+    #image_4 {
+        background-image: url("notes_screenshot.png");
+    }
+
+    #image_5 {
+        background-image: url("report_screenshot.png");
+    }
+
+    .device-image-animation {
+        animation-name: fade-in-animation;
+        animation-duration: .4s;
+        animation-iteration-count: 1;
+        animation-timing-function: linear;
+        -webkit-animation-fill-mode: forwards;
+        -moz-animation-fill-mode: forwards;
+        -ms-animation-fill-mode: forwards;
+        -o-animation-fill-mode: forwards;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes fade-in-animation {
         0% {
+            transform: translateX(50px);
             opacity: 0;
         }
         100% {
+            transform: translateX(0px);
             opacity: 1;
         }
     }
@@ -113,7 +157,7 @@
 
 <body>
     <div class="container header fixed-top">
-        <header class="d-flex flex-wrap justify-content-center py-3 border-bottom">
+        <header class="d-flex flex-wrap justify-content-between py-3 border-bottom">
             <a href="/" class="d-flex align-items-center me-md-auto text-dark text-decoration-none">
                 <span id="title" class="fs-4">Dwellable</span>
             </a>
@@ -126,17 +170,22 @@
         <div class="page container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5 justify-content-center">
                 <div class="col-10 col-sm-8 col-lg-6">
-                    <img src="report_screenshot.png" class="d-block mx-lg-auto img-fluid mx-auto" alt="Bootstrap Themes" width="300" loading="lazy">
+                    <div class="device-image" id="image_1"></div>
                 </div>
                 <div class="col-lg-6">
                     <h1 class="display-5 fw-bold lh-1 mb-3">Open house visits made simple</h1>
                     <p class="lead">Dwellable makes is simple to go through open house tours like a pro.</p>
-                    <a href="https://apps.apple.com/us/app/dwellable-home-inspector/id6444394386?itsct=apps_box_badge&amp;itscg=30200" style="display: inline-block; overflow: hidden; border-radius: 13px; width: 250px; height: 110px; padding-top: 14px;">
-                        <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1668729600?h=6a9f93726bb57cfed655b1f205381fa5" alt="Download on the App Store" style="border-radius: 13px; width: 250px; height: 83px;">
+                    <a href="https://apps.apple.com/us/app/dwellable-home-inspector/id6444394386?itsct=apps_box_badge&amp;itscg=30200"
+                        style="display: inline-block; overflow: hidden; border-radius: 13px; width: 250px; height: 110px; padding-top: 14px;">
+                        <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1668729600?h=6a9f93726bb57cfed655b1f205381fa5"
+                            alt="Download on the App Store" style="border-radius: 13px; width: 250px; height: 83px;">
                     </a>
-                    <a id="play_icon" 
-                        href="https://play.google.com/store/apps/details?id=com.dwellable&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" style="display: inline-block; overflow: hidden; border-radius: 13px; height: 110px;">
-                        <img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" style="border-radius: 13px; height: 110px;">
+                    <a id="play_icon"
+                        href="https://play.google.com/store/apps/details?id=com.dwellable&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"
+                        style="display: inline-block; overflow: hidden; border-radius: 13px; height: 110px;">
+                        <img alt="Get it on Google Play"
+                            src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+                            style="border-radius: 13px; height: 110px;">
                     </a>
                 </div>
             </div>
@@ -144,7 +193,7 @@
         <div class="page container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5 justify-content-center">
                 <div class="col-10 col-sm-8 col-lg-6">
-                    <img src="listRooms_screenshot.png" class="d-block mx-lg-auto img-fluid mx-auto" alt="Bootstrap Themes" width="300" loading="lazy">
+                    <div class="device-image" id="image_2"></div>
                 </div>
                 <div class="col-lg-6">
                     <h1 class="display-5 fw-bold lh-1 mb-3">Add rooms</h1>
@@ -155,7 +204,7 @@
         <div class="page container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5 justify-content-center">
                 <div class="col-10 col-sm-8 col-lg-6">
-                    <img src="checklist_screenshot.png" class="d-block mx-lg-auto img-fluid mx-auto" alt="Bootstrap Themes" width="300" loading="lazy">
+                    <div class="device-image" id="image_3"></div>
                 </div>
                 <div class="col-lg-6">
                     <h1 class="display-5 fw-bold lh-1 mb-3">Smart checklist</h1>
@@ -166,25 +215,46 @@
         <div class="page container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5 justify-content-center">
                 <div class="col-10 col-sm-8 col-lg-6">
-                    <img src="notes_screenshot.png" class="d-block mx-lg-auto img-fluid mx-auto" alt="Bootstrap Themes" width="300" loading="lazy">
+                    <div class="device-image" id="image_4"></div>
                 </div>
                 <div class="col-lg-6">
                     <h1 class="display-5 fw-bold lh-1 mb-3">Note-taking tools</h1>
-                    <p class="lead">Quickly take notes, add to-do items, photos, and appliance names with just a few clicks.</p>
+                    <p class="lead">Quickly take notes, add to-do items, photos, and appliance names with just a few
+                        clicks.</p>
                 </div>
             </div>
         </div>
         <div class="page container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5 justify-content-center">
                 <div class="col-10 col-sm-8 col-lg-6">
-                    <img src="report_screenshot.png" class="d-block mx-lg-auto img-fluid mx-auto" alt="Bootstrap Themes" width="300" loading="lazy">
+                    <div class="device-image" id="image_5"></div>
                 </div>
                 <div class="col-lg-6">
                     <h1 class="display-5 fw-bold lh-1 mb-3">Inspection report</h1>
-                    <p class="lead">View the inspection report based on the smart checklist to see a rough estimate of costs.</p>
+                    <p class="lead">View the inspection report based on the smart checklist to see a rough estimate of
+                        costs.</p>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        // Create the observer
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Add the animation class
+                    entry.target.classList.add('device-image-animation');
+                }
+            });
+        });
+
+        // Tell the observer which elements to track
+        observer.observe(document.querySelector('#image_1'));
+        observer.observe(document.querySelector('#image_2'));
+        observer.observe(document.querySelector('#image_3'));
+        observer.observe(document.querySelector('#image_4'));
+        observer.observe(document.querySelector('#image_5'));
+    </script>
 </body>
+
 </html>
