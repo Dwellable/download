@@ -147,6 +147,40 @@
             opacity: 1;
         }
     }
+
+    .text-hide-animation {
+        display: inline-block;
+        animation: text-hide-animation 0.3s forwards;
+    }
+
+    @keyframes text-hide-animation {
+        0% {
+            transform:  translateY(0px);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-30px);
+            opacity: 0;
+        }
+    }
+
+    .text-show-animation {
+        display: inline-block;
+        animation: text-show-animation 0.3s forwards;
+        transform:  (30px);
+        opacity: 0;
+    }
+
+    @keyframes text-show-animation {
+        0% {
+            transform:  translateY(30px);
+            opacity: 0;
+        }
+        100% {
+            transform: translateY(0px);
+            opacity: 1;
+        }
+    }
 </style>
 
 <body>
@@ -163,16 +197,16 @@
     <div class="parent">
         <div id="page-1" class="page container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5 justify-content-center">
-                <div class="col-10 col-sm-8 col-lg-6">
+                <div class="col-10 col-sm-8 col-lg-4">
                     <div class="device-image" id="image_1"></div>
                 </div>
-                <div class="col-lg-6">
-                    <h1 class="display-5 fw-bold lh-1 mb-3">Open house visits made simple</h1>
-                    <p class="lead">Dwellable makes is simple to go through open house tours like a pro.</p>
+                <div class="col-lg-8">
+                    <h1 class="display-5 fw-bold lh-1 mb-3"><span id="header_variant_text"></span> made simple</h1>
+                    <p class="lead">Dwellable is a tool that allows anyone to inspect residential properties</p>
                     <a href="https://apps.apple.com/us/app/dwellable-home-inspector/id6444394386?itsct=apps_box_badge&amp;itscg=30200"
-                        style="display: inline-block; overflow: hidden; border-radius: 13px; width: 250px; height: 110px; padding-top: 14px;">
+                        style="display: inline-block; overflow: hidden; border-radius: 13px; width: 250px; height: 110px; padding-top: 19px;">
                         <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1668729600?h=6a9f93726bb57cfed655b1f205381fa5"
-                            alt="Download on the App Store" style="border-radius: 13px; width: 250px; height: 83px;">
+                            alt="Download on the App Store" style="border-radius: 13px; width: 250px; height: 75px;">
                     </a>
                     <a id="play_icon"
                         href="https://play.google.com/store/apps/details?id=com.dwellable&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"
@@ -248,6 +282,34 @@
         observer.observe(document.querySelector('#image_3'));
         observer.observe(document.querySelector('#image_4'));
         observer.observe(document.querySelector('#image_5'));
+    </script>
+    <script>
+        const VARIANT_DELAY_MS = 4000
+        const ANIMATION_DELAY = 300
+        const HEADER_PAGE_VARIANTS = [
+            "Open house visits",
+            "First-time home buying",
+            "Due-diligence",
+            "Property tours",
+            "Inspecting your home"
+        ]
+        let current_variant_idx = 0
+        let header_variant_ele = document.getElementById("header_variant_text")
+        header_variant_ele.classList.add("text-show-animation")
+        header_variant_ele.innerHTML = HEADER_PAGE_VARIANTS[current_variant_idx];
+        function showNextHeadingVariant() {
+            function afterHide() {
+                current_variant_idx = (current_variant_idx + 1) % HEADER_PAGE_VARIANTS.length
+                header_variant_ele.innerHTML = HEADER_PAGE_VARIANTS[current_variant_idx];
+                header_variant_ele.classList.remove("text-hide-animation")
+                header_variant_ele.classList.add("text-show-animation")
+                setTimeout(showNextHeadingVariant, VARIANT_DELAY_MS)
+            }
+            header_variant_ele.classList.remove("text-show-animation")
+            header_variant_ele.classList.add("text-hide-animation")
+            setTimeout(afterHide, ANIMATION_DELAY)
+        }
+        setTimeout(showNextHeadingVariant, VARIANT_DELAY_MS)
     </script>
 </body>
 
