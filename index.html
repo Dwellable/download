@@ -295,12 +295,12 @@
                 <div class="col-lg-8">
                     <h1 class="display-5 fw-bold lh-1 mb-3"><span id="header_variant_text"></span> made simple</h1>
                     <p class="lead">Dwellable provides a set of tools and a checklist for anyone to inspect a home.</p>
-                    <a href="https://apps.apple.com/us/app/dwellable-home-inspector/id6444394386?itsct=apps_box_badge&amp;itscg=30200"
+                    <a id="app-store-btn" href="https://apps.apple.com/us/app/dwellable-home-inspector/id6444394386?itsct=apps_box_badge&amp;itscg=30200"
                         style="display: inline-block; overflow: hidden; border-radius: 13px; width: 250px; height: 110px; padding-top: 19px;">
                         <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1668729600?h=6a9f93726bb57cfed655b1f205381fa5"
                             alt="Download on the App Store" style="border-radius: 13px; width: 250px; height: 75px;">
                     </a>
-                    <a id="play_icon"
+                    <a  id="play-store-btn"
                         href="https://play.google.com/store/apps/details?id=com.dwellable&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"
                         style="display: inline-block; overflow: hidden; border-radius: 13px; height: 110px;">
                         <img alt="Get it on Google Play"
@@ -412,6 +412,18 @@
                 scrollUpBtnContainer.classList.add("hidden");
             }
         };
+    </script>
+    <script>
+        document.getElementById("play-store-btn").onclick = function() {
+            gtag('event', 'store-link-clicked', {
+                "store_name": "Play Store"
+            });
+        }
+        document.getElementById("app-store-btn").onclick = function() {
+            gtag('event', 'store-link-clicked', {
+                "store_name": "App Store"
+            });
+        }
     </script>
 </body>
 
