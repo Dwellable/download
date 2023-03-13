@@ -75,7 +75,8 @@
         font-weight: 700;
     }
 
-    .parent {
+    #parent {
+        scroll-behavior: smooth;
         scroll-snap-type: y mandatory;
         scroll-snap-stop: always;
         overflow-y: scroll;
@@ -138,6 +139,7 @@
             transform: translateX(50px);
             opacity: 0;
         }
+
         100% {
             transform: translateX(0px);
             opacity: 1;
@@ -151,9 +153,10 @@
 
     @keyframes text-hide-animation {
         0% {
-            transform:  translateY(0px);
+            transform: translateY(0px);
             opacity: 1;
         }
+
         100% {
             transform: translateY(-30px);
             opacity: 0;
@@ -163,18 +166,105 @@
     .text-show-animation {
         display: inline-block;
         animation: text-show-animation 0.3s forwards;
-        transform:  (30px);
+        transform: (30px);
         opacity: 0;
     }
 
     @keyframes text-show-animation {
         0% {
-            transform:  translateY(30px);
+            transform: translateY(30px);
             opacity: 0;
         }
+
         100% {
             transform: translateY(0px);
             opacity: 1;
+        }
+    }
+    
+    .scroll-button {
+        position: fixed;
+        bottom: 50px;
+        right: 60px;
+        transition: visibility 0s .2s, opacity .2s linear;
+    }
+
+    .scroll-button.hidden {
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    .scroll-button a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #scroll-down-button a span {
+        border-left: 1px solid #2C2B2F;
+        border-bottom: 1px solid #2C2B2F;
+    }
+
+    #scroll-up-button a span {
+        border-right: 1px solid #2C2B2F;
+        border-top: 1px solid #2C2B2F;
+    }
+
+    .scroll-button a span {
+        width: 24px;
+        height: 24px;
+        margin-top: -5px;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(-45deg);
+        -webkit-animation: scroll-button-fade-animation 2s infinite;
+        animation: scroll-button-fade-animation 2s infinite;
+        opacity: 0;
+        box-sizing: border-box;
+    }
+
+    .scroll-button a span:nth-of-type(1) {
+        -webkit-animation-delay: 0s;
+        animation-delay: 0s;
+    }
+
+    .scroll-button a span:nth-of-type(2) {
+        top: 16px;
+        -webkit-animation-delay: .15s;
+        animation-delay: .15s;
+    }
+
+    .scroll-button a span:nth-of-type(3) {
+        top: 32px;
+        -webkit-animation-delay: .3s;
+        animation-delay: .3s;
+        margin-bottom:12px;
+    }
+
+    @-webkit-keyframes scroll-button-fade-animation {
+        0% {
+            opacity: 0;
+        }
+
+        50% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+
+    @keyframes scroll-button-fade-animation {
+        0% {
+            opacity: 0;
+        }
+
+        50% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
         }
     }
 </style>
@@ -190,7 +280,13 @@
             </a>
         </header>
     </div>
-    <div class="parent">
+    <div class="scroll-button" id="scroll-down-button">
+        <a href="#" id="scroll-down-anchor" class="text-dark text-decoration-none fw-bold"><span></span><span></span><span></span>Learn more</a>
+    </div>
+    <div class="scroll-button hidden" id="scroll-up-button">
+        <a href="#" id="scroll-up-anchor" class="text-dark text-decoration-none fw-bold"><span></span><span></span><span></span>Back to top</a>
+    </div>
+    <div id="parent">
         <div id="page-1" class="page container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5 justify-content-center">
                 <div class="col-10 col-sm-8 col-lg-4">
@@ -294,6 +390,28 @@
             setTimeout(afterHide, ANIMATION_DELAY)
         }
         setTimeout(showNextHeadingVariant, VARIANT_DELAY_MS)
+    </script>
+    <script>
+        var scrollDownBtnContainer = document.getElementById('scroll-down-button');
+        var scrollDownBtn = document.getElementById('scroll-down-anchor');
+        var scrollUpBtnContainer = document.getElementById('scroll-up-button');
+        var scrollUpBtn = document.getElementById('scroll-up-anchor');
+        var parent = document.getElementById('parent')
+        scrollDownBtn.onclick = function() {
+            parent.scrollBy(0, document.body.scrollHeight)
+        };
+        scrollUpBtn.onclick = function() {
+            parent.scrollTo(0, 0)
+        };
+        parent.onscroll = function(ev) {
+            if (parent.scrollHeight - window.innerHeight - parent.scrollTop < 100) {
+                scrollDownBtnContainer.classList.add("hidden");
+                scrollUpBtnContainer.classList.remove("hidden");
+            } else {
+                scrollDownBtnContainer.classList.remove("hidden");
+                scrollUpBtnContainer.classList.add("hidden");
+            }
+        };
     </script>
 </body>
 
