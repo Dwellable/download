@@ -432,9 +432,15 @@
             gtag('event', 'store-link-clicked', {
                 "store_name": "Play Store"
             });
+            analytics.track('store-link-clicked', {
+                "store_name": "Play Store"
+            });
         }
         document.getElementById("app-store-btn").onclick = function () {
             gtag('event', 'store-link-clicked', {
+                "store_name": "App Store"
+            });
+            analytics.track('store-link-clicked', {
                 "store_name": "App Store"
             });
         }
