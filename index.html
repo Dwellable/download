@@ -10,7 +10,7 @@
 
         gtag('config', 'G-WBNM828NCM');
     </script>
-    <title>Dwellable | Download now</title>
+    <title>Dwellable | Home inspection made easy</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <!-- Dependencies -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -18,6 +18,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
+
+    <!-- Segment analytics-->
+    <script>
+        !function () {
+            var analytics = window.analytics = window.analytics || []; if (!analytics.initialize) if (analytics.invoked) window.console && console.error && console.error("Segment snippet included twice."); else {
+                analytics.invoked = !0; analytics.methods = ["trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "identify", "reset", "group", "track", "ready", "alias", "debug", "page", "once", "off", "on", "addSourceMiddleware", "addIntegrationMiddleware", "setAnonymousId", "addDestinationMiddleware"]; analytics.factory = function (e) { return function () { var t = Array.prototype.slice.call(arguments); t.unshift(e); analytics.push(t); return analytics } }; for (var e = 0; e < analytics.methods.length; e++) { var key = analytics.methods[e]; analytics[key] = analytics.factory(key) } analytics.load = function (key, e) { var t = document.createElement("script"); t.type = "text/javascript"; t.async = !0; t.src = "https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(t, n); analytics._loadOptions = e }; analytics._writeKey = "OrKG3ivLgTyA8ZQ5YycgsqIOqRiSO6FU";; analytics.SNIPPET_VERSION = "4.15.3";
+                analytics.load("OrKG3ivLgTyA8ZQ5YycgsqIOqRiSO6FU");
+                analytics.page();
+            }
+        }();
+    </script>
 
     <!-- Meta -->
     <meta property="og:title" content="Dwellable | Download now" />
@@ -181,7 +192,7 @@
             opacity: 1;
         }
     }
-    
+
     .scroll-button {
         position: fixed;
         bottom: 50px;
@@ -237,7 +248,7 @@
         top: 32px;
         -webkit-animation-delay: .3s;
         animation-delay: .3s;
-        margin-bottom:12px;
+        margin-bottom: 12px;
     }
 
     @-webkit-keyframes scroll-button-fade-animation {
@@ -281,10 +292,12 @@
         </header>
     </div>
     <div class="scroll-button" id="scroll-down-button">
-        <a href="#" id="scroll-down-anchor" class="text-dark text-decoration-none fw-bold"><span></span><span></span><span></span>Learn more</a>
+        <a href="#" id="scroll-down-anchor"
+            class="text-dark text-decoration-none fw-bold"><span></span><span></span><span></span>Learn more</a>
     </div>
     <div class="scroll-button hidden" id="scroll-up-button">
-        <a href="#" id="scroll-up-anchor" class="text-dark text-decoration-none fw-bold"><span></span><span></span><span></span>Back to top</a>
+        <a href="#" id="scroll-up-anchor"
+            class="text-dark text-decoration-none fw-bold"><span></span><span></span><span></span>Back to top</a>
     </div>
     <div id="parent">
         <div id="page-1" class="page container col-xxl-8 px-4 py-5">
@@ -295,12 +308,13 @@
                 <div class="col-lg-8">
                     <h1 class="display-5 fw-bold lh-1 mb-3"><span id="header_variant_text"></span> made simple</h1>
                     <p class="lead">Dwellable provides a set of tools and a checklist for anyone to inspect a home.</p>
-                    <a id="app-store-btn" href="https://apps.apple.com/us/app/dwellable-home-inspector/id6444394386?itsct=apps_box_badge&amp;itscg=30200"
+                    <a id="app-store-btn"
+                        href="https://apps.apple.com/us/app/dwellable-home-inspector/id6444394386?itsct=apps_box_badge&amp;itscg=30200"
                         style="display: inline-block; overflow: hidden; border-radius: 13px; width: 250px; height: 110px; padding-top: 19px;">
                         <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1668729600?h=6a9f93726bb57cfed655b1f205381fa5"
                             alt="Download on the App Store" style="border-radius: 13px; width: 250px; height: 75px;">
                     </a>
-                    <a  id="play-store-btn"
+                    <a id="play-store-btn"
                         href="https://play.google.com/store/apps/details?id=com.dwellable&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"
                         style="display: inline-block; overflow: hidden; border-radius: 13px; height: 110px;">
                         <img alt="Get it on Google Play"
@@ -397,13 +411,13 @@
         var scrollUpBtnContainer = document.getElementById('scroll-up-button');
         var scrollUpBtn = document.getElementById('scroll-up-anchor');
         var parent = document.getElementById('parent')
-        scrollDownBtn.onclick = function() {
+        scrollDownBtn.onclick = function () {
             parent.scrollBy(0, document.body.scrollHeight)
         };
-        scrollUpBtn.onclick = function() {
+        scrollUpBtn.onclick = function () {
             parent.scrollTo(0, 0)
         };
-        parent.onscroll = function(ev) {
+        parent.onscroll = function (ev) {
             if (parent.scrollHeight - window.innerHeight - parent.scrollTop < 100) {
                 scrollDownBtnContainer.classList.add("hidden");
                 scrollUpBtnContainer.classList.remove("hidden");
@@ -414,12 +428,12 @@
         };
     </script>
     <script>
-        document.getElementById("play-store-btn").onclick = function() {
+        document.getElementById("play-store-btn").onclick = function () {
             gtag('event', 'store-link-clicked', {
                 "store_name": "Play Store"
             });
         }
-        document.getElementById("app-store-btn").onclick = function() {
+        document.getElementById("app-store-btn").onclick = function () {
             gtag('event', 'store-link-clicked', {
                 "store_name": "App Store"
             });
