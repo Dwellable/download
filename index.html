@@ -31,6 +31,7 @@
     </script>
 
     <!-- Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:title" content="Dwellable | Download now" />
     <meta property="og:url" content="https://dwellable.app" />
     <meta property="og:image" content="https://dwellable.app/og_image.png" />
@@ -110,7 +111,7 @@
         background-size: contain;
         background-position: center;
         width: 100%;
-        height: 80vw;
+        height: 75vw;
         max-height: 72vh;
         opacity: 0;
         transform: translateX(50px);
@@ -193,7 +194,7 @@
         }
     }
 
-    .scroll-button {
+    /* .scroll-button {
         position: fixed;
         bottom: 50px;
         right: 60px;
@@ -277,7 +278,7 @@
         100% {
             opacity: 0;
         }
-    }
+    } */
 </style>
 
 <body>
@@ -291,23 +292,23 @@
             </a>
         </header>
     </div>
-    <div class="scroll-button" id="scroll-down-button">
+    <!-- <div class="scroll-button hidden" id="scroll-down-button">
         <a href="#" id="scroll-down-anchor"
             class="text-dark text-decoration-none fw-bold"><span></span><span></span><span></span>Learn more</a>
     </div>
     <div class="scroll-button hidden" id="scroll-up-button">
         <a href="#" id="scroll-up-anchor"
             class="text-dark text-decoration-none fw-bold"><span></span><span></span><span></span>Back to top</a>
-    </div>
+    </div> -->
     <div id="parent">
         <div id="page-1" class="page container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5 justify-content-center">
                 <div class="col-10 col-sm-8 col-lg-4">
                     <div class="device-image" id="image_1"></div>
                 </div>
-                <div class="col-lg-8">
+                <div class="col-lg-8 mt-3">
                     <h1 class="display-5 fw-bold lh-1 mb-3"><span id="header_variant_text"></span> made simple</h1>
-                    <p class="lead">Dwellable provides a set of tools and a checklist for anyone to inspect a home.</p>
+                    <p class="lead">Dwellable provides tools for anyone to inspect a home.</p>
                     <a id="app-store-btn"
                         href="https://apps.apple.com/us/app/dwellable-home-inspector/id6444394386?itsct=apps_box_badge&amp;itscg=30200"
                         style="display: inline-block; overflow: hidden; border-radius: 13px; width: 250px; height: 110px; padding-top: 19px;">
@@ -406,26 +407,26 @@
         setTimeout(showNextHeadingVariant, VARIANT_DELAY_MS)
     </script>
     <script>
-        var scrollDownBtnContainer = document.getElementById('scroll-down-button');
-        var scrollDownBtn = document.getElementById('scroll-down-anchor');
-        var scrollUpBtnContainer = document.getElementById('scroll-up-button');
-        var scrollUpBtn = document.getElementById('scroll-up-anchor');
-        var parent = document.getElementById('parent')
-        scrollDownBtn.onclick = function () {
-            parent.scrollBy(0, document.body.scrollHeight)
-        };
-        scrollUpBtn.onclick = function () {
-            parent.scrollTo(0, 0)
-        };
-        parent.onscroll = function (ev) {
-            if (parent.scrollHeight - window.innerHeight - parent.scrollTop < 100) {
-                scrollDownBtnContainer.classList.add("hidden");
-                scrollUpBtnContainer.classList.remove("hidden");
-            } else {
-                scrollDownBtnContainer.classList.remove("hidden");
-                scrollUpBtnContainer.classList.add("hidden");
-            }
-        };
+        // var scrollDownBtnContainer = document.getElementById('scroll-down-button');
+        // var scrollDownBtn = document.getElementById('scroll-down-anchor');
+        // var scrollUpBtnContainer = document.getElementById('scroll-up-button');
+        // var scrollUpBtn = document.getElementById('scroll-up-anchor');
+        // var parent = document.getElementById('parent')
+        // scrollDownBtn.onclick = function () {
+        //     parent.scrollBy(0, document.body.scrollHeight)
+        // };
+        // scrollUpBtn.onclick = function () {
+        //     parent.scrollTo(0, 0)
+        // };
+        // parent.onscroll = function (ev) {
+        //     if (parent.scrollHeight - window.innerHeight - parent.scrollTop < 100) {
+        //         scrollDownBtnContainer.classList.add("hidden");
+        //         scrollUpBtnContainer.classList.remove("hidden");
+        //     } else {
+        //         scrollDownBtnContainer.classList.remove("hidden");
+        //         scrollUpBtnContainer.classList.add("hidden");
+        //     }
+        // };
     </script>
     <script>
         document.getElementById("play-store-btn").onclick = function () {
@@ -443,6 +444,36 @@
             analytics.track('store-link-clicked', {
                 "store_name": "App Store"
             });
+        }
+
+
+        let os = getMobileOperatingSystem();
+        if (os == "Android") {
+            document.getElementById("app-store-btn").remove()
+        } else if (os == "iOS") {
+            document.getElementById("play-store-btn").remove()
+        }
+
+        /**
+         * Determine the mobile operating system.
+         * This function returns one of 'iOS', 'Android', 'Windows Phone', or 'unknown'.
+         *
+         * @returns {String}
+         */
+        function getMobileOperatingSystem() {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            // Windows Phone must come first because its UA also contains "Android"
+            if (/windows phone/i.test(userAgent)) {
+                return "Windows Phone";
+            }
+            if (/android/i.test(userAgent)) {
+                return "Android";
+            }
+            // iOS detection from: http://stackoverflow.com/a/9039885/177710
+            if (/Apple|Safari|iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                return "iOS";
+            }
+            return "unknown";
         }
     </script>
 </body>
