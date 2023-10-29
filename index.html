@@ -66,14 +66,18 @@
         text-align: center;
     }
 
+    .header {
+        background: #FFFBFE
+    }
+
     /** Toolbar size, so content doesn't show behind toolbar */
     body {
-        padding-top: 90px;
+        padding-top: 69px;
     }
 
     @media (max-width: 979px) {
         body {
-            padding-top: 75px;
+            padding-top: 62px;
         }
     }
 
@@ -110,7 +114,8 @@
         }
     }
 
-    .page-1, .page-3 {
+    .page-1,
+    .page-3 {
         background: #eef9f4;
     }
 
@@ -122,6 +127,7 @@
     #play-store-btn {
         max-width: 200px;
     }
+
     #play-store-btn img {
         width: 100%;
         height: auto;
@@ -129,8 +135,8 @@
 </style>
 
 <body>
-    <div class="container header fixed-top bg-white">
-        <header class="d-flex flex-wrap justify-content-between py-3 border-bottom">
+    <div class="header fixed-top">
+        <header class="container d-flex flex-wrap justify-content-between py-3 border-bottom">
             <a href="/" class="d-flex align-items-center me-md-auto text-dark text-decoration-none">
                 <span class="fw-bold fs-4">Dwellable</span>
             </a>
@@ -147,7 +153,7 @@
     </div>
     <div id="parent">
         <div class="col">
-            <div class="row">
+            <div id="page-0" class="row">
                 <div class="col-lg-12 col-md-12 mb-5">
                     <div class="row flex-lg-row">
                         <div class="d-flex col-lg-12 align-items-center justify-content-center">
@@ -161,7 +167,8 @@
                         </div>
                     </div>
                     <div class="row flex-lg-row justify-content-center pt-3 pb-5 d-none d-lg-block">
-                        <h6 class="px-3">Dwellable guides you through conducting home inspections by yourself — whether at an open house or for your own home.</h6>
+                        <h6 class="px-3">Dwellable guides you through conducting home inspections by yourself — whether
+                            at an open house or for your own home.</h6>
                     </div>
                     <div class="row d-flex align-items-center justify-content-center">
                         <a id="app-store-btn"
@@ -178,7 +185,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row page-1 p-5">
+            <div id="page-1" class="row page-1 p-5">
                 <div class="col-md-12 col-lg-6">
                     <div class="row flex-lg-row justify-content-start p-2">
                         <div class="d-flex col-lg-12 align-items-center justify-content-start">
@@ -188,7 +195,8 @@
                     <div class="row flex-lg-row justify-content-start p-2">
                         <div class="d-flex flex-column col-lg-12 align-items-start justify-content-start text-start">
                             <p><span>Check off the questions we give you for each room as you go.</span></p>
-                            <p><span>Smart checklist is available for many room types and the exterior of a house.</span></p>
+                            <p><span>Smart checklist is available for many room types and the exterior of a
+                                    house.</span></p>
                         </div>
                     </div>
                 </div>
@@ -200,7 +208,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row page-2 p-5">
+            <div id="page-2" class="row page-2 p-5">
                 <div class="col-md-12 col-lg-6">
                     <div class="row flex-lg-row justify-content-start p-2">
                         <div class="d-flex col-lg-12 align-items-center justify-content-start">
@@ -221,7 +229,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row page-3 p-5">
+            <div id="page-3" class="row page-3 p-5">
                 <div class="col-md-12 col-lg-6">
                     <div class="row flex-lg-row justify-content-start p-2">
                         <div class="d-flex col-lg-12 align-items-center justify-content-start">
@@ -231,8 +239,9 @@
                     <div class="row flex-lg-row justify-content-start p-2">
                         <div class="d-flex flex-column col-lg-12 align-items-start justify-content-start text-start">
                             <p><span>Review the generated inspection report for a full picture of the home.</span></p>
-                            <p><span>The report includes all the notes and photos you take and a set of recommended actions based
-                                on your responses to the smart checklist.</span></p>
+                            <p><span>The report includes all the notes and photos you take and a set of recommended
+                                    actions based
+                                    on your responses to the smart checklist.</span></p>
                         </div>
                     </div>
                 </div>
@@ -244,10 +253,11 @@
                     </div>
                 </div>
             </div>
-            <div class="row page-4 px-5 pt-5 pb-2 d-lg-none">
+            <div id="page-4" class="row page-4 px-5 pt-5 pb-2 d-lg-none">
                 <div class="col-12">
                     <div class="row flex-lg-row justify-content-center p-2">
-                        Dwellable guides you through conducting home inspections by yourself — whether at an open house or for your own home.
+                        Dwellable guides you through conducting home inspections by yourself — whether at an open house
+                        or for your own home.
                     </div>
                 </div>
             </div>
@@ -262,21 +272,34 @@
         </div>
     </div>
     <script>
-        // // Create the observer
-        // const observer = new IntersectionObserver(entries => {
-        //     entries.forEach(entry => {
-        //         if (entry.isIntersecting) {
-        //             // Add the animation class
-        //             entry.target.classList.add('device-image-animation');
-        //         }
-        //     });
-        // });
+        function respondToVisibility(element, callback) {
+            var options = {
+                root: document.documentElement,
+            };
 
-        // // Tell the observer which elements to track
-        // observer.observe(document.querySelector('#image_1'));
-        // observer.observe(document.querySelector('#image_2'));
-        // observer.observe(document.querySelector('#image_3'));
-        // observer.observe(document.querySelector('#image_4'));
+            var observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    callback(entry.intersectionRatio > 0);
+                });
+            }, options);
+
+            observer.observe(element);
+        }
+        pages = ["page-0", "page-1", "page-2", "page-3", "page-4"];
+        let emittedPages = new Set();
+        for (let page of pages) {
+            respondToVisibility(document.getElementById(page), visible => {
+                if (visible && !emittedPages.has(page)) {
+                    emittedPages.add(page);
+                    gtag('event', 'page-section-viewed', {
+                        "section-id": page
+                    });
+                    amplitude.track('page-section-viewed', {
+                        "section-id": page
+                    });
+                }
+            });
+        }
     </script>
     <script>
         // const VARIANT_DELAY_MS = 5000
