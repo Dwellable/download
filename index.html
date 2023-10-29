@@ -64,6 +64,7 @@
         color: #000000;
         font-family: 'PT Sans', sans-serif;
         text-align: center;
+
     }
 
     .header {
@@ -124,13 +125,20 @@
         height: auto;
     }
 
-    #play-store-btn {
-        max-width: 200px;
+    .btn-get-app {
+        background: #318a51;
+        color: white;
+        border-radius: 50px;
     }
 
-    #play-store-btn img {
-        width: 100%;
+    .btn-get-app img {
+        width: 25px;
         height: auto;
+        margin-right: 5px;
+    }
+
+    .gap {
+        gap: 30px;
     }
 </style>
 
@@ -170,8 +178,21 @@
                         <h6 class="px-3">Dwellable guides you through conducting home inspections by yourself — whether
                             at an open house or for your own home.</h6>
                     </div>
-                    <div class="row d-flex align-items-center justify-content-center">
-                        <a id="app-store-btn"
+                    <div class="row">
+                        <div class="gap col d-flex justify-content-center align-items-center">
+                            <a id="app-store-btn" role="button"
+                                class="btn btn-success btn-get-app px-4 py-3 d-flex justify-content-center align-items-center"
+                                href="https://apps.apple.com/us/app/dwellable-home-inspector/id6444394386?itsct=apps_box_badge&amp;itscg=30200">
+                                <img src="apple-logo.svg" />Apple App Store
+                            </a>
+                            <a id="play-store-btn" role="button"
+                                class="btn btn-success btn-get-app px-4 py-3 d-flex justify-content-center align-items-center"
+                                href="https://play.google.com/store/apps/details?id=com.dwellable&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">
+                                <img src="android.svg" />Google Play
+                            </a>
+                        </div>
+
+                        <!-- <a id="app-store-btn"
                             href="https://apps.apple.com/us/app/dwellable-home-inspector/id6444394386?itsct=apps_box_badge&amp;itscg=30200">
                             <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1668729600?h=6a9f93726bb57cfed655b1f205381fa5"
                                 alt="Download on the App Store" style="border-radius: 13px;">
@@ -181,7 +202,7 @@
                             <img alt="Get it on Google Play"
                                 src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
                                 style="border-radius: 13px;">
-                        </a>
+                        </a> -->
                     </div>
                 </div>
             </div>
@@ -388,9 +409,9 @@
 
         let os = getMobileOperatingSystem();
         if (os == "Android") {
-            document.getElementById("app-store-btn").remove()
+            //document.getElementById("app-store-btn").remove()
         } else if (os == "iOS") {
-            document.getElementById("play-store-btn").remove()
+            //document.getElementById("play-store-btn").remove()
         }
 
         /**
