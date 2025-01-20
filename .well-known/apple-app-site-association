@@ -1,0 +1,10 @@
+{
+  "applinks": {
+      "details": [
+           {
+             "appIDs": [ "AG68J3F22G.app.dwellable" ],
+             "paths": [ "*" ]
+           }
+       ]
+   }
+}
