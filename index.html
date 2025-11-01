@@ -76,6 +76,8 @@
         backdrop-filter: blur(15px);
         border-bottom: 1px solid rgba(229, 231, 235, 0.2);
         transition: all 0.3s ease;
+        z-index: 1030;
+        height: 80px;
     }
 
     .header.scrolled {
@@ -89,10 +91,11 @@
     }
 
     .hero-section {
-        height: 100vh;
+        min-height: calc(100vh - 80px);
         display: flex;
         align-items: center;
         padding: 80px 0;
+        margin-top: 80px;
     }
 
     .feature-section {
@@ -324,13 +327,15 @@
         }
         
         .hero-section {
-            padding: 40px 15px;
+            padding: 20px 15px 40px;
+            min-height: calc(100vh - 80px);
+            margin-top: 80px;
         }
         
         .hero-text {
             text-align: left;
             margin-bottom: 2rem;
-            padding: 0 15px;
+            padding: 0;
         }
         
         .hero-subtitle {
@@ -347,6 +352,45 @@
             padding-right: 15px;
             max-width: 100%;
             overflow-x: hidden;
+        }
+        
+        .hero-images {
+            margin-top: 2rem;
+            justify-content: center !important;
+            text-align: center;
+            align-items: center !important;
+        }
+        
+        .hero-img-left,
+        .hero-img-right {
+            transform: none !important;
+            max-width: 250px;
+            vertical-align: middle;
+        }
+        
+        .col-lg-6.text-center {
+            text-align: center !important;
+            padding-left: 15px !important;
+        }
+        
+        .feature-section {
+            min-height: auto;
+            padding: 60px 15px;
+        }
+        
+        .feature-title-large {
+            font-size: 2rem;
+            text-align: center;
+        }
+        
+        .feature-description-large {
+            text-align: center;
+            max-width: 100%;
+        }
+        
+        .feature-image {
+            max-width: 300px;
+            max-height: 50vh;
         }
     }
 </style>
@@ -376,7 +420,7 @@
     </div>
     <div class="container">
         <!-- Hero Section -->
-        <div class="hero-section" style="padding-top: 80px;">
+        <div class="hero-section">
             <div class="row align-items-center">
                 <div class="col-lg-6 hero-text">
                     <h1 class="hero-title">Your home, simplified.</h1>
@@ -466,7 +510,7 @@
                         <div class="footer-section">
                             <h6 class="footer-title">Legal</h6>
                             <a href="/privacy-policy.html" class="footer-link">Privacy Policy</a>
-                            <a href="#" class="footer-link">Terms of Use</a>
+                            <a href="/terms.html" class="footer-link">Terms of Use</a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 mb-4">
@@ -501,17 +545,20 @@
         pages = ["page-0", "page-1", "page-2", "page-3", "page-4"];
         let emittedPages = new Set();
         for (let page of pages) {
-            respondToVisibility(document.getElementById(page), visible => {
-                if (visible && !emittedPages.has(page)) {
-                    emittedPages.add(page);
-                    gtag('event', 'page-section-viewed', {
-                        "section-id": page
-                    });
-                    amplitude.track('page-section-viewed', {
-                        "section-id": page
-                    });
-                }
-            });
+            const element = document.getElementById(page);
+            if (element) {
+                respondToVisibility(element, visible => {
+                    if (visible && !emittedPages.has(page)) {
+                        emittedPages.add(page);
+                        gtag('event', 'page-section-viewed', {
+                            "section-id": page
+                        });
+                        amplitude.track('page-section-viewed', {
+                            "section-id": page
+                        });
+                    }
+                });
+            }
         }
     </script>
     <script>
