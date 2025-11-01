@@ -59,218 +59,427 @@
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=PT+Sans:wght@700&family=PT+Sans&display=swap');
 
+    html {
+    }
+
     body {
-        background: #FFFBFE;
+        background: #FFFFFF;
         color: #000000;
         font-family: 'PT Sans', sans-serif;
-        text-align: center;
-
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
     }
 
     .header {
-        background: #FFFBFE
+        background: rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(15px);
+        border-bottom: 1px solid rgba(229, 231, 235, 0.2);
+        transition: all 0.3s ease;
     }
 
-    /** Toolbar size, so content doesn't show behind toolbar */
-    body {
-        padding-top: 69px;
+    .header.scrolled {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(229, 231, 235, 0.5);
     }
 
-    @media (max-width: 979px) {
-        body {
-            padding-top: 62px;
-        }
+    h1, h2, h3, h4, h5, h6, p, span {
+        color: #000000;
     }
 
-    .instagram {
-        background-image: url('./instagram.svg');
-        height: 100%;
-        width: 30px;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: contain;
+    .hero-section {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 80px 0;
     }
 
-    h2 {
-        color: #147348;
+    .feature-section {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 80px 0;
+    }
+
+    .feature-content {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .feature-image {
+        max-width: 400px;
+        max-height: 70vh;
+        width: auto;
+        height: auto;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        object-fit: contain;
+        opacity: 0;
+        transform: translateX(100px);
+        transition: all 0.8s ease-out;
+    }
+
+    .feature-image.animate-in {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .feature-title-large {
+        font-size: 3rem;
+        font-weight: bold;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        color: #000000;
+    }
+
+    .feature-description-large {
+        font-size: 1.25rem;
+        color: #666666;
+        margin-bottom: 2rem;
+        max-width: 500px;
+        line-height: 1.6;
+    }
+
+    .hero-text {
+        text-align: left;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: bold;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        color: #000000;
+    }
+
+    .hero-subtitle {
+        font-size: 1.125rem;
+        color: #666666;
+        margin-bottom: 2rem;
+        max-width: 500px;
     }
 
     .device-img {
         max-width: 400px;
+        max-height: 70vh;
+        width: auto;
         height: auto;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        object-fit: contain;
+        opacity: 0;
+        transform: translateX(100px);
     }
 
-    @media (max-width: 991.98px) {
-        .device-img {
-            max-width: 100%;
+    .device-img.animate {
+        animation: slideInFromRight 1s ease-out forwards;
+    }
+
+    .device-img:nth-child(1).animate {
+        animation-delay: 0s;
+    }
+
+    .device-img:nth-child(2).animate {
+        animation-delay: 0.3s;
+    }
+
+    .device-img:nth-child(3).animate {
+        animation-delay: 0.6s;
+    }
+
+    .hero-img-left {
+        transform: rotate(-8deg);
+    }
+
+    .hero-img-right {
+        transform: rotate(8deg);
+    }
+
+    .hero-img-left.animate {
+        animation: slideInLeftAngled 1s ease-out forwards;
+    }
+
+    .hero-img-right.animate {
+        animation: slideInRightAngled 1s ease-out forwards;
+    }
+
+    @keyframes slideInLeftAngled {
+        from {
+            transform: translateX(100px) rotate(0deg);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0) rotate(-8deg);
+            opacity: 1;
         }
     }
 
-    .page-1,
-    .page-3 {
-        background: #eef9f4;
+    @keyframes slideInRightAngled {
+        from {
+            transform: translateX(100px) rotate(8deg);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0) rotate(8deg);
+            opacity: 1;
+        }
     }
 
-    #footer-favicon {
-        max-width: 50px;
-        height: auto;
+    @keyframes slideInFromRight {
+        from {
+            transform: translateX(100px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    .features-section {
+        padding: 80px 0;
+        background: #f8f9fa;
+    }
+
+    .feature-item {
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .feature-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        color: #000000;
+    }
+
+    .feature-description {
+        color: #666666;
+        font-size: 1rem;
+        line-height: 1.6;
     }
 
     .btn-get-app {
-        background: #318a51;
+        background: #000000;
         color: white;
-        border-radius: 50px;
+        border-radius: 12px;
+        padding: 12px 24px;
+        font-weight: 600;
+        transition: all 0.2s;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .btn-get-app:hover {
+        background: #333333;
+        color: white;
+        text-decoration: none;
     }
 
     .btn-get-app img {
-        width: 25px;
+        width: 20px;
         height: auto;
-        margin-right: 5px;
     }
 
-    .gap {
-        gap: 30px;
+    .footer {
+        background: #ffffff;
+        border-top: 1px solid #e5e7eb;
+        padding: 60px 0 40px;
+        min-height: 250px;
+        display: flex;
+        align-items: center;
+    }
+
+    .footer-section {
+        margin-bottom: 2rem;
+    }
+
+    .footer-title {
+        font-weight: bold;
+        margin-bottom: 1rem;
+        color: #000000;
+    }
+
+    .footer-link {
+        color: #666666;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .footer-link:hover {
+        color: #000000;
+        text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+        .hero-title {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        .hero-section {
+            padding: 40px 15px;
+        }
+        
+        .hero-text {
+            text-align: left;
+            margin-bottom: 2rem;
+            padding: 0 15px;
+        }
+        
+        .hero-subtitle {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
+            max-width: 100%;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .container {
+            padding-left: 15px;
+            padding-right: 15px;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
     }
 </style>
 
 <body>
     <div class="header fixed-top">
-        <header class="container d-flex flex-wrap justify-content-between py-3 border-bottom">
+        <header class="container d-flex flex-wrap justify-content-between py-3">
             <a href="/" class="d-flex align-items-center me-md-auto text-dark text-decoration-none">
+                <img src="favicon.png" alt="Dwellable" style="width: 24px; height: 24px; margin-right: 8px;">
                 <span class="fw-bold fs-4">Dwellable</span>
             </a>
-            <div class="d-flex">
-                <a class="d-flex align-items-center text-dark text-decoration-none" href="mailto:hello@dwellable.app">
-                    <span class="fw-bold">Contact Us</span>
+            <div class="d-none d-lg-flex gap-3 align-items-center">
+                <a id="app-store-btn" target="_blank"
+                    href="https://apps.apple.com/us/app/dwellable-home-inspector/id6444394386?itsct=apps_box_badge&amp;itscg=30200">
+                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
+                         alt="Download on the App Store" 
+                         style="height: 40px; width: auto;">
                 </a>
-                <a class="d-flex align-items-center px-2 text-dark text-decoration-none"
-                    href="https://www.instagram.com/dwellable.app/">
-                    <i class="instagram"></i>
+                <a id="play-store-btn" target="_blank"
+                    href="https://play.google.com/store/apps/details?id=com.dwellable&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">
+                    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" 
+                         alt="Get it on Google Play" 
+                         style="height: 58px; width: auto;">
                 </a>
             </div>
         </header>
     </div>
-    <div id="parent">
-        <div class="col container">
-            <div id="page-0" class="row">
-                <div class="col-lg-12 col-md-12 mb-3">
-                    <div class="row flex-lg-row">
-                        <div class="d-flex col-lg-12 align-items-center justify-content-center">
-                            <lottie-player src="ReportHeader.json" background="transparent" speed="1"
-                                style="width: 300px; height: 300px;" loop autoplay></lottie-player>
-                        </div>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero-section" style="padding-top: 80px;">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-text">
+                    <h1 class="hero-title">Your home, simplified.</h1>
+                    <p class="hero-subtitle">Identify issues, track repairs, and stay on top of maintenance—all in one app.</p>
+                    <div class="d-flex gap-3 flex-wrap align-items-center">
+                        <a href="https://apps.apple.com/us/app/dwellable-home-inspector/id6444394386?itsct=apps_box_badge&amp;itscg=30200" 
+                           target="_blank">
+                            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
+                                 alt="Download on the App Store" 
+                                 style="height: 50px; width: auto;">
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.dwellable&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" 
+                           target="_blank">
+                            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" 
+                                 alt="Get it on Google Play" 
+                                 style="height: 72px; width: auto;">
+                        </a>
                     </div>
-                    <div class="row flex-lg-row-reverse align-items-center g-5 pt-5 justify-content-center">
-                        <div class="col-lg-8 mt-0">
-                            <h1 class="display-6 fw-bold lh-1 mb-3 px-3">Inspect a home like a pro! It's free.</h1>
-                        </div>
+                </div>
+                <div class="col-lg-6 text-center" style="padding-left: 3rem;">
+                    <div class="d-flex gap-5 justify-content-center align-items-center hero-images">
+                        <img class="device-img hero-img-left" src="home.png" alt="App Screenshot">
+                        <img class="device-img hero-img-right d-none d-xl-block" src="reminders.png" alt="Reminders Screenshot">
                     </div>
-                    <div class="row flex-lg-row justify-content-center pt-3 pb-5 d-none d-lg-block">
-                        <h6 class="px-3">Dwellable guides you through conducting home inspections by yourself — whether
-                            at an open house or for your own home.</h6>
-                    </div>
-                    <div class="row gx-5 gy-1">
-                        <div class="col-lg-6 col-md-12 justify-content-center d-flex">
-                            <div class="d-none d-lg-flex flex-grow-1"></div>
-                            <a id="app-store-btn" role="button" target="_blank"
-                                class="d-flex btn btn-success btn-get-app px-4 py-3 justify-content-center align-items-center"
-                                href="https://apps.apple.com/us/app/dwellable-home-inspector/id6444394386?itsct=apps_box_badge&amp;itscg=30200">
-                                <img src="apple-logo.svg" />Apple App Store
-                            </a>
+                </div>
+            </div>
+        </div>
+        <!-- Property Records Section -->
+        <div class="feature-section">
+            <div class="feature-content">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <h2 class="feature-title-large">Property records at a glance</h2>
+                            <p class="feature-description-large">View all your property information, maintenance history, and important details in one organized place. Everything you need to know about your home, instantly accessible.</p>
                         </div>
-                        <div class="col-lg-6 col-md-12 justify-content-center d-flex">
-                            <a id="play-store-btn" role="button" target="_blank"
-                                class="d-flex btn btn-success btn-get-app px-4 py-3 justify-content-center align-items-center"
-                                href="https://play.google.com/store/apps/details?id=com.dwellable&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">
-                                <img src="android.svg" />Google Play
-                            </a>
-                            <div class="d-none d-lg-flex flex-grow-1"></div>
+                        <div class="col-lg-6 text-center">
+                            <img class="feature-image" src="property_info.png" alt="Property Records">
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="page-1" class="row page-1 p-5">
-                <div class="col-md-12 col-lg-6">
-                    <div class="row flex-lg-row justify-content-start p-2">
-                        <div class="d-flex col-lg-12 align-items-center justify-content-start">
-                            <h2><b>1.</b> Smart checklist</h2>
+        </div>
+
+        <!-- AI Reminders Section -->
+        <div class="feature-section" style="background: #f8f9fa;">
+            <div class="feature-content">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 order-lg-2">
+                            <h2 class="feature-title-large">Smart reminders</h2>
+                            <p class="feature-description-large">Get AI-suggested reminders tailored specifically to your property. Based on your home's records, age, and location, never miss important maintenance tasks again.</p>
                         </div>
-                    </div>
-                    <div class="row flex-lg-row justify-content-start p-2">
-                        <div class="d-flex flex-column col-lg-12 align-items-start justify-content-start text-start">
-                            <p><span>Check off the questions we give you for each room as you go.</span></p>
-                            <p><span>Smart checklist is available for many room types and the exterior of a
-                                    house.</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-lg-6">
-                    <div class="row flex-lg-row">
-                        <div class="d-flex col-lg-12 align-items-center justify-content-center pt-3">
-                            <img class="device-img" src="smart_checklist.png"></img>
+                        <div class="col-lg-6 order-lg-1 text-center">
+                            <img class="feature-image" src="reminders.png" alt="AI Reminders">
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="page-2" class="row page-2 p-5">
-                <div class="col-md-12 col-lg-6">
-                    <div class="row flex-lg-row justify-content-start p-2">
-                        <div class="d-flex col-lg-12 align-items-center justify-content-start">
-                            <h2><b>2.</b> Notes on everything</h2>
+        </div>
+
+        <!-- Inspection Checklist Section -->
+        <div class="feature-section">
+            <div class="feature-content">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <h2 class="feature-title-large">Room-by-room inspections</h2>
+                            <p class="feature-description-large">Follow guided checklists for every room in your home. Our comprehensive questions help you identify potential issues before they become costly problems.</p>
                         </div>
-                    </div>
-                    <div class="row flex-lg-row justify-content-start p-2">
-                        <div class="d-flex col-lg-12 align-items-center justify-content-start text-start">
-                            <span>Take notes, grab pictures, and add to-do's as you walk around.</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-lg-6">
-                    <div class="row flex-lg-row">
-                        <div class="d-flex col-lg-12 align-items-center justify-content-center pt-3">
-                            <img class="device-img" src="notes.png"></img>
+                        <div class="col-lg-6 text-center">
+                            <img class="feature-image" src="inspection.png" alt="Inspection Checklist">
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="page-3" class="row page-3 p-5">
-                <div class="col-md-12 col-lg-6">
-                    <div class="row flex-lg-row justify-content-start p-2">
-                        <div class="d-flex col-lg-12 align-items-center justify-content-start">
-                            <h2><b>3.</b> Inspection report</h2>
+        </div>
+        <!-- Footer -->
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <img src="favicon_large.png" alt="Dwellable" style="max-width: 50px; height: auto; margin-bottom: 1rem;">
+                        <h5 class="fw-bold">Dwellable</h5>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="footer-section">
+                            <h6 class="footer-title">Legal</h6>
+                            <a href="/privacy-policy.html" class="footer-link">Privacy Policy</a>
+                            <a href="#" class="footer-link">Terms of Use</a>
                         </div>
                     </div>
-                    <div class="row flex-lg-row justify-content-start p-2">
-                        <div class="d-flex flex-column col-lg-12 align-items-start justify-content-start text-start">
-                            <p><span>Review the generated inspection report for a full picture of the home.</span></p>
-                            <p><span>The report includes all the notes and photos you take and a set of recommended
-                                    actions based
-                                    on your responses to the smart checklist.</span></p>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="footer-section">
+                            <h6 class="footer-title">Company</h6>
+                            <a href="mailto:hello@dwellable.app" class="footer-link">Contact</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12 col-lg-6">
-                    <div class="row flex-lg-row">
-                        <div class="d-flex col-lg-12 align-items-center justify-content-center pt-3">
-                            <img class="device-img" src="report.png"></img>
-                        </div>
+                <div class="row mt-4 pt-4" style="border-top: 1px solid #e5e7eb;">
+                    <div class="col-12 text-center">
+                        <small class="text-muted">© 2025 Dwellable. All rights reserved.</small>
                     </div>
-                </div>
-            </div>
-            <div id="page-4" class="row page-4 px-5 pt-5 pb-2 d-lg-none">
-                <div class="col-12">
-                    <div class="row flex-lg-row justify-content-center p-2">
-                        Dwellable guides you through conducting home inspections by yourself — whether at an open house
-                        or for your own home.
-                    </div>
-                </div>
-            </div>
-            <div class="row p-5">
-                <div class="col-12 mb-2">
-                    <img id="footer-favicon" src="favicon_large.png"></img>
-                </div>
-                <div class="col-12">
-                    <small class="text-muted">© 2023 Dwellable | <a href="/privacy-policy.html">Privacy Policy</a></span>
                 </div>
             </div>
         </div>
@@ -370,24 +579,28 @@
         }
     </script>
     <script>
-        document.getElementById("play-store-btn").onclick = function () {
-            gtag('event', 'store-link-clicked', {
-                "store_name": "Play Store"
-            });
-            gtag_report_conversion();
-            amplitude.track('store-link-clicked', {
-                "store_name": "Play Store"
-            });
-        }
-        document.getElementById("app-store-btn").onclick = function () {
-            gtag('event', 'store-link-clicked', {
-                "store_name": "App Store"
-            });
-            gtag_report_conversion();
-            amplitude.track('store-link-clicked', {
-                "store_name": "App Store"
-            });
-        }
+        document.querySelectorAll("[id='play-store-btn']").forEach(function(btn) {
+            btn.onclick = function () {
+                gtag('event', 'store-link-clicked', {
+                    "store_name": "Play Store"
+                });
+                gtag_report_conversion();
+                amplitude.track('store-link-clicked', {
+                    "store_name": "Play Store"
+                });
+            }
+        });
+        document.querySelectorAll("[id='app-store-btn']").forEach(function(btn) {
+            btn.onclick = function () {
+                gtag('event', 'store-link-clicked', {
+                    "store_name": "App Store"
+                });
+                gtag_report_conversion();
+                amplitude.track('store-link-clicked', {
+                    "store_name": "App Store"
+                });
+            }
+        });
 
 
         let os = getMobileOperatingSystem();
@@ -418,6 +631,46 @@
             }
             return "unknown";
         }
+
+        // Glassmorphic header effect on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Sequential animation for hero images
+        window.addEventListener('load', function() {
+            const images = document.querySelectorAll('.hero-section .device-img');
+            images.forEach(img => {
+                img.classList.add('animate');
+            });
+        });
+
+        // Intersection Observer for feature images
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all feature images
+        document.addEventListener('DOMContentLoaded', function() {
+            const featureImages = document.querySelectorAll('.feature-image');
+            featureImages.forEach(img => {
+                observer.observe(img);
+            });
+        });
     </script>
 </body>
 

@@ -1,163 +1,276 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width'>
-    <title>Privacy Policy</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Dwellable</title>
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    
+    <!-- Dependencies -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=PT+Sans:wght@700&family=PT+Sans&display=swap');
+
+        html {
+        }
+
         body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            padding: 1em;
+            background: #FFFFFF;
+            color: #000000;
+            font-family: 'PT Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(229, 231, 235, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 120px 20px 60px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            color: #000000;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            color: #000000;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            color: #000000;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        h4 {
+            color: #000000;
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            color: #000000;
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+
+        li {
+            color: #000000;
+            margin-bottom: 0.5rem;
+        }
+
+        strong {
+            color: #000000;
+            font-weight: bold;
+        }
+
+        a {
+            color: #147348;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #0f5233;
+            text-decoration: underline;
+        }
+
+        .btn-get-app {
+            background: #000000;
+            color: white;
+            border-radius: 12px;
+            padding: 12px 24px;
+            font-weight: 600;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-get-app:hover {
+            background: #333333;
+            color: white;
+            text-decoration: none;
+        }
+
+        .btn-get-app img {
+            width: 20px;
+            height: auto;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 100px 15px 40px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.75rem;
+            }
         }
     </style>
 </head>
 
 <body>
-    <strong>Privacy Policy</strong>
-    <p>
-        Rohit Krishnan built the Dwellable app as
-        a Free app. This SERVICE is provided by
-        Rohit Krishnan at no cost and is intended for use as
-        is.
-    </p>
-    <p>
-        This page is used to inform visitors regarding my
-        policies with the collection, use, and disclosure of Personal
-        Information if anyone decided to use my Service.
-    </p>
-    <p>
-        If you choose to use my Service, then you agree to
-        the collection and use of information in relation to this
-        policy. The Personal Information that I collect is
-        used for providing and improving the Service. I will not use or share your information with
-        anyone except as described in this Privacy Policy.
-    </p>
-    <p>
-        The terms used in this Privacy Policy have the same meanings
-        as in our Terms and Conditions, which are accessible at
-        Dwellable unless otherwise defined in this Privacy Policy.
-    </p>
-    <p><strong>Information Collection and Use</strong></p>
-    <p>
-        For a better experience, while using our Service, I
-        may require you to provide us with certain personally
-        identifiable information. The information that
-        I request will be retained on your device and is not collected by me in any way.
-    </p>
-    <div>
-        <p>
-            The app does use third-party services that may collect
-            information used to identify you.
-        </p>
-        <p>
-            Link to the privacy policy of third-party service providers used
-            by the app
-        </p>
+    <div class="header fixed-top">
+        <header class="container d-flex flex-wrap justify-content-between py-3">
+            <a href="/" class="d-flex align-items-center me-md-auto text-dark text-decoration-none">
+                <img src="favicon.png" alt="Dwellable" style="width: 24px; height: 24px; margin-right: 8px;">
+                <span class="fw-bold fs-4">Dwellable</span>
+            </a>
+            <div class="d-none d-lg-flex gap-3 align-items-center">
+                <a id="app-store-btn" target="_blank"
+                    href="https://apps.apple.com/us/app/dwellable-home-inspector/id6444394386?itsct=apps_box_badge&amp;itscg=30200">
+                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
+                         alt="Download on the App Store" 
+                         style="height: 40px; width: auto;">
+                </a>
+                <a id="play-store-btn" target="_blank"
+                    href="https://play.google.com/store/apps/details?id=com.dwellable&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">
+                    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" 
+                         alt="Get it on Google Play" 
+                         style="height: 58px; width: auto;">
+                </a>
+            </div>
+        </header>
+    </div>
+
+    <div class="content">
+        <h1>Privacy Policy</h1>
+        <p>Last updated: November 01, 2025</p>
+        <p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
+        <p>We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy.</p>
+        
+        <h2>Interpretation and Definitions</h2>
+        <h3>Interpretation</h3>
+        <p>The words whose initial letters are capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.</p>
+        
+        <h3>Definitions</h3>
+        <p>For the purposes of this Privacy Policy:</p>
         <ul>
-            <li><a href="https://www.google.com/policies/privacy/" target="_blank" rel="noopener noreferrer">Google Play
-                    Services</a></li>
-            <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+            <li><strong>Account</strong> means a unique account created for You to access our Service or parts of our Service.</li>
+            <li><strong>Affiliate</strong> means an entity that controls, is controlled by, or is under common control with a party, where "control" means ownership of 50% or more of the shares, equity interest or other securities entitled to vote for election of directors or other managing authority.</li>
+            <li><strong>Application</strong> refers to Dwellable, the software program provided by the Company.</li>
+            <li><strong>Business</strong>, for the purpose of CCPA/CPRA, refers to the Company as the legal entity that collects Consumers' personal information and determines the purposes and means of the processing of Consumers' personal information, or on behalf of which such information is collected and that alone, or jointly with others, determines the purposes and means of the processing of consumers' personal information, that does business in the State of California.</li>
+            <li><strong>CCPA</strong> and/or <strong>CPRA</strong> refers to the California Consumer Privacy Act (the "CCPA") as amended by the California Privacy Rights Act of 2020 (the "CPRA").</li>
+            <li><strong>Company</strong> (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to Dwellable LLC.</li>
+            <li><strong>Consumer</strong>, for the purpose of the CCPA/CPRA, means a natural person who is a California resident. A resident, as defined in the law, includes (1) every individual who is in the USA for other than a temporary or transitory purpose, and (2) every individual who is domiciled in the USA who is outside the USA for a temporary or transitory purpose.</li>
+            <li><strong>Country</strong> refers to: Massachusetts, United States</li>
+            <li><strong>Device</strong> means any device that can access the Service such as a computer, a cell phone or a digital tablet.</li>
+            <li><strong>Do Not Track</strong> (DNT) is a concept that has been promoted by US regulatory authorities, in particular the U.S. Federal Trade Commission (FTC), for the Internet industry to develop and implement a mechanism for allowing internet users to control the tracking of their online activities across websites.</li>
+            <li><strong>Personal Data</strong> is any information that relates to an identified or identifiable individual. For the purposes of the CCPA/CPRA, Personal Data means any information that identifies, relates to, describes or is capable of being associated with, or could reasonably be linked, directly or indirectly, with You.</li>
+            <li><strong>Service</strong> refers to the Application.</li>
+            <li><strong>Service Provider</strong> means any natural or legal person who processes the data on behalf of the Company. It refers to third-party companies or individuals employed by the Company to facilitate the Service, to provide the Service on behalf of the Company, to perform services related to the Service or to assist the Company in analyzing how the Service is used.</li>
+            <li><strong>Usage Data</strong> refers to data collected automatically, either generated by the use of the Service or from the Service infrastructure itself (for example, the duration of a page visit).</li>
+            <li><strong>You</strong> means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</li>
+        </ul>
+
+        <h2>Collecting and Using Your Personal Data</h2>
+        <h3>Types of Data Collected</h3>
+        <h4>Personal Data</h4>
+        <p>While using Our Service, We may ask You to provide Us with certain personally identifiable information that can be used to contact or identify You. Personally identifiable information may include, but is not limited to:</p>
+        <ul>
+            <li>Email address</li>
+            <li>First name and last name</li>
+            <li>Address, State, Province, ZIP/Postal code, City</li>
+            <li>Usage Data</li>
+        </ul>
+
+        <h4>Usage Data</h4>
+        <p>Usage Data is collected automatically when using the Service.</p>
+        <p>Usage Data may include information such as Your Device's Internet Protocol address (e.g. IP address), browser type, browser version, the pages of our Service that You visit, the time and date of Your visit, the time spent on those pages, unique device identifiers and other diagnostic data.</p>
+        <p>When You access the Service by or through a mobile device, We may collect certain information automatically, including, but not limited to, the type of mobile device You use, Your mobile device's unique ID, the IP address of Your mobile device, Your mobile operating system, the type of mobile Internet browser You use, unique device identifiers and other diagnostic data.</p>
+        <p>We may also collect information that Your browser sends whenever You visit Our Service or when You access the Service by or through a mobile device.</p>
+
+        <h4>Information Collected while Using the Application</h4>
+        <p>While using Our Application, in order to provide features of Our Application, We may collect, with Your prior permission:</p>
+        <ul>
+            <li>Pictures and other information from your Device's camera and photo library</li>
+        </ul>
+        <p>We use this information to provide features of Our Service, to improve and customize Our Service. The information may be uploaded to the Company's servers and/or a Service Provider's server or it may be simply stored on Your device.</p>
+        <p>You can enable or disable access to this information at any time, through Your Device settings.</p>
+
+        <h3>Use of Your Personal Data</h3>
+        <p>The Company may use Personal Data for the following purposes:</p>
+        <ul>
+            <li><strong>To provide and maintain our Service</strong>, including to monitor the usage of our Service.</li>
+            <li><strong>To manage Your Account:</strong> to manage Your registration as a user of the Service. The Personal Data You provide can give You access to different functionalities of the Service that are available to You as a registered user.</li>
+            <li><strong>For the performance of a contract:</strong> the development, compliance and undertaking of the purchase contract for the products, items or services You have purchased or of any other contract with Us through the Service.</li>
+            <li><strong>To contact You:</strong> To contact You by email, telephone calls, SMS, or other equivalent forms of electronic communication, such as a mobile application's push notifications regarding updates or informative communications related to the functionalities, products or contracted services, including the security updates, when necessary or reasonable for their implementation.</li>
+            <li><strong>To provide You</strong> with news, special offers, and general information about other goods, services and events which We offer that are similar to those that you have already purchased or inquired about unless You have opted not to receive such information.</li>
+            <li><strong>To manage Your requests:</strong> To attend and manage Your requests to Us.</li>
+            <li><strong>For business transfers:</strong> We may use Your information to evaluate or conduct a merger, divestiture, restructuring, reorganization, dissolution, or other sale or transfer of some or all of Our assets, whether as a going concern or as part of bankruptcy, liquidation, or similar proceeding, in which Personal Data held by Us about our Service users is among the assets transferred.</li>
+            <li><strong>For other purposes</strong>: We may use Your information for other purposes, such as data analysis, identifying usage trends, determining the effectiveness of our promotional campaigns and to evaluate and improve our Service, products, services, marketing and your experience.</li>
+        </ul>
+
+        <p>We may share Your personal information in the following situations:</p>
+        <ul>
+            <li><strong>With Service Providers:</strong> We may share Your personal information with Service Providers to monitor and analyze the use of our Service, to contact You.</li>
+            <li><strong>For business transfers:</strong> We may share or transfer Your personal information in connection with, or during negotiations of, any merger, sale of Company assets, financing, or acquisition of all or a portion of Our business to another company.</li>
+            <li><strong>With Affiliates:</strong> We may share Your information with Our affiliates, in which case we will require those affiliates to honor this Privacy Policy. Affiliates include Our parent company and any other subsidiaries, joint venture partners or other companies that We control or that are under common control with Us.</li>
+            <li><strong>With business partners:</strong> We may share Your information with Our business partners to offer You certain products, services or promotions.</li>
+            <li><strong>With other users:</strong> when You share personal information or otherwise interact in the public areas with other users, such information may be viewed by all users and may be publicly distributed outside.</li>
+            <li><strong>With Your consent</strong>: We may disclose Your personal information for any other purpose with Your consent.</li>
+        </ul>
+
+        <h3>Retention of Your Personal Data</h3>
+        <p>The Company will retain Your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use Your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies.</p>
+        <p>The Company will also retain Usage Data for internal analysis purposes. Usage Data is generally retained for a shorter period of time, except when this data is used to strengthen the security or to improve the functionality of Our Service, or We are legally obligated to retain this data for longer periods.</p>
+
+        <h2>Contact Us</h2>
+        <p>If you have any questions about this Privacy Policy, You can contact us:</p>
+        <ul>
+            <li>By email: hello@dwellable.app</li>
         </ul>
     </div>
-    <p><strong>Log Data</strong></p>
-    <p>
-        I want to inform you that whenever you
-        use my Service, in a case of an error in the app
-        I collect data and information (through third-party
-        products) on your phone called Log Data. This Log Data may
-        include information such as your device Internet Protocol
-        (“IP”) address, device name, operating system version, the
-        configuration of the app when utilizing my Service,
-        the time and date of your use of the Service, and other
-        statistics.
-    </p>
-    <p><strong>Cookies</strong></p>
-    <p>
-        Cookies are files with a small amount of data that are
-        commonly used as anonymous unique identifiers. These are sent
-        to your browser from the websites that you visit and are
-        stored on your device's internal memory.
-    </p>
-    <p>
-        This Service does not use these “cookies” explicitly. However,
-        the app may use third-party code and libraries that use
-        “cookies” to collect information and improve their services.
-        You have the option to either accept or refuse these cookies
-        and know when a cookie is being sent to your device. If you
-        choose to refuse our cookies, you may not be able to use some
-        portions of this Service.
-    </p>
-    <p><strong>Service Providers</strong></p>
-    <p>
-        I may employ third-party companies and
-        individuals due to the following reasons:
-    </p>
-    <ul>
-        <li>To facilitate our Service;</li>
-        <li>To provide the Service on our behalf;</li>
-        <li>To perform Service-related services; or</li>
-        <li>To assist us in analyzing how our Service is used.</li>
-    </ul>
-    <p>
-        I want to inform users of this Service
-        that these third parties have access to their Personal
-        Information. The reason is to perform the tasks assigned to
-        them on our behalf. However, they are obligated not to
-        disclose or use the information for any other purpose.
-    </p>
-    <p><strong>Security</strong></p>
-    <p>
-        I value your trust in providing us your
-        Personal Information, thus we are striving to use commercially
-        acceptable means of protecting it. But remember that no method
-        of transmission over the internet, or method of electronic
-        storage is 100% secure and reliable, and I cannot
-        guarantee its absolute security.
-    </p>
-    <p><strong>Links to Other Sites</strong></p>
-    <p>
-        This Service may contain links to other sites. If you click on
-        a third-party link, you will be directed to that site. Note
-        that these external sites are not operated by me.
-        Therefore, I strongly advise you to review the
-        Privacy Policy of these websites. I have
-        no control over and assume no responsibility for the content,
-        privacy policies, or practices of any third-party sites or
-        services.
-    </p>
-    <p><strong>Children’s Privacy</strong></p>
-    <div>
-        <p>
-            These Services do not address anyone under the age of 13.
-            I do not knowingly collect personally
-            identifiable information from children under 13 years of age. In the case
-            I discover that a child under 13 has provided
-            me with personal information, I immediately
-            delete this from our servers. If you are a parent or guardian
-            and you are aware that your child has provided us with
-            personal information, please contact me so that
-            I will be able to do the necessary actions.
-        </p>
-    </div> <!---->
-    <p><strong>Changes to This Privacy Policy</strong></p>
-    <p>
-        I may update our Privacy Policy from
-        time to time. Thus, you are advised to review this page
-        periodically for any changes. I will
-        notify you of any changes by posting the new Privacy Policy on
-        this page.
-    </p>
-    <p>This policy is effective as of 2022-11-14</p>
-    <p><strong>Contact Us</strong></p>
-    <p>
-        If you have any questions or suggestions about my
-        Privacy Policy, do not hesitate to contact me at hello@dwellable.app.
-    </p>
-    <p>This privacy policy page was created at <a href="https://privacypolicytemplate.net" target="_blank"
-            rel="noopener noreferrer">privacypolicytemplate.net </a>and modified/generated by <a
-            href="https://app-privacy-policy-generator.nisrulz.com/" target="_blank" rel="noopener noreferrer">App
-            Privacy Policy Generator</a></p>
+
+    <script>
+        // Glassmorphic header effect on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 
 </html>
