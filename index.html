@@ -243,12 +243,12 @@
         animation-fill-mode: forwards;
     }
 
-    .hero-img-left:hover {
+    .hero-img-left.hover-enabled:hover {
         transform: scale(1.1) rotate(0deg) !important;
         transition: all 0.3s ease !important;
     }
 
-    .hero-img-right:hover {
+    .hero-img-right.hover-enabled:hover {
         transform: scale(1.1) rotate(0deg) !important;
         transition: all 0.3s ease !important;
     }
@@ -751,6 +751,11 @@
                         img.style.transform = 'translateX(0) rotate(8deg)';
                     }
                     img.classList.remove('animate');
+                    
+                    // Add a slight delay before enabling hover to prevent snap
+                    setTimeout(() => {
+                        img.classList.add('hover-enabled');
+                    }, 100);
                 }, 1500);
             });
         });
