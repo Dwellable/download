@@ -156,6 +156,30 @@
         color: #000000;
     }
 
+    .shimmer {
+        background: linear-gradient(90deg, #000000 0%, #000000 40%, #666666 50%, #000000 60%, #000000 100%);
+        background-size: 250% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shimmer 8s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+        0% {
+            background-position: 100% 0;
+        }
+        25% {
+            background-position: -150% 0;
+        }
+        26% {
+            background-position: 100% 0;
+        }
+        100% {
+            background-position: 100% 0;
+        }
+    }
+
     .hero-subtitle {
         font-size: 1.125rem;
         color: #666666;
@@ -173,6 +197,14 @@
         object-fit: contain;
         opacity: 0;
         transform: translateX(100px);
+        transition: all 0.3s ease;
+        z-index: 1;
+    }
+
+    .device-img:hover {
+        transform: scale(1.1);
+        z-index: 10;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
     }
 
     .device-img.animate {
@@ -193,18 +225,32 @@
 
     .hero-img-left {
         transform: rotate(-8deg);
+        transition: all 0.3s ease;
     }
 
     .hero-img-right {
         transform: rotate(8deg);
+        transition: all 0.3s ease;
     }
 
     .hero-img-left.animate {
         animation: slideInLeftAngled 1s ease-out forwards;
+        animation-fill-mode: forwards;
     }
 
     .hero-img-right.animate {
         animation: slideInRightAngled 1s ease-out forwards;
+        animation-fill-mode: forwards;
+    }
+
+    .hero-img-left:hover {
+        transform: scale(1.1) rotate(0deg) !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .hero-img-right:hover {
+        transform: scale(1.1) rotate(0deg) !important;
+        transition: all 0.3s ease !important;
     }
 
     @keyframes slideInLeftAngled {
@@ -215,6 +261,7 @@
         to {
             transform: translateX(0) rotate(-8deg);
             opacity: 1;
+            transition: all 3s ease;
         }
     }
 
@@ -226,6 +273,7 @@
         to {
             transform: translateX(0) rotate(8deg);
             opacity: 1;
+            transition: all 3s ease;
         }
     }
 
@@ -423,8 +471,8 @@
         <div class="hero-section">
             <div class="row align-items-center">
                 <div class="col-lg-6 hero-text">
-                    <h1 class="hero-title">Your home, simplified.</h1>
-                    <p class="hero-subtitle">Identify issues, track repairs, and stay on top of maintenance—all in one app.</p>
+                    <h1 class="hero-title">Your home, <span class="shimmer">simplified</span>.</h1>
+                    <p class="hero-subtitle">Identify issues, track repairs, and stay on top of maintenance—all in one <span style="color: #0d8c68; font-weight: 600;">free</span> app.</p>
                     <div class="d-flex gap-3 flex-wrap align-items-center">
                         <a href="https://apps.apple.com/us/app/dwellable-home-inspector/id6444394386?itsct=apps_box_badge&amp;itscg=30200" 
                            target="_blank">
@@ -694,6 +742,16 @@
             const images = document.querySelectorAll('.hero-section .device-img');
             images.forEach(img => {
                 img.classList.add('animate');
+                // After animation completes, set final styles and remove animation
+                setTimeout(() => {
+                    img.style.opacity = '1';
+                    if (img.classList.contains('hero-img-left')) {
+                        img.style.transform = 'translateX(0) rotate(-8deg)';
+                    } else if (img.classList.contains('hero-img-right')) {
+                        img.style.transform = 'translateX(0) rotate(8deg)';
+                    }
+                    img.classList.remove('animate');
+                }, 1500);
             });
         });
 
