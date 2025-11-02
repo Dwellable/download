@@ -1,0 +1,35 @@
+{
+  "name": "dwellable-website",
+  "version": "1.0.0",
+  "description": "Dwellable home inspection app landing page",
+  "main": "index.html",
+  "scripts": {
+    "optimize": "node optimize-local.js",
+    "build": "node optimize-local.js",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/dwellable-website.git"
+  },
+  "keywords": [
+    "home-inspection",
+    "maintenance",
+    "property-management",
+    "mobile-app"
+  ],
+  "author": "Dwellable",
+  "license": "MIT",
+  "devDependencies": {
+    "html-minifier": "^4.0.0",
+    "terser": "^5.31.0",
+    "clean-css-cli": "^5.6.3",
+    "imagemin": "^8.0.1",
+    "imagemin-webp": "^8.0.0",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^9.0.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
