@@ -833,17 +833,18 @@
 
 
         let os = getMobileOperatingSystem();
-        if (os == "Android") {
-            // Hide App Store buttons, show Play Store
-            document.querySelectorAll("[id='app-store-btn']").forEach(function(btn) {
-                btn.style.display = "none";
-            });
-        } else if (os == "iOS") {
-            // Hide Play Store buttons, show App Store
-            document.querySelectorAll("[id='play-store-btn']").forEach(function(btn) {
-                btn.style.display = "none";
-            });
-        }
+        // Show both buttons on all platforms for now
+        // if (os == "Android") {
+        //     // Hide App Store buttons, show Play Store
+        //     document.querySelectorAll("[id='app-store-btn']").forEach(function(btn) {
+        //         btn.style.display = "none";
+        //     });
+        // } else if (os == "iOS") {
+        //     // Hide Play Store buttons, show App Store
+        //     document.querySelectorAll("[id='play-store-btn']").forEach(function(btn) {
+        //         btn.style.display = "none";
+        //     });
+        // }
 
         /**
          * Determine the mobile operating system.
