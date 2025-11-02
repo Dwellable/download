@@ -92,10 +92,10 @@ jobs:
           console.log('Gzipped version created!');
         }
         
-        async function addCacheHeaders() {
+        function addCacheHeaders() {
           console.log('Creating cache configuration...');
           
-          const htaccess = `
+          const htaccess = \`
         # Cache static assets
         <IfModule mod_expires.c>
           ExpiresActive on
@@ -140,24 +140,24 @@ jobs:
           Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
           Header always set Referrer-Policy "strict-origin-when-cross-origin"
         </IfModule>
-        `;
+        \`;
           
           fs.writeFileSync('.htaccess', htaccess.trim());
           console.log('Cache configuration created!');
         }
         
-        async function createServiceWorker() {
+        function createServiceWorker() {
           console.log('Creating service worker...');
           
-          const sw = `
+          const sw = \`
         const CACHE_NAME = 'dwellable-v1';
         const urlsToCache = [
           '/',
           '/index.optimized.html',
-          '/home.webp',
-          '/reminders.webp',
-          '/property_info.webp',
-          '/inspection.webp',
+          '/home.png',
+          '/reminders.png',
+          '/property_info.png',
+          '/inspection.png',
           'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css'
         ];
         
@@ -180,7 +180,7 @@ jobs:
             )
           );
         });
-        `;
+        \`;
           
           fs.writeFileSync('sw.js', sw.trim());
           console.log('Service worker created!');
@@ -190,8 +190,8 @@ jobs:
           try {
             await optimizeImages();
             optimizeHTML();
-            await addCacheHeaders();
-            await createServiceWorker();
+            addCacheHeaders();
+            createServiceWorker();
             
             console.log('✅ All optimizations complete!');
             console.log('📊 Performance improvements:');
