@@ -27,26 +27,11 @@ jobs:
       run: |
         cat > optimize.js << 'EOF'
         const fs = require('fs');
-        const { minify } = require('html-minifier');
-        const imagemin = require('imagemin');
-        const imageminWebp = require('imagemin-webp');
-        const imageminMozjpeg = require('imagemin-mozjpeg');
-        const imageminPngquant = require('imagemin-pngquant');
+        const { minify } = require('html-minifier-terser');
         
         async function optimizeImages() {
-          console.log('Optimizing images...');
-          
-          // Create WebP versions
-          await imagemin(['*.{jpg,jpeg,png}'], {
-            destination: 'optimized-images',
-            plugins: [
-              imageminWebp({ quality: 85 }),
-              imageminMozjpeg({ quality: 85 }),
-              imageminPngquant({ quality: [0.8, 0.9] })
-            ]
-          });
-          
-          console.log('Images optimized!');
+          console.log('Image optimization skipped (requires external tools)');
+          console.log('Tip: Use online tools like squoosh.app to optimize images manually');
         }
         
         function optimizeHTML() {
@@ -210,10 +195,10 @@ jobs:
             
             console.log('✅ All optimizations complete!');
             console.log('📊 Performance improvements:');
-            console.log('  - Images: WebP format (~30-50% smaller)');
             console.log('  - HTML: Minified and gzipped');
             console.log('  - Caching: Configured for static assets');
             console.log('  - Service Worker: Added for offline support');
+            console.log('  - Images: Optimize manually with squoosh.app');
             
           } catch (error) {
             console.error('❌ Optimization failed:', error);
@@ -227,18 +212,11 @@ jobs:
     - name: Run optimization
       run: node optimize.js
       
-    - name: Copy optimized images
+    - name: Check optimized files
       run: |
-        if [ -d "optimized-images" ]; then
-          cp optimized-images/*.webp ./ || true
-          cp optimized-images/*.jpg ./ || true  
-          cp optimized-images/*.png ./ || true
-        fi
+        echo "📁 Files created:"
+        ls -la index.optimized.html* .htaccess sw.js 2>/dev/null || echo "Optimization files will be created"
         
-    - name: List optimized files
-      run: |
-        echo "📁 Optimized files created:"
-        ls -la *.optimized.* *.webp .htaccess sw.js 2>/dev/null || echo "Some files may not exist yet"
         
     - name: Calculate size savings
       run: |
@@ -265,7 +243,6 @@ jobs:
         path: |
           index.optimized.html
           index.optimized.html.gz
-          *.webp
           .htaccess
           sw.js
         retention-days: 30
