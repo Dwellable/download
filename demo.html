@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Clip Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        .app-clip-btn {
+            background-color: #007AFF;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .app-clip-btn:hover {
+            background-color: #0056CC;
+        }
+        
+        .countdown {
+            margin-top: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Apple Maps App Clip Demo</h1>
+        <button class="app-clip-btn" onclick="openAppClip()">Open Apple Maps App Clip</button>
+        <div class="countdown" id="countdown">Auto-opening in 5 seconds...</div>
+    </div>
+
+    <script>
+        const appClipUrl = 'https://appclip.apple.com/id?p=com.google.Maps.AppClip';
+        let timeLeft = 5;
+        
+        function openAppClip() {
+            window.location.href = appClipUrl;
+        }
+        
+        function updateCountdown() {
+            const countdownElement = document.getElementById('countdown');
+            if (timeLeft > 0) {
+                countdownElement.textContent = `Auto-opening in ${timeLeft} seconds...`;
+                timeLeft--;
+                setTimeout(updateCountdown, 1000);
+            } else {
+                countdownElement.textContent = 'Opening App Clip...';
+                openAppClip();
+            }
+        }
+        
+        // Start countdown when page loads
+        window.onload = function() {
+            updateCountdown();
+        };
+    </script>
+</body>
+</html>

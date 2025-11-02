@@ -1,0 +1,62 @@
+name: Optimize and Deploy Website
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  optimize-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+        
+    - name: Run optimization
+      run: node optimize-simple.js
+      
+    - name: Check optimized files
+      run: |
+        echo "📁 Files created:"
+        ls -la index.min.html* .htaccess sw.js 2>/dev/null || echo "Optimization files will be created"
+        
+        
+    - name: Calculate size savings
+      run: |
+        echo "📊 File size comparison:"
+        echo "Original HTML: $(stat -f%z index.html 2>/dev/null || stat -c%s index.html) bytes"
+        echo "Optimized HTML: $(stat -f%z index.min.html 2>/dev/null || stat -c%s index.min.html) bytes"
+        echo "Gzipped HTML: $(stat -f%z index.min.html.gz 2>/dev/null || stat -c%s index.min.html.gz) bytes"
+        
+    # Optional: Deploy to GitHub Pages
+    - name: Deploy to GitHub Pages
+      if: github.ref == 'refs/heads/main'
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./
+        publish_branch: gh-pages
+        exclude_assets: 'node_modules,package*.json,optimize.js'
+        
+    # Optional: Upload artifacts for download
+    - name: Upload optimized files
+      uses: actions/upload-artifact@v4
+      with:
+        name: optimized-website
+        path: |
+          index.min.html
+          index.min.html.gz
+          .htaccess
+          sw.js
+        retention-days: 30

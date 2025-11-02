@@ -1,0 +1,387 @@
+<html>
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WBNM828NCM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-WBNM828NCM');
+    </script>
+    <title>Dwellable | Home inspection made easy</title>
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <!-- Dependencies -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <!-- Amplitude analytics -->
+    <script type="text/javascript">
+        !function () { "use strict"; !function (e, t) { var r = e.amplitude || { _q: [], _iq: {} }; if (r.invoked) e.console && console.error && console.error("Amplitude snippet has been loaded."); else { var n = function (e, t) { e.prototype[t] = function () { return this._q.push({ name: t, args: Array.prototype.slice.call(arguments, 0) }), this } }, s = function (e, t, r) { return function (n) { e._q.push({ name: t, args: Array.prototype.slice.call(r, 0), resolve: n }) } }, o = function (e, t, r) { e._q.push({ name: t, args: Array.prototype.slice.call(r, 0) }) }, i = function (e, t, r) { e[t] = function () { if (r) return { promise: new Promise(s(e, t, Array.prototype.slice.call(arguments))) }; o(e, t, Array.prototype.slice.call(arguments)) } }, a = function (e) { for (var t = 0; t < g.length; t++)i(e, g[t], !1); for (var r = 0; r < m.length; r++)i(e, m[r], !0) }; r.invoked = !0; var c = t.createElement("script"); c.type = "text/javascript", c.integrity = "sha384-sBFQqoO3bx3qM8f+iksNzu/E3v0rdkVlvzRqpvP+ynsUk/uaCIsa+NPjw5N04mpg", c.crossOrigin = "anonymous", c.async = !0, c.src = "https://cdn.amplitude.com/libs/analytics-browser-2.3.3-min.js.gz", c.onload = function () { e.amplitude.runQueuedFunctions || console.log("[Amplitude] Error: could not load SDK") }; var u = t.getElementsByTagName("script")[0]; u.parentNode.insertBefore(c, u); for (var l = function () { return this._q = [], this }, p = ["add", "append", "clearAll", "prepend", "set", "setOnce", "unset", "preInsert", "postInsert", "remove", "getUserProperties"], d = 0; d < p.length; d++)n(l, p[d]); r.Identify = l; for (var v = function () { return this._q = [], this }, f = ["getEventProperties", "setProductId", "setQuantity", "setPrice", "setRevenue", "setRevenueType", "setEventProperties"], y = 0; y < f.length; y++)n(v, f[y]); r.Revenue = v; var g = ["getDeviceId", "setDeviceId", "getSessionId", "setSessionId", "getUserId", "setUserId", "setOptOut", "setTransport", "reset", "extendSession"], m = ["init", "add", "remove", "track", "logEvent", "identify", "groupIdentify", "setGroup", "revenue", "flush"]; a(r), r.createInstance = function (e) { return r._iq[e] = { _q: [] }, a(r._iq[e]), r._iq[e] }, e.amplitude = r } }(window, document) }();
+        amplitude.init("d5dc4f1beae8e0a5f613f4953f200ade", {
+            defaultTracking: true,
+        });
+    </script>
+
+    <!-- Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="Dwellable | Download now" />
+    <meta property="og:url" content="https://dwellable.app" />
+    <meta property="og:image" content="https://dwellable.app/og_image.png" />
+    <meta property="description"
+        content="Purchasing a home? Dwellable's mobile app helps you inspect and take notes for every room in an open house." />
+
+    <!-- Meta Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1115341849143496');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=1115341849143496&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.1/lottie.min.js" type="text/javascript"></script>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=PT+Sans:wght@700&family=PT+Sans&display=swap');
+
+    body {
+        background: #FFFBFE;
+        color: #000000;
+        font-family: 'PT Sans', sans-serif;
+        text-align: center;
+    }
+
+    /** Toolbar size, so content doesn't show behind toolbar */
+    body {
+        padding-top: 90px;
+    }
+
+    @media (max-width: 979px) {
+        body {
+            padding-top: 75px;
+        }
+    }
+
+    #parent {
+        scroll-behavior: smooth;
+        scroll-snap-type: y mandatory;
+        scroll-snap-stop: always;
+        overflow-y: scroll;
+        flex-basis: 50%;
+        height: 100vh;
+    }
+
+    .instagram {
+        background-image: url('./instagram.svg');
+        height: 100%;
+        width: 30px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+
+    h2 {
+        color: #147348;
+    }
+
+    .device-img {
+        max-width: 400px;
+        height: auto;
+    }
+
+    @media (max-width: 991.98px) {
+        .device-img {
+            max-width: 100%;
+        }
+    }
+
+    .page-1, .page-3 {
+        background: #eef9f4;
+    }
+
+    #footer-favicon {
+        max-width: 50px;
+        height: auto;
+    }
+
+    #play-store-btn {
+        max-width: 200px;
+    }
+    #play-store-btn img {
+        width: 100%;
+        height: auto;
+    }
+</style>
+
+<body>
+    <div class="container header fixed-top bg-white">
+        <header class="d-flex flex-wrap justify-content-between py-3 border-bottom">
+            <a href="/" class="d-flex align-items-center me-md-auto text-dark text-decoration-none">
+                <span class="fw-bold fs-4">Dwellable</span>
+            </a>
+            <div class="d-flex">
+                <a class="d-flex align-items-center text-dark text-decoration-none" href="mailto:hello@dwellable.app">
+                    <span class="fw-bold">Contact Us</span>
+                </a>
+                <a class="d-flex align-items-center px-2 text-dark text-decoration-none"
+                    href="https://www.instagram.com/dwellable.app/">
+                    <i class="instagram"></i>
+                </a>
+            </div>
+        </header>
+    </div>
+    <div id="parent">
+        <div class="col">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 mb-5">
+                    <div class="row flex-lg-row">
+                        <div class="d-flex col-lg-12 align-items-center justify-content-center">
+                            <lottie-player src="ReportHeader.json" background="transparent" speed="1"
+                                style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+                        </div>
+                    </div>
+                    <div class="row flex-lg-row-reverse align-items-center g-5 pt-5 justify-content-center">
+                        <div class="col-lg-8 mt-0">
+                            <h1 class="display-6 fw-bold lh-1 mb-3 px-3">Be the smartest one at an open house!</h1>
+                        </div>
+                    </div>
+                    <div class="row d-flex align-items-center justify-content-center">
+                        <a id="app-store-btn"
+                            href="https://apps.apple.com/us/app/dwellable-home-inspector/id6444394386?itsct=apps_box_badge&amp;itscg=30200">
+                            <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1668729600?h=6a9f93726bb57cfed655b1f205381fa5"
+                                alt="Download on the App Store" style="border-radius: 13px;">
+                        </a>
+                        <a id="play-store-btn"
+                            href="https://play.google.com/store/apps/details?id=com.dwellable&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">
+                            <img alt="Get it on Google Play"
+                                src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+                                style="border-radius: 13px;">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row page-1 p-5">
+                <div class="col-md-12 col-lg-6">
+                    <div class="row flex-lg-row justify-content-start p-2">
+                        <div class="d-flex col-lg-12 align-items-center justify-content-start">
+                            <h2><b>1.</b> Smart checklist</h2>
+                        </div>
+                    </div>
+                    <div class="row flex-lg-row justify-content-start p-2">
+                        <div class="d-flex flex-column col-lg-12 align-items-center justify-content-start text-start">
+                            <p><span>Check off the questions we give you for each room as you go.</span></p>
+                            <p><span>Smart checklist is available for many room types and the exterior of a house.</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    <div class="row flex-lg-row">
+                        <div class="d-flex col-lg-12 align-items-center justify-content-center pt-3">
+                            <img class="device-img" src="smart_checklist.png"></img>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row page-2 p-5">
+                <div class="col-md-12 col-lg-6">
+                    <div class="row flex-lg-row justify-content-start p-2">
+                        <div class="d-flex col-lg-12 align-items-center justify-content-start">
+                            <h2><b>2.</b> Notes on everything</h2>
+                        </div>
+                    </div>
+                    <div class="row flex-lg-row justify-content-start p-2">
+                        <div class="d-flex col-lg-12 align-items-center justify-content-start text-start">
+                            <span>Take notes, grab pictures, and add to-do's as you walk around.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    <div class="row flex-lg-row">
+                        <div class="d-flex col-lg-12 align-items-center justify-content-center pt-3">
+                            <img class="device-img" src="notes.png"></img>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row page-3 p-5">
+                <div class="col-md-12 col-lg-6">
+                    <div class="row flex-lg-row justify-content-start p-2">
+                        <div class="d-flex col-lg-12 align-items-center justify-content-start">
+                            <h2><b>3.</b> Inspection report</h2>
+                        </div>
+                    </div>
+                    <div class="row flex-lg-row justify-content-start p-2">
+                        <div class="d-flex flex-column col-lg-12 align-items-center justify-content-start text-start">
+                            <p><span>Review the generated inspection report for a full picture of the home.</span></p>
+                            <p><span>The report includes all the notes and photos you take and a set of recommended actions based
+                                on your responses to the smart checklist.</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    <div class="row flex-lg-row">
+                        <div class="d-flex col-lg-12 align-items-center justify-content-center pt-3">
+                            <img class="device-img" src="report.png"></img>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row p-5">
+                <div class="col-12 mb-2">
+                    <img id="footer-favicon" src="favicon_large.png"></img>
+                </div>
+                <div class="col-12">
+                    <small class="text-muted">© 2023 Dwellable | <a href="/privacy-policy/">Privacy Policy</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // // Create the observer
+        // const observer = new IntersectionObserver(entries => {
+        //     entries.forEach(entry => {
+        //         if (entry.isIntersecting) {
+        //             // Add the animation class
+        //             entry.target.classList.add('device-image-animation');
+        //         }
+        //     });
+        // });
+
+        // // Tell the observer which elements to track
+        // observer.observe(document.querySelector('#image_1'));
+        // observer.observe(document.querySelector('#image_2'));
+        // observer.observe(document.querySelector('#image_3'));
+        // observer.observe(document.querySelector('#image_4'));
+    </script>
+    <script>
+        // const VARIANT_DELAY_MS = 5000
+        // const ANIMATION_DELAY = 300
+        // const HEADER_PAGE_VARIANTS = [
+        //     "Open house visits",
+        //     "Home buying",
+        //     "Due-diligence",
+        //     "Property tours",
+        //     "Inspecting your home"
+        // ]
+        // let current_variant_idx = 0
+        // let header_variant_ele = document.getElementById("header_variant_text")
+        // header_variant_ele.classList.add("text-show-animation")
+        // header_variant_ele.innerHTML = HEADER_PAGE_VARIANTS[current_variant_idx];
+        // function showNextHeadingVariant() {
+        //     function afterHide() {
+        //         current_variant_idx = (current_variant_idx + 1) % HEADER_PAGE_VARIANTS.length
+        //         header_variant_ele.innerHTML = HEADER_PAGE_VARIANTS[current_variant_idx];
+        //         header_variant_ele.classList.remove("text-hide-animation")
+        //         header_variant_ele.classList.add("text-show-animation")
+        //         setTimeout(showNextHeadingVariant, VARIANT_DELAY_MS)
+        //     }
+        //     header_variant_ele.classList.remove("text-show-animation")
+        //     header_variant_ele.classList.add("text-hide-animation")
+        //     setTimeout(afterHide, ANIMATION_DELAY)
+        // }
+        // setTimeout(showNextHeadingVariant, VARIANT_DELAY_MS)
+    </script>
+    <script>
+        // var scrollDownBtnContainer = document.getElementById('scroll-down-button');
+        // var scrollDownBtn = document.getElementById('scroll-down-anchor');
+        // var scrollUpBtnContainer = document.getElementById('scroll-up-button');
+        // var scrollUpBtn = document.getElementById('scroll-up-anchor');
+        // var parent = document.getElementById('parent')
+        // scrollDownBtn.onclick = function () {
+        //     parent.scrollBy(0, document.body.scrollHeight)
+        // };
+        // scrollUpBtn.onclick = function () {
+        //     parent.scrollTo(0, 0)
+        // };
+        // parent.onscroll = function (ev) {
+        //     if (parent.scrollHeight - window.innerHeight - parent.scrollTop < 100) {
+        //         scrollDownBtnContainer.classList.add("hidden");
+        //         scrollUpBtnContainer.classList.remove("hidden");
+        //     } else {
+        //         scrollDownBtnContainer.classList.remove("hidden");
+        //         scrollUpBtnContainer.classList.add("hidden");
+        //     }
+        // };
+    </script>
+    <script>
+        function gtag_report_conversion(url) {
+            var callback = function () {
+                if (typeof (url) != 'undefined') {
+                    window.location = url;
+                }
+            };
+            gtag('event', 'conversion', {
+                'send_to': 'AW-11113901641/g2YICPn9te8YEMncwrMp',
+                'event_callback': callback
+            });
+            return false;
+        }
+    </script>
+    <script>
+        document.getElementById("play-store-btn").onclick = function () {
+            gtag('event', 'store-link-clicked', {
+                "store_name": "Play Store"
+            });
+            gtag_report_conversion();
+            amplitude.track('store-link-clicked', {
+                "store_name": "Play Store"
+            });
+        }
+        document.getElementById("app-store-btn").onclick = function () {
+            gtag('event', 'store-link-clicked', {
+                "store_name": "App Store"
+            });
+            gtag_report_conversion();
+            amplitude.track('store-link-clicked', {
+                "store_name": "App Store"
+            });
+        }
+
+
+        let os = getMobileOperatingSystem();
+        if (os == "Android") {
+            document.getElementById("app-store-btn").remove()
+        } else if (os == "iOS") {
+            document.getElementById("play-store-btn").remove()
+        }
+
+        /**
+         * Determine the mobile operating system.
+         * This function returns one of 'iOS', 'Android', 'Windows Phone', or 'unknown'.
+         *
+         * @returns {String}
+         */
+        function getMobileOperatingSystem() {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            // Windows Phone must come first because its UA also contains "Android"
+            if (/windows phone/i.test(userAgent)) {
+                return "Windows Phone";
+            }
+            if (/android/i.test(userAgent)) {
+                return "Android";
+            }
+            // iOS detection from: http://stackoverflow.com/a/9039885/177710
+            if (/Apple|Safari|iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                return "iOS";
+            }
+            return "unknown";
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,989 @@
+<html>
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WBNM828NCM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-WBNM828NCM');
+    </script>
+    <title>Dwellable - Free Home Inspection App | AI-Powered Property Maintenance</title>
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=PT+Sans:wght@700&family=PT+Sans&display=swap" as="style">
+    <link rel="preload" href="home.png" as="image" fetchpriority="high">
+    <link rel="preload" href="reminders.png" as="image" fetchpriority="high">
+    <link rel="prefetch" href="property_info.png" as="image">
+    <link rel="prefetch" href="inspection.png" as="image">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://connect.facebook.net">
+    <!-- Dependencies -->
+    <!-- Critical CSS inline -->
+    <style>
+    .d-flex{display:flex!important}.gap-3{gap:1rem!important}.gap-5{gap:3rem!important}.align-items-center{align-items:center!important}.justify-content-center{justify-content:center!important}.flex-wrap{flex-wrap:wrap!important}.container{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}@media (min-width:576px){.container{max-width:540px}}@media (min-width:768px){.container{max-width:720px}}@media (min-width:992px){.container{max-width:960px}}@media (min-width:1200px){.container{max-width:1140px}}.row{display:flex;flex-wrap:wrap;margin-right:-15px;margin-left:-15px}.col-lg-6{position:relative;width:100%;padding-right:15px;padding-left:15px}@media (min-width:992px){.col-lg-6{flex:0 0 50%;max-width:50%}}.text-center{text-align:center!important}.d-none{display:none!important}@media (min-width:1200px){.d-xl-block{display:block!important}}.fixed-top{position:fixed!important;top:0;right:0;left:0;z-index:1030}
+    </style>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous" media="print" onload="this.media='all'">
+    <noscript><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"></noscript>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <!-- Remove lottie as it's not being used -->
+
+    <!-- Amplitude analytics -->
+    <script type="text/javascript">
+        !function () { "use strict"; !function (e, t) { var r = e.amplitude || { _q: [], _iq: {} }; if (r.invoked) e.console && console.error && console.error("Amplitude snippet has been loaded."); else { var n = function (e, t) { e.prototype[t] = function () { return this._q.push({ name: t, args: Array.prototype.slice.call(arguments, 0) }), this } }, s = function (e, t, r) { return function (n) { e._q.push({ name: t, args: Array.prototype.slice.call(r, 0), resolve: n }) } }, o = function (e, t, r) { e._q.push({ name: t, args: Array.prototype.slice.call(r, 0) }) }, i = function (e, t, r) { e[t] = function () { if (r) return { promise: new Promise(s(e, t, Array.prototype.slice.call(arguments))) }; o(e, t, Array.prototype.slice.call(arguments)) } }, a = function (e) { for (var t = 0; t < g.length; t++)i(e, g[t], !1); for (var r = 0; r < m.length; r++)i(e, m[r], !0) }; r.invoked = !0; var c = t.createElement("script"); c.type = "text/javascript", c.integrity = "sha384-sBFQqoO3bx3qM8f+iksNzu/E3v0rdkVlvzRqpvP+ynsUk/uaCIsa+NPjw5N04mpg", c.crossOrigin = "anonymous", c.async = !0, c.src = "https://cdn.amplitude.com/libs/analytics-browser-2.3.3-min.js.gz", c.onload = function () { e.amplitude.runQueuedFunctions || console.log("[Amplitude] Error: could not load SDK") }; var u = t.getElementsByTagName("script")[0]; u.parentNode.insertBefore(c, u); for (var l = function () { return this._q = [], this }, p = ["add", "append", "clearAll", "prepend", "set", "setOnce", "unset", "preInsert", "postInsert", "remove", "getUserProperties"], d = 0; d < p.length; d++)n(l, p[d]); r.Identify = l; for (var v = function () { return this._q = [], this }, f = ["getEventProperties", "setProductId", "setQuantity", "setPrice", "setRevenue", "setRevenueType", "setEventProperties"], y = 0; y < f.length; y++)n(v, f[y]); r.Revenue = v; var g = ["getDeviceId", "setDeviceId", "getSessionId", "setSessionId", "getUserId", "setUserId", "setOptOut", "setTransport", "reset", "extendSession"], m = ["init", "add", "remove", "track", "logEvent", "identify", "groupIdentify", "setGroup", "revenue", "flush"]; a(r), r.createInstance = function (e) { return r._iq[e] = { _q: [] }, a(r._iq[e]), r._iq[e] }, e.amplitude = r } }(window, document) }();
+        amplitude.init("d5dc4f1beae8e0a5f613f4953f200ade", {
+            defaultTracking: true,
+        });
+    </script>
+
+    <!-- Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Free home inspection app. Identify issues, track repairs, and stay on top of maintenance with AI-powered inspections, smart reminders, and room-by-room checklists.">
+    <meta name="keywords" content="home inspection, property maintenance, AI inspection, home repair tracker, maintenance reminders, home checklist app, free home app">
+    <meta name="author" content="Dwellable">
+    <meta name="robots" content="index, follow">
+    <meta name="cf-2fa-verify" content="false">
+    <meta name="cf-email-decode" content="false">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Dwellable - Your home, simplified | Free Home Inspection App" />
+    <meta property="og:description" content="Free home inspection app with AI-powered inspections, smart reminders, and maintenance tracking. Available on iOS and Android." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dwellable.app" />
+    <meta property="og:image" content="https://dwellable.app/og_image.png" />
+    <meta property="og:image:alt" content="Dwellable home inspection app interface" />
+    <meta property="og:site_name" content="Dwellable" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dwellable - Your home, simplified | Free Home Inspection App">
+    <meta name="twitter:description" content="Free home inspection app with AI-powered inspections, smart reminders, and maintenance tracking.">
+    <meta name="twitter:image" content="https://dwellable.app/og_image.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://dwellable.app">
+    
+    <!-- App Store Meta -->
+    <meta name="apple-itunes-app" content="app-id=6444394386">
+    <meta name="google-play-app" content="app-id=com.dwellable">
+
+    <!-- Meta Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1929895650928059');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=1929895650928059&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MobileApplication",
+        "name": "Dwellable",
+        "description": "Free home inspection app with AI-powered inspections, smart reminders, and maintenance tracking for homeowners.",
+        "url": "https://dwellable.app",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": ["iOS", "Android"],
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "downloadUrl": [
+            "https://apps.apple.com/us/app/dwellable-home-inspector/id6444394386",
+            "https://play.google.com/store/apps/details?id=com.dwellable"
+        ],
+        "publisher": {
+            "@type": "Organization",
+            "name": "Dwellable"
+        },
+        "featureList": [
+            "AI-powered home inspections",
+            "Smart maintenance reminders", 
+            "Room-by-room inspection checklists",
+            "Property record management",
+            "Maintenance tracking"
+        ]
+    }
+    </script>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=PT+Sans:wght@700&family=PT+Sans&display=swap');
+
+    html {
+    }
+
+    body {
+        background: #FFFFFF;
+        background-image: 
+            radial-gradient(circle at 1px 1px, rgb(158 158 158 / 24%) 1px, transparent 0);
+        background-size: 20px 20px;
+        color: #000000;
+        font-family: 'PT Sans', sans-serif;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    .header {
+        background: rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(15px);
+        border-bottom: 1px solid rgba(229, 231, 235, 0.2);
+        transition: all 0.3s ease;
+        z-index: 1030;
+        height: 80px;
+    }
+
+    .header.scrolled {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+    }
+
+    h1, h2, h3, h4, h5, h6, p, span {
+        color: #000000;
+    }
+
+    .hero-section {
+        min-height: calc(100vh - 80px);
+        display: flex;
+        align-items: center;
+        padding: 80px 0;
+        margin-top: 80px;
+    }
+
+    .feature-section {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 80px 0;
+    }
+
+    .feature-content {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .feature-image {
+        max-width: 400px;
+        max-height: 70vh;
+        width: auto;
+        height: auto;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        object-fit: contain;
+        opacity: 0;
+        transform: translateX(100px);
+        transition: all 0.8s ease-out;
+    }
+
+    .feature-image.animate-in {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .feature-title-large {
+        font-size: 3rem;
+        font-weight: bold;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        color: #000000;
+    }
+
+    .feature-description-large {
+        font-size: 1.25rem;
+        color: #666666;
+        margin-bottom: 2rem;
+        max-width: 500px;
+        line-height: 1.6;
+    }
+
+    .hero-text {
+        text-align: left;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: bold;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        color: #000000;
+    }
+
+    .shimmer {
+        background: linear-gradient(90deg, #000000 0%, #000000 40%, #666666 50%, #000000 60%, #000000 100%);
+        background-size: 250% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shimmer 8s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+        0% {
+            background-position: 100% 0;
+        }
+        25% {
+            background-position: -150% 0;
+        }
+        26% {
+            background-position: 100% 0;
+        }
+        100% {
+            background-position: 100% 0;
+        }
+    }
+
+    .hero-subtitle-main {
+        font-size: 3.5rem;
+        font-weight: normal;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+        color: #000000;
+    }
+
+    .hero-description {
+        font-size: 0.95rem;
+        color: #666666;
+        margin-bottom: 2rem;
+        max-width: 500px;
+        line-height: 1.5;
+    }
+
+    .gradient-text {
+        background: linear-gradient(90deg, #000000 0%, #0d8c68 25%, #22c55e 50%, #0d8c68 75%, #000000 100%);
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradientSlide 8s ease-in-out infinite;
+    }
+
+    @keyframes gradientSlide {
+        0% {
+            background-position: 0% 0;
+        }
+        50% {
+            background-position: 100% 0;
+        }
+        100% {
+            background-position: 0% 0;
+        }
+    }
+
+    #cycling-text {
+        display: inline-block;
+        transition: all 0.5s ease-in-out;
+        text-decoration: underline;
+        text-decoration-color: #0d8c68;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 4px;
+        min-width: 280px;
+        text-align: left;
+    }
+
+    .text-fade-out {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    .text-fade-in {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .device-img {
+        max-width: 400px;
+        max-height: 70vh;
+        width: auto;
+        height: auto;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        object-fit: contain;
+        opacity: 0;
+        transform: translateX(100px);
+        transition: all 0.3s ease;
+        z-index: 1;
+    }
+
+    .device-img:hover {
+        transform: scale(1.1);
+        z-index: 10;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    .device-img.animate {
+        animation: slideInFromRight 1s ease-out forwards;
+    }
+
+    .device-img:nth-child(1).animate {
+        animation-delay: 0s;
+    }
+
+    .device-img:nth-child(2).animate {
+        animation-delay: 0.3s;
+    }
+
+    .device-img:nth-child(3).animate {
+        animation-delay: 0.6s;
+    }
+
+    .hero-img-left {
+        transform: rotate(-8deg);
+        transition: all 0.3s ease;
+    }
+
+    .hero-img-right {
+        transform: rotate(8deg);
+        transition: all 0.3s ease;
+    }
+
+    .hero-img-left.animate {
+        animation: slideInLeftAngled 1s ease-out forwards;
+        animation-fill-mode: forwards;
+    }
+
+    .hero-img-right.animate {
+        animation: slideInRightAngled 1s ease-out forwards;
+        animation-fill-mode: forwards;
+    }
+
+    .hero-img-left.hover-enabled:hover {
+        transform: scale(1.1) rotate(0deg) !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .hero-img-right.hover-enabled:hover {
+        transform: scale(1.1) rotate(0deg) !important;
+        transition: all 0.3s ease !important;
+    }
+
+    @keyframes slideInLeftAngled {
+        from {
+            transform: translateX(100px) rotate(0deg);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0) rotate(-8deg);
+            opacity: 1;
+            transition: all 3s ease;
+        }
+    }
+
+    @keyframes slideInRightAngled {
+        from {
+            transform: translateX(100px) rotate(8deg);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0) rotate(8deg);
+            opacity: 1;
+            transition: all 3s ease;
+        }
+    }
+
+    @keyframes slideInFromRight {
+        from {
+            transform: translateX(100px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    .features-section {
+        padding: 80px 0;
+        background: #f8f9fa;
+    }
+
+    .feature-item {
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .feature-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        color: #000000;
+    }
+
+    .feature-description {
+        color: #666666;
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .btn-get-app {
+        background: #000000;
+        color: white;
+        border-radius: 12px;
+        padding: 12px 24px;
+        font-weight: 600;
+        transition: all 0.2s;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .btn-get-app:hover {
+        background: #333333;
+        color: white;
+        text-decoration: none;
+    }
+
+    .btn-get-app img {
+        width: 20px;
+        height: auto;
+    }
+
+    .footer {
+        background: #f8fffe;
+        border-top: 1px solid #e5e7eb;
+        padding: 60px 0 40px;
+        min-height: 250px;
+        display: flex;
+        align-items: center;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+    }
+
+    .footer-section {
+        margin-bottom: 2rem;
+    }
+
+    .footer-title {
+        font-weight: bold;
+        margin-bottom: 1rem;
+        color: #000000;
+    }
+
+    .footer-link {
+        color: #666666;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .footer-link:hover {
+        color: #000000;
+        text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+        .hero-title {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        .hero-subtitle-main {
+            font-size: 2rem;
+            line-height: 1.2;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        .hero-description {
+            font-size: 0.9rem;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        .hero-section {
+            padding: 20px 15px 40px;
+            min-height: calc(100vh - 80px);
+            margin-top: 80px;
+        }
+        
+        .hero-text {
+            text-align: left;
+            margin-bottom: 2rem;
+            padding: 0;
+        }
+        
+        .hero-subtitle {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
+            max-width: 100%;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .container {
+            padding-left: 15px;
+            padding-right: 15px;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        .hero-images {
+            margin-top: 2rem;
+            justify-content: center !important;
+            text-align: center;
+            align-items: center !important;
+        }
+        
+        .hero-img-left,
+        .hero-img-right {
+            transform: none !important;
+            max-width: 250px;
+            vertical-align: middle;
+        }
+        
+        #cycling-text {
+            min-width: 200px;
+        }
+        
+        .col-lg-6.text-center {
+            text-align: center !important;
+            padding-left: 15px !important;
+        }
+        
+        .feature-section {
+            min-height: auto;
+            padding: 60px 15px 80px;
+        }
+        
+        .feature-title-large {
+            font-size: 2rem;
+            text-align: center;
+        }
+        
+        .feature-description-large {
+            text-align: center;
+            max-width: 100%;
+        }
+        
+        .feature-image {
+            max-width: 300px;
+            max-height: 50vh;
+        }
+        
+        .col-lg-6.text-center {
+            padding-bottom: 40px !important;
+        }
+    }
+</style>
+
+<body>
+    <div class="header fixed-top">
+        <header class="container d-flex flex-wrap justify-content-between py-3">
+            <a href="/" class="d-flex align-items-center me-md-auto text-dark text-decoration-none">
+                <img src="favicon.png" alt="Dwellable" style="width: 24px; height: 24px; margin-right: 8px;">
+                <span class="fw-bold fs-4">Dwellable</span>
+            </a>
+            <div class="d-none d-lg-flex gap-3 align-items-center">
+                <a id="app-store-btn" target="_blank"
+                    href="https://apps.apple.com/us/app/dwellable-home-inspector/id6444394386?itsct=apps_box_badge&amp;itscg=30200">
+                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
+                         alt="Download on the App Store" 
+                         style="height: 40px; width: auto;">
+                </a>
+                <a id="play-store-btn" target="_blank"
+                    href="https://play.google.com/store/apps/details?id=com.dwellable&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">
+                    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" 
+                         alt="Get it on Google Play" 
+                         style="height: 58px; width: auto;">
+                </a>
+            </div>
+        </header>
+    </div>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-text">
+                    <h1 class="hero-title" style="font-weight: bold;">Meet Dwellable,</h1>
+                    <h2 class="hero-subtitle-main"><span id="cycling-text" class="gradient-text">Home maintenance</span> at your fingertips.</h2>
+                    <p class="hero-description">Dwellable creates personalized reminders and seasonal checklists based on your property—helping you stay ahead of repairs, maintenance, and upkeep, all in one free app.</p>
+                    <div class="d-flex gap-3 flex-wrap align-items-center">
+                        <a id="app-store-btn" href="https://apps.apple.com/us/app/dwellable-home-inspector/id6444394386?itsct=apps_box_badge&amp;itscg=30200" 
+                           target="_blank">
+                            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
+                                 alt="Download on the App Store" 
+                                 style="height: 50px; width: auto;">
+                        </a>
+                        <a id="play-store-btn" href="https://play.google.com/store/apps/details?id=com.dwellable&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" 
+                           target="_blank">
+                            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" 
+                                 alt="Get it on Google Play" 
+                                 style="height: 72px; width: auto;">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center" style="padding-left: 3rem;">
+                    <div class="d-flex gap-5 justify-content-center align-items-center hero-images">
+                        <img class="device-img hero-img-left" src="home.png" alt="App Screenshot">
+                        <img class="device-img hero-img-right d-none d-xl-block" src="reminders.png" alt="Reminders Screenshot">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Property Records Section -->
+        <div class="feature-section">
+            <div class="feature-content">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <h2 class="feature-title-large">Property records at a glance</h2>
+                            <p class="feature-description-large">View all your property information, maintenance history, and important details in one organized place. Everything you need to know about your home, instantly accessible.</p>
+                        </div>
+                        <div class="col-lg-6 text-center">
+                            <img class="feature-image" src="property_info.png" alt="Property Records">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Reminders Section -->
+        <div class="feature-section" style="background: rgba(248, 249, 250, 0.6); backdrop-filter: blur(10px);">
+            <div class="feature-content">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 order-lg-2">
+                            <h2 class="feature-title-large">Smart reminders</h2>
+                            <p class="feature-description-large">Get AI-suggested reminders tailored specifically to your property. Based on your home's records, age, and location, never miss important maintenance tasks again.</p>
+                        </div>
+                        <div class="col-lg-6 order-lg-1 text-center">
+                            <img class="feature-image" src="reminders.png" alt="AI Reminders">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inspection Checklist Section -->
+        <div class="feature-section">
+            <div class="feature-content">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <h2 class="feature-title-large">Room-by-room inspections</h2>
+                            <p class="feature-description-large">Follow guided checklists for every room in your home. Our comprehensive questions help you identify potential issues before they become costly problems.</p>
+                        </div>
+                        <div class="col-lg-6 text-center">
+                            <img class="feature-image" src="inspection.png" alt="Inspection Checklist">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <img src="favicon_large.png" alt="Dwellable" style="max-width: 50px; height: auto; margin-bottom: 1rem;">
+                        <h5 class="fw-bold">Dwellable</h5>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="footer-section">
+                            <h6 class="footer-title">Legal</h6>
+                            <a href="/privacy-policy.html" class="footer-link">Privacy Policy</a>
+                            <a href="/terms.html" class="footer-link">Terms of Use</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="footer-section">
+                            <h6 class="footer-title">Company</h6>
+                            <a href="mailto:hello@dwellable.app" class="footer-link">Contact</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4 pt-4" style="border-top: 1px solid #e5e7eb;">
+                    <div class="col-12 text-center">
+                        <small class="text-muted">© 2025 Dwellable. All rights reserved.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function respondToVisibility(element, callback) {
+            var options = {
+                root: document.documentElement,
+            };
+
+            var observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    callback(entry.intersectionRatio > 0);
+                });
+            }, options);
+
+            observer.observe(element);
+        }
+        pages = ["page-0", "page-1", "page-2", "page-3", "page-4"];
+        let emittedPages = new Set();
+        for (let page of pages) {
+            const element = document.getElementById(page);
+            if (element) {
+                respondToVisibility(element, visible => {
+                    if (visible && !emittedPages.has(page)) {
+                        emittedPages.add(page);
+                        gtag('event', 'page-section-viewed', {
+                            "section-id": page
+                        });
+                        amplitude.track('page-section-viewed', {
+                            "section-id": page
+                        });
+                    }
+                });
+            }
+        }
+    </script>
+    <script>
+        // const VARIANT_DELAY_MS = 5000
+        // const ANIMATION_DELAY = 300
+        // const HEADER_PAGE_VARIANTS = [
+        //     "Open house visits",
+        //     "Home buying",
+        //     "Due-diligence",
+        //     "Property tours",
+        //     "Inspecting your home"
+        // ]
+        // let current_variant_idx = 0
+        // let header_variant_ele = document.getElementById("header_variant_text")
+        // header_variant_ele.classList.add("text-show-animation")
+        // header_variant_ele.innerHTML = HEADER_PAGE_VARIANTS[current_variant_idx];
+        // function showNextHeadingVariant() {
+        //     function afterHide() {
+        //         current_variant_idx = (current_variant_idx + 1) % HEADER_PAGE_VARIANTS.length
+        //         header_variant_ele.innerHTML = HEADER_PAGE_VARIANTS[current_variant_idx];
+        //         header_variant_ele.classList.remove("text-hide-animation")
+        //         header_variant_ele.classList.add("text-show-animation")
+        //         setTimeout(showNextHeadingVariant, VARIANT_DELAY_MS)
+        //     }
+        //     header_variant_ele.classList.remove("text-show-animation")
+        //     header_variant_ele.classList.add("text-hide-animation")
+        //     setTimeout(afterHide, ANIMATION_DELAY)
+        // }
+        // setTimeout(showNextHeadingVariant, VARIANT_DELAY_MS)
+    </script>
+    <script>
+        // var scrollDownBtnContainer = document.getElementById('scroll-down-button');
+        // var scrollDownBtn = document.getElementById('scroll-down-anchor');
+        // var scrollUpBtnContainer = document.getElementById('scroll-up-button');
+        // var scrollUpBtn = document.getElementById('scroll-up-anchor');
+        // var parent = document.getElementById('parent')
+        // scrollDownBtn.onclick = function () {
+        //     parent.scrollBy(0, document.body.scrollHeight)
+        // };
+        // scrollUpBtn.onclick = function () {
+        //     parent.scrollTo(0, 0)
+        // };
+        // parent.onscroll = function (ev) {
+        //     if (parent.scrollHeight - window.innerHeight - parent.scrollTop < 100) {
+        //         scrollDownBtnContainer.classList.add("hidden");
+        //         scrollUpBtnContainer.classList.remove("hidden");
+        //     } else {
+        //         scrollDownBtnContainer.classList.remove("hidden");
+        //         scrollUpBtnContainer.classList.add("hidden");
+        //     }
+        // };
+    </script>
+    <script>
+        function gtag_report_conversion(url) {
+            var callback = function () {
+                if (typeof (url) != 'undefined') {
+                    window.location = url;
+                }
+            };
+            gtag('event', 'conversion', {
+                'send_to': 'AW-11113901641/g2YICPn9te8YEMncwrMp',
+                'event_callback': callback
+            });
+            return false;
+        }
+    </script>
+    <script>
+        document.querySelectorAll("[id='play-store-btn']").forEach(function(btn) {
+            btn.onclick = function () {
+                gtag('event', 'store-link-clicked', {
+                    "store_name": "Play Store"
+                });
+                gtag_report_conversion();
+                amplitude.track('store-link-clicked', {
+                    "store_name": "Play Store"
+                });
+                fbq('trackCustom', 'StoreClick', {
+                    store_name: 'Play Store',
+                    content_category: 'App Download'
+                });
+            }
+        });
+        document.querySelectorAll("[id='app-store-btn']").forEach(function(btn) {
+            btn.onclick = function () {
+                gtag('event', 'store-link-clicked', {
+                    "store_name": "App Store"
+                });
+                gtag_report_conversion();
+                amplitude.track('store-link-clicked', {
+                    "store_name": "App Store"
+                });
+                fbq('trackCustom', 'StoreClick', {
+                    store_name: 'App Store',
+                    content_category: 'App Download'
+                });
+            }
+        });
+
+
+        let os = getMobileOperatingSystem();
+        // Show both buttons on all platforms for now
+        // if (os == "Android") {
+        //     // Hide App Store buttons, show Play Store
+        //     document.querySelectorAll("[id='app-store-btn']").forEach(function(btn) {
+        //         btn.style.display = "none";
+        //     });
+        // } else if (os == "iOS") {
+        //     // Hide Play Store buttons, show App Store
+        //     document.querySelectorAll("[id='play-store-btn']").forEach(function(btn) {
+        //         btn.style.display = "none";
+        //     });
+        // }
+
+        /**
+         * Determine the mobile operating system.
+         * This function returns one of 'iOS', 'Android', 'Windows Phone', or 'unknown'.
+         *
+         * @returns {String}
+         */
+        function getMobileOperatingSystem() {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            // Windows Phone must come first because its UA also contains "Android"
+            if (/windows phone/i.test(userAgent)) {
+                return "Windows Phone";
+            }
+            if (/android/i.test(userAgent)) {
+                return "Android";
+            }
+            // iOS detection from: http://stackoverflow.com/a/9039885/177710
+            if (/Apple|Safari|iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                return "iOS";
+            }
+            return "unknown";
+        }
+
+        // Glassmorphic header effect on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Sequential animation for hero images
+        window.addEventListener('load', function() {
+            const images = document.querySelectorAll('.hero-section .device-img');
+            images.forEach(img => {
+                img.classList.add('animate');
+                // After animation completes, set final styles and remove animation
+                setTimeout(() => {
+                    img.style.opacity = '1';
+                    if (img.classList.contains('hero-img-left')) {
+                        img.style.transform = 'translateX(0) rotate(-8deg)';
+                    } else if (img.classList.contains('hero-img-right')) {
+                        img.style.transform = 'translateX(0) rotate(8deg)';
+                    }
+                    img.classList.remove('animate');
+                    
+                    // Add a slight delay before enabling hover to prevent snap
+                    setTimeout(() => {
+                        img.classList.add('hover-enabled');
+                    }, 100);
+                }, 1500);
+            });
+        });
+
+        // Intersection Observer for feature images
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all feature images
+        document.addEventListener('DOMContentLoaded', function() {
+            const featureImages = document.querySelectorAll('.feature-image');
+            featureImages.forEach(img => {
+                observer.observe(img);
+            });
+        });
+
+        // Cycling text animation
+        const cyclingTexts = [
+            "Home maintenance",
+            "Seasonal checklists", 
+            "Property inspections",
+            "Repair tracking",
+            "Smart reminders"
+        ];
+        
+        let currentIndex = 0;
+        const cyclingElement = document.getElementById('cycling-text');
+        
+        function cycleThroughTexts() {
+            // Fade out
+            cyclingElement.classList.add('text-fade-out');
+            
+            setTimeout(() => {
+                // Change text
+                currentIndex = (currentIndex + 1) % cyclingTexts.length;
+                cyclingElement.textContent = cyclingTexts[currentIndex];
+                
+                // Fade in
+                cyclingElement.classList.remove('text-fade-out');
+                cyclingElement.classList.add('text-fade-in');
+                
+                setTimeout(() => {
+                    cyclingElement.classList.remove('text-fade-in');
+                }, 500);
+            }, 250);
+        }
+        
+        // Start cycling after page loads
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                cycleThroughTexts(); // Do first change immediately
+                setInterval(cycleThroughTexts, 3000); // Then continue every 3 seconds
+            }, 500); // Wait 0.5 seconds before starting
+        });
+    </script>
+</body>
+
+</html>
