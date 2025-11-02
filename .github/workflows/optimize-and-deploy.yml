@@ -23,161 +23,21 @@ jobs:
     - name: Install dependencies
       run: npm ci
         
-    - name: Create optimization script
-      run: |
-        cat > optimize.js << 'EOF'
-        const fs = require('fs');
-        const { minify } = require('html-minifier-terser');
-        
-        async function optimizeImages() {
-          console.log('Image optimization skipped (requires external tools)');
-          console.log('Tip: Use online tools like squoosh.app to optimize images manually');
-        }
-        
-        function optimizeHTML() {
-          console.log('Optimizing HTML...');
-          
-          const html = fs.readFileSync('index.html', 'utf8');
-          
-          // Replace image extensions with WebP and add fallbacks
-          let optimizedHtml = html
-            .replace(/src="([^"]+\.png)"/g, (match, src) => {
-              const webpSrc = src.replace('.png', '.webp');
-              return `src="${webpSrc}" data-fallback="${src}"`;
-            })
-            .replace(/src="([^"]+\.jpg)"/g, (match, src) => {
-              const webpSrc = src.replace('.jpg', '.webp');
-              return `src="${webpSrc}" data-fallback="${src}"`;
-            });
-          
-          // Add WebP support detection script
-          const webpScript = `
-          <script>
-          (function() {
-            var webP = new Image();
-            webP.onload = webP.onerror = function () {
-              if (webP.height !== 2) {
-                // WebP not supported, use fallbacks
-                document.querySelectorAll('img[data-fallback]').forEach(img => {
-                  img.src = img.getAttribute('data-fallback');
-                });
-              }
-            };
-            webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
-          })();
-          </script>`;
-          
-          optimizedHtml = optimizedHtml.replace('</head>', webpScript + '</head>');
-          
-          // Minify HTML
-          const minified = minify(optimizedHtml, {
-            removeComments: true,
-            collapseWhitespace: true,
-            removeRedundantAttributes: true,
-            useShortDoctype: true,
-            removeEmptyAttributes: true,
-            minifyCSS: true,
-            minifyJS: true,
-            removeAttributeQuotes: true,
-            removeOptionalTags: true
-          });
-          
-          fs.writeFileSync('index.optimized.html', minified);
-          console.log('HTML optimized!');
-          
-          // Create gzipped version
-          const zlib = require('zlib');
-          const gzipped = zlib.gzipSync(minified);
-          fs.writeFileSync('index.optimized.html.gz', gzipped);
-          console.log('Gzipped version created!');
-        }
-        
-        function addCacheHeaders() {
-          console.log('Creating cache configuration...');
-          
-          const htaccess = '# Cache static assets\\n' +
-            '<IfModule mod_expires.c>\\n' +
-            '  ExpiresActive on\\n' +
-            '  ExpiresByType image/webp "access plus 1 year"\\n' +
-            '  ExpiresByType image/png "access plus 1 year"\\n' +
-            '  ExpiresByType image/jpg "access plus 1 year"\\n' +
-            '  ExpiresByType text/css "access plus 1 month"\\n' +
-            '  ExpiresByType application/javascript "access plus 1 month"\\n' +
-            '  ExpiresByType text/html "access plus 1 hour"\\n' +
-            '</IfModule>\\n' +
-            '<IfModule mod_deflate.c>\\n' +
-            '  AddOutputFilterByType DEFLATE text/html\\n' +
-            '  AddOutputFilterByType DEFLATE text/css\\n' +
-            '  AddOutputFilterByType DEFLATE application/javascript\\n' +
-            '</IfModule>';
-          
-          fs.writeFileSync('.htaccess', htaccess);
-          console.log('Cache configuration created!');
-        }
-        
-        function createServiceWorker() {
-          console.log('Creating service worker...');
-          
-          const sw = "const CACHE_NAME = 'dwellable-v1';\\n" +
-            "const urlsToCache = [\\n" +
-            "  '/',\\n" +
-            "  '/index.optimized.html',\\n" +
-            "  '/home.png',\\n" +
-            "  '/reminders.png'\\n" +
-            "];\\n" +
-            "self.addEventListener('install', event => {\\n" +
-            "  event.waitUntil(\\n" +
-            "    caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))\\n" +
-            "  );\\n" +
-            "});\\n" +
-            "self.addEventListener('fetch', event => {\\n" +
-            "  event.respondWith(\\n" +
-            "    caches.match(event.request).then(response => response || fetch(event.request))\\n" +
-            "  );\\n" +
-            "});";
-          
-          fs.writeFileSync('sw.js', sw);
-          console.log('Service worker created!');
-        }
-        
-        async function main() {
-          try {
-            await optimizeImages();
-            optimizeHTML();
-            addCacheHeaders();
-            createServiceWorker();
-            
-            console.log('✅ All optimizations complete!');
-            console.log('📊 Performance improvements:');
-            console.log('  - HTML: Minified and gzipped');
-            console.log('  - Caching: Configured for static assets');
-            console.log('  - Service Worker: Added for offline support');
-            console.log('  - Images: Optimize manually with squoosh.app');
-            
-          } catch (error) {
-            console.error('❌ Optimization failed:', error);
-            process.exit(1);
-          }
-        }
-        
-        main();
-        EOF
-        
     - name: Run optimization
-      run: node optimize.js
+      run: node optimize-simple.js
       
     - name: Check optimized files
       run: |
         echo "📁 Files created:"
-        ls -la index.optimized.html* .htaccess sw.js 2>/dev/null || echo "Optimization files will be created"
+        ls -la index.min.html* .htaccess sw.js 2>/dev/null || echo "Optimization files will be created"
         
         
     - name: Calculate size savings
       run: |
         echo "📊 File size comparison:"
         echo "Original HTML: $(stat -f%z index.html 2>/dev/null || stat -c%s index.html) bytes"
-        echo "Optimized HTML: $(stat -f%z index.optimized.html 2>/dev/null || stat -c%s index.optimized.html) bytes"
-        echo "Gzipped HTML: $(stat -f%z index.optimized.html.gz 2>/dev/null || stat -c%s index.optimized.html.gz) bytes"
+        echo "Optimized HTML: $(stat -f%z index.min.html 2>/dev/null || stat -c%s index.min.html) bytes"
+        echo "Gzipped HTML: $(stat -f%z index.min.html.gz 2>/dev/null || stat -c%s index.min.html.gz) bytes"
         
     # Optional: Deploy to GitHub Pages
     - name: Deploy to GitHub Pages
@@ -195,8 +55,8 @@ jobs:
       with:
         name: optimized-website
         path: |
-          index.optimized.html
-          index.optimized.html.gz
+          index.min.html
+          index.min.html.gz
           .htaccess
           sw.js
         retention-days: 30
