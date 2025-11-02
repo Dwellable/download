@@ -13,41 +13,17 @@ const path = require('path');
 let minify, imagemin, imageminWebp, imageminPngquant;
 
 try {
-  ({ minify } = require('html-minifier'));
-  imagemin = require('imagemin');
-  imageminWebp = require('imagemin-webp');
-  imageminPngquant = require('imagemin-pngquant');
+  ({ minify } = require('html-minifier-terser'));
 } catch (error) {
   console.log('📦 Installing dependencies...');
-  console.log('Run: npm install html-minifier imagemin imagemin-webp imagemin-pngquant');
+  console.log('Run: npm install');
   process.exit(1);
 }
 
 async function optimizeImages() {
-  console.log('🖼️  Optimizing images...');
-  
-  try {
-    // Create WebP versions
-    const files = await imagemin(['*.{jpg,jpeg,png}'], {
-      destination: 'optimized',
-      plugins: [
-        imageminWebp({ quality: 85 }),
-        imageminPngquant({ quality: [0.8, 0.9] })
-      ]
-    });
-    
-    // Copy WebP files back to root
-    files.forEach(file => {
-      const webpName = path.basename(file.destinationPath);
-      fs.copyFileSync(file.destinationPath, webpName);
-    });
-    
-    console.log(`✅ Optimized ${files.length} images to WebP format`);
-    return true;
-  } catch (error) {
-    console.log('⚠️  Image optimization skipped (imagemin not available)');
-    return false;
-  }
+  console.log('🖼️  Image optimization skipped (requires external tools)');
+  console.log('   💡 Tip: Use online tools like squoosh.app or tinypng.com to optimize images manually');
+  return false;
 }
 
 function optimizeHTML() {
