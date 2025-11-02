@@ -1,0 +1,273 @@
+name: Optimize and Deploy Website
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  optimize-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: |
+        npm init -y
+        npm install --save-dev html-minifier terser clean-css-cli imagemin imagemin-webp imagemin-mozjpeg imagemin-pngquant
+        
+    - name: Create optimization script
+      run: |
+        cat > optimize.js << 'EOF'
+        const fs = require('fs');
+        const { minify } = require('html-minifier');
+        const imagemin = require('imagemin');
+        const imageminWebp = require('imagemin-webp');
+        const imageminMozjpeg = require('imagemin-mozjpeg');
+        const imageminPngquant = require('imagemin-pngquant');
+        
+        async function optimizeImages() {
+          console.log('Optimizing images...');
+          
+          // Create WebP versions
+          await imagemin(['*.{jpg,jpeg,png}'], {
+            destination: 'optimized-images',
+            plugins: [
+              imageminWebp({ quality: 85 }),
+              imageminMozjpeg({ quality: 85 }),
+              imageminPngquant({ quality: [0.8, 0.9] })
+            ]
+          });
+          
+          console.log('Images optimized!');
+        }
+        
+        function optimizeHTML() {
+          console.log('Optimizing HTML...');
+          
+          const html = fs.readFileSync('index.html', 'utf8');
+          
+          // Replace image extensions with WebP and add fallbacks
+          let optimizedHtml = html
+            .replace(/src="([^"]+\.png)"/g, (match, src) => {
+              const webpSrc = src.replace('.png', '.webp');
+              return `src="${webpSrc}" data-fallback="${src}"`;
+            })
+            .replace(/src="([^"]+\.jpg)"/g, (match, src) => {
+              const webpSrc = src.replace('.jpg', '.webp');
+              return `src="${webpSrc}" data-fallback="${src}"`;
+            });
+          
+          // Add WebP support detection script
+          const webpScript = `
+          <script>
+          (function() {
+            var webP = new Image();
+            webP.onload = webP.onerror = function () {
+              if (webP.height !== 2) {
+                // WebP not supported, use fallbacks
+                document.querySelectorAll('img[data-fallback]').forEach(img => {
+                  img.src = img.getAttribute('data-fallback');
+                });
+              }
+            };
+            webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+          })();
+          </script>`;
+          
+          optimizedHtml = optimizedHtml.replace('</head>', webpScript + '</head>');
+          
+          // Minify HTML
+          const minified = minify(optimizedHtml, {
+            removeComments: true,
+            collapseWhitespace: true,
+            removeRedundantAttributes: true,
+            useShortDoctype: true,
+            removeEmptyAttributes: true,
+            minifyCSS: true,
+            minifyJS: true,
+            removeAttributeQuotes: true,
+            removeOptionalTags: true
+          });
+          
+          fs.writeFileSync('index.optimized.html', minified);
+          console.log('HTML optimized!');
+          
+          // Create gzipped version
+          const zlib = require('zlib');
+          const gzipped = zlib.gzipSync(minified);
+          fs.writeFileSync('index.optimized.html.gz', gzipped);
+          console.log('Gzipped version created!');
+        }
+        
+        async function addCacheHeaders() {
+          console.log('Creating cache configuration...');
+          
+          const htaccess = `
+        # Cache static assets
+        <IfModule mod_expires.c>
+          ExpiresActive on
+          
+          # Images
+          ExpiresByType image/webp "access plus 1 year"
+          ExpiresByType image/png "access plus 1 year" 
+          ExpiresByType image/jpg "access plus 1 year"
+          ExpiresByType image/jpeg "access plus 1 year"
+          ExpiresByType image/svg+xml "access plus 1 year"
+          
+          # Fonts
+          ExpiresByType font/woff2 "access plus 1 year"
+          ExpiresByType font/woff "access plus 1 year"
+          
+          # CSS and JS
+          ExpiresByType text/css "access plus 1 month"
+          ExpiresByType application/javascript "access plus 1 month"
+          
+          # HTML
+          ExpiresByType text/html "access plus 1 hour"
+        </IfModule>
+        
+        # Compression
+        <IfModule mod_deflate.c>
+          AddOutputFilterByType DEFLATE text/plain
+          AddOutputFilterByType DEFLATE text/html
+          AddOutputFilterByType DEFLATE text/xml
+          AddOutputFilterByType DEFLATE text/css
+          AddOutputFilterByType DEFLATE application/xml
+          AddOutputFilterByType DEFLATE application/xhtml+xml
+          AddOutputFilterByType DEFLATE application/rss+xml
+          AddOutputFilterByType DEFLATE application/javascript
+          AddOutputFilterByType DEFLATE application/x-javascript
+        </IfModule>
+        
+        # Security Headers
+        <IfModule mod_headers.c>
+          Header always set X-Content-Type-Options nosniff
+          Header always set X-Frame-Options DENY
+          Header always set X-XSS-Protection "1; mode=block"
+          Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+          Header always set Referrer-Policy "strict-origin-when-cross-origin"
+        </IfModule>
+        `;
+          
+          fs.writeFileSync('.htaccess', htaccess.trim());
+          console.log('Cache configuration created!');
+        }
+        
+        async function createServiceWorker() {
+          console.log('Creating service worker...');
+          
+          const sw = `
+        const CACHE_NAME = 'dwellable-v1';
+        const urlsToCache = [
+          '/',
+          '/index.optimized.html',
+          '/home.webp',
+          '/reminders.webp',
+          '/property_info.webp',
+          '/inspection.webp',
+          'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css'
+        ];
+        
+        self.addEventListener('install', event => {
+          event.waitUntil(
+            caches.open(CACHE_NAME)
+              .then(cache => cache.addAll(urlsToCache))
+          );
+        });
+        
+        self.addEventListener('fetch', event => {
+          event.respondWith(
+            caches.match(event.request)
+              .then(response => {
+                if (response) {
+                  return response;
+                }
+                return fetch(event.request);
+              }
+            )
+          );
+        });
+        `;
+          
+          fs.writeFileSync('sw.js', sw.trim());
+          console.log('Service worker created!');
+        }
+        
+        async function main() {
+          try {
+            await optimizeImages();
+            optimizeHTML();
+            await addCacheHeaders();
+            await createServiceWorker();
+            
+            console.log('✅ All optimizations complete!');
+            console.log('📊 Performance improvements:');
+            console.log('  - Images: WebP format (~30-50% smaller)');
+            console.log('  - HTML: Minified and gzipped');
+            console.log('  - Caching: Configured for static assets');
+            console.log('  - Service Worker: Added for offline support');
+            
+          } catch (error) {
+            console.error('❌ Optimization failed:', error);
+            process.exit(1);
+          }
+        }
+        
+        main();
+        EOF
+        
+    - name: Run optimization
+      run: node optimize.js
+      
+    - name: Copy optimized images
+      run: |
+        if [ -d "optimized-images" ]; then
+          cp optimized-images/*.webp ./ || true
+          cp optimized-images/*.jpg ./ || true  
+          cp optimized-images/*.png ./ || true
+        fi
+        
+    - name: List optimized files
+      run: |
+        echo "📁 Optimized files created:"
+        ls -la *.optimized.* *.webp .htaccess sw.js 2>/dev/null || echo "Some files may not exist yet"
+        
+    - name: Calculate size savings
+      run: |
+        echo "📊 File size comparison:"
+        echo "Original HTML: $(stat -f%z index.html 2>/dev/null || stat -c%s index.html) bytes"
+        echo "Optimized HTML: $(stat -f%z index.optimized.html 2>/dev/null || stat -c%s index.optimized.html) bytes"
+        echo "Gzipped HTML: $(stat -f%z index.optimized.html.gz 2>/dev/null || stat -c%s index.optimized.html.gz) bytes"
+        
+    # Optional: Deploy to GitHub Pages
+    - name: Deploy to GitHub Pages
+      if: github.ref == 'refs/heads/main'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./
+        publish_branch: gh-pages
+        exclude_assets: 'node_modules,package*.json,optimize.js'
+        
+    # Optional: Upload artifacts for download
+    - name: Upload optimized files
+      uses: actions/upload-artifact@v3
+      with:
+        name: optimized-website
+        path: |
+          index.optimized.html
+          index.optimized.html.gz
+          *.webp
+          .htaccess
+          sw.js
+        retention-days: 30
