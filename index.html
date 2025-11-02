@@ -14,13 +14,19 @@
     <link rel="icon" type="image/x-icon" href="favicon.png">
     <!-- Preload critical resources -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=PT+Sans:wght@700&family=PT+Sans&display=swap" as="style">
-    <link rel="preload" href="home.png" as="image">
-    <link rel="prefetch" href="reminders.png" as="image">
+    <link rel="preload" href="home.png" as="image" fetchpriority="high">
+    <link rel="preload" href="reminders.png" as="image" fetchpriority="high">
     <link rel="prefetch" href="property_info.png" as="image">
+    <link rel="prefetch" href="inspection.png" as="image">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="preconnect" href="https://connect.facebook.net">
     <!-- Dependencies -->
+    <!-- Critical CSS inline -->
+    <style>
+    .d-flex{display:flex!important}.gap-3{gap:1rem!important}.gap-5{gap:3rem!important}.align-items-center{align-items:center!important}.justify-content-center{justify-content:center!important}.flex-wrap{flex-wrap:wrap!important}.container{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}@media (min-width:576px){.container{max-width:540px}}@media (min-width:768px){.container{max-width:720px}}@media (min-width:992px){.container{max-width:960px}}@media (min-width:1200px){.container{max-width:1140px}}.row{display:flex;flex-wrap:wrap;margin-right:-15px;margin-left:-15px}.col-lg-6{position:relative;width:100%;padding-right:15px;padding-left:15px}@media (min-width:992px){.col-lg-6{flex:0 0 50%;max-width:50%}}.text-center{text-align:center!important}.d-none{display:none!important}@media (min-width:1200px){.d-xl-block{display:block!important}}.fixed-top{position:fixed!important;top:0;right:0;left:0;z-index:1030}
+    </style>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         crossorigin="anonymous" media="print" onload="this.media='all'">
     <noscript><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"></noscript>
@@ -42,6 +48,8 @@
     <meta name="keywords" content="home inspection, property maintenance, AI inspection, home repair tracker, maintenance reminders, home checklist app, free home app">
     <meta name="author" content="Dwellable">
     <meta name="robots" content="index, follow">
+    <meta name="cf-2fa-verify" content="false">
+    <meta name="cf-email-decode" content="false">
     
     <!-- Open Graph -->
     <meta property="og:title" content="Dwellable - Your home, simplified | Free Home Inspection App" />
@@ -289,6 +297,8 @@
         text-decoration-color: #0d8c68;
         text-decoration-thickness: 1px;
         text-underline-offset: 4px;
+        min-width: 280px;
+        text-align: left;
     }
 
     .text-fade-out {
@@ -545,6 +555,10 @@
             vertical-align: middle;
         }
         
+        #cycling-text {
+            min-width: 200px;
+        }
+        
         .col-lg-6.text-center {
             text-align: center !important;
             padding-left: 15px !important;
@@ -624,8 +638,8 @@
                 </div>
                 <div class="col-lg-6 text-center" style="padding-left: 3rem;">
                     <div class="d-flex gap-5 justify-content-center align-items-center hero-images">
-                        <img class="device-img hero-img-left" src="home.png" alt="App Screenshot" loading="eager" width="400" height="800">
-                        <img class="device-img hero-img-right d-none d-xl-block" src="reminders.png" alt="Reminders Screenshot" loading="lazy" width="400" height="800">
+                        <img class="device-img hero-img-left" src="home.png" alt="App Screenshot">
+                        <img class="device-img hero-img-right d-none d-xl-block" src="reminders.png" alt="Reminders Screenshot">
                     </div>
                 </div>
             </div>
@@ -640,7 +654,7 @@
                             <p class="feature-description-large">View all your property information, maintenance history, and important details in one organized place. Everything you need to know about your home, instantly accessible.</p>
                         </div>
                         <div class="col-lg-6 text-center">
-                            <img class="feature-image" src="property_info.png" alt="Property Records" loading="lazy" width="400" height="600">
+                            <img class="feature-image" src="property_info.png" alt="Property Records">
                         </div>
                     </div>
                 </div>
@@ -657,7 +671,7 @@
                             <p class="feature-description-large">Get AI-suggested reminders tailored specifically to your property. Based on your home's records, age, and location, never miss important maintenance tasks again.</p>
                         </div>
                         <div class="col-lg-6 order-lg-1 text-center">
-                            <img class="feature-image" src="reminders.png" alt="AI Reminders" loading="lazy" width="400" height="600">
+                            <img class="feature-image" src="reminders.png" alt="AI Reminders">
                         </div>
                     </div>
                 </div>
@@ -674,7 +688,7 @@
                             <p class="feature-description-large">Follow guided checklists for every room in your home. Our comprehensive questions help you identify potential issues before they become costly problems.</p>
                         </div>
                         <div class="col-lg-6 text-center">
-                            <img class="feature-image" src="inspection.png" alt="Inspection Checklist" loading="lazy" width="400" height="600">
+                            <img class="feature-image" src="inspection.png" alt="Inspection Checklist">
                         </div>
                     </div>
                 </div>

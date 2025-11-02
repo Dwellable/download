@@ -1,0 +1,97 @@
+# Dwellable Performance Optimizations
+
+# Enable compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/xml
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE application/xhtml+xml
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# Set cache headers for efficient cache lifetimes
+<IfModule mod_expires.c>
+  ExpiresActive on
+  
+  # Images - 1 year
+  ExpiresByType image/webp "access plus 31536000 seconds"
+  ExpiresByType image/png "access plus 31536000 seconds" 
+  ExpiresByType image/jpg "access plus 31536000 seconds"
+  ExpiresByType image/jpeg "access plus 31536000 seconds"
+  ExpiresByType image/gif "access plus 31536000 seconds"
+  ExpiresByType image/svg+xml "access plus 31536000 seconds"
+  ExpiresByType image/x-icon "access plus 31536000 seconds"
+  
+  # Fonts - 1 year
+  ExpiresByType font/woff2 "access plus 31536000 seconds"
+  ExpiresByType font/woff "access plus 31536000 seconds"
+  ExpiresByType font/ttf "access plus 31536000 seconds"
+  ExpiresByType font/eot "access plus 31536000 seconds"
+  
+  # CSS and JS - 1 month
+  ExpiresByType text/css "access plus 2592000 seconds"
+  ExpiresByType application/javascript "access plus 2592000 seconds"
+  ExpiresByType application/x-javascript "access plus 2592000 seconds"
+  
+  # HTML - 1 hour
+  ExpiresByType text/html "access plus 3600 seconds"
+  
+  # Manifest and service worker - 1 day
+  ExpiresByType application/manifest+json "access plus 86400 seconds"
+  ExpiresByType text/cache-manifest "access plus 86400 seconds"
+</IfModule>
+
+# Alternative cache headers using mod_headers
+<IfModule mod_headers.c>
+  # Images - 1 year
+  <FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  
+  # Fonts - 1 year
+  <FilesMatch "\.(woff2|woff|ttf|eot)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  
+  # CSS and JS - 1 month
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  
+  # HTML - 1 hour
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=3600"
+  </FilesMatch>
+  
+  # Disable email decode
+  Header always set cf-email-decode "false"
+</IfModule>
+
+# Security headers
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options nosniff
+  Header always set X-Frame-Options DENY
+  Header always set X-XSS-Protection "1; mode=block"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# Disable server signature
+ServerSignature Off
+
+# Disable ETags (use cache headers instead)
+<IfModule mod_headers.c>
+  Header unset ETag
+</IfModule>
+FileETag None
+
+# Block Cloudflare email decode script
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^email-decode\.js$ - [F,L]
+</IfModule>
