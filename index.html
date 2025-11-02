@@ -237,11 +237,60 @@
         }
     }
 
-    .hero-subtitle {
-        font-size: 1.125rem;
+    .hero-subtitle-main {
+        font-size: 3.5rem;
+        font-weight: normal;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+        color: #000000;
+    }
+
+    .hero-description {
+        font-size: 0.95rem;
         color: #666666;
         margin-bottom: 2rem;
         max-width: 500px;
+        line-height: 1.5;
+    }
+
+    .gradient-text {
+        background: linear-gradient(90deg, #000000 0%, #0d8c68 25%, #22c55e 50%, #0d8c68 75%, #000000 100%);
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradientSlide 8s ease-in-out infinite;
+    }
+
+    @keyframes gradientSlide {
+        0% {
+            background-position: 0% 0;
+        }
+        50% {
+            background-position: 100% 0;
+        }
+        100% {
+            background-position: 0% 0;
+        }
+    }
+
+    #cycling-text {
+        display: inline-block;
+        transition: all 0.5s ease-in-out;
+        text-decoration: underline;
+        text-decoration-color: #0d8c68;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 4px;
+    }
+
+    .text-fade-out {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    .text-fade-in {
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .device-img {
@@ -433,6 +482,19 @@
             overflow-wrap: break-word;
         }
         
+        .hero-subtitle-main {
+            font-size: 2rem;
+            line-height: 1.2;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        .hero-description {
+            font-size: 0.9rem;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
         .hero-section {
             padding: 20px 15px 40px;
             min-height: calc(100vh - 80px);
@@ -534,8 +596,9 @@
         <div class="hero-section">
             <div class="row align-items-center">
                 <div class="col-lg-6 hero-text">
-                    <h1 class="hero-title">Your home, <span class="shimmer">simplified</span>.</h1>
-                    <p class="hero-subtitle">Identify issues, track repairs, and stay on top of maintenance—all in one <span style="color: #0d8c68; font-weight: 600;">free</span> app.</p>
+                    <h1 class="hero-title" style="font-weight: bold;">Meet <span class="gradient-text">Dwellable</span>,</h1>
+                    <h2 class="hero-subtitle-main"><span id="cycling-text">Home maintenance</span> at your fingertips.</h2>
+                    <p class="hero-description">Dwellable creates personalized reminders and seasonal checklists based on your property—helping you stay ahead of repairs, maintenance, and upkeep, all in one free app.</p>
                     <div class="d-flex gap-3 flex-wrap align-items-center">
                         <a id="app-store-btn" href="https://apps.apple.com/us/app/dwellable-home-inspector/id6444394386?itsct=apps_box_badge&amp;itscg=30200" 
                            target="_blank">
@@ -771,9 +834,15 @@
 
         let os = getMobileOperatingSystem();
         if (os == "Android") {
-            //document.getElementById("app-store-btn").remove()
+            // Hide App Store buttons, show Play Store
+            document.querySelectorAll("[id='app-store-btn']").forEach(function(btn) {
+                btn.style.display = "none";
+            });
         } else if (os == "iOS") {
-            //document.getElementById("play-store-btn").remove()
+            // Hide Play Store buttons, show App Store
+            document.querySelectorAll("[id='play-store-btn']").forEach(function(btn) {
+                btn.style.display = "none";
+            });
         }
 
         /**
@@ -851,6 +920,44 @@
             featureImages.forEach(img => {
                 observer.observe(img);
             });
+        });
+
+        // Cycling text animation
+        const cyclingTexts = [
+            "Home maintenance",
+            "Seasonal checklists", 
+            "Property inspections",
+            "Repair tracking",
+            "Smart reminders"
+        ];
+        
+        let currentIndex = 0;
+        const cyclingElement = document.getElementById('cycling-text');
+        
+        function cycleThroughTexts() {
+            // Fade out
+            cyclingElement.classList.add('text-fade-out');
+            
+            setTimeout(() => {
+                // Change text
+                currentIndex = (currentIndex + 1) % cyclingTexts.length;
+                cyclingElement.textContent = cyclingTexts[currentIndex];
+                
+                // Fade in
+                cyclingElement.classList.remove('text-fade-out');
+                cyclingElement.classList.add('text-fade-in');
+                
+                setTimeout(() => {
+                    cyclingElement.classList.remove('text-fade-in');
+                }, 500);
+            }, 250);
+        }
+        
+        // Start cycling after page loads
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                setInterval(cycleThroughTexts, 3000); // Change every 3 seconds
+            }, 2000); // Wait 2 seconds before starting
         });
     </script>
 </body>
