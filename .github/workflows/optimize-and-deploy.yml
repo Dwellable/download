@@ -95,94 +95,48 @@ jobs:
         function addCacheHeaders() {
           console.log('Creating cache configuration...');
           
-          const htaccess = \`
-        # Cache static assets
-        <IfModule mod_expires.c>
-          ExpiresActive on
+          const htaccess = '# Cache static assets\\n' +
+            '<IfModule mod_expires.c>\\n' +
+            '  ExpiresActive on\\n' +
+            '  ExpiresByType image/webp "access plus 1 year"\\n' +
+            '  ExpiresByType image/png "access plus 1 year"\\n' +
+            '  ExpiresByType image/jpg "access plus 1 year"\\n' +
+            '  ExpiresByType text/css "access plus 1 month"\\n' +
+            '  ExpiresByType application/javascript "access plus 1 month"\\n' +
+            '  ExpiresByType text/html "access plus 1 hour"\\n' +
+            '</IfModule>\\n' +
+            '<IfModule mod_deflate.c>\\n' +
+            '  AddOutputFilterByType DEFLATE text/html\\n' +
+            '  AddOutputFilterByType DEFLATE text/css\\n' +
+            '  AddOutputFilterByType DEFLATE application/javascript\\n' +
+            '</IfModule>';
           
-          # Images
-          ExpiresByType image/webp "access plus 1 year"
-          ExpiresByType image/png "access plus 1 year" 
-          ExpiresByType image/jpg "access plus 1 year"
-          ExpiresByType image/jpeg "access plus 1 year"
-          ExpiresByType image/svg+xml "access plus 1 year"
-          
-          # Fonts
-          ExpiresByType font/woff2 "access plus 1 year"
-          ExpiresByType font/woff "access plus 1 year"
-          
-          # CSS and JS
-          ExpiresByType text/css "access plus 1 month"
-          ExpiresByType application/javascript "access plus 1 month"
-          
-          # HTML
-          ExpiresByType text/html "access plus 1 hour"
-        </IfModule>
-        
-        # Compression
-        <IfModule mod_deflate.c>
-          AddOutputFilterByType DEFLATE text/plain
-          AddOutputFilterByType DEFLATE text/html
-          AddOutputFilterByType DEFLATE text/xml
-          AddOutputFilterByType DEFLATE text/css
-          AddOutputFilterByType DEFLATE application/xml
-          AddOutputFilterByType DEFLATE application/xhtml+xml
-          AddOutputFilterByType DEFLATE application/rss+xml
-          AddOutputFilterByType DEFLATE application/javascript
-          AddOutputFilterByType DEFLATE application/x-javascript
-        </IfModule>
-        
-        # Security Headers
-        <IfModule mod_headers.c>
-          Header always set X-Content-Type-Options nosniff
-          Header always set X-Frame-Options DENY
-          Header always set X-XSS-Protection "1; mode=block"
-          Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
-          Header always set Referrer-Policy "strict-origin-when-cross-origin"
-        </IfModule>
-        \`;
-          
-          fs.writeFileSync('.htaccess', htaccess.trim());
+          fs.writeFileSync('.htaccess', htaccess);
           console.log('Cache configuration created!');
         }
         
         function createServiceWorker() {
           console.log('Creating service worker...');
           
-          const sw = \`
-        const CACHE_NAME = 'dwellable-v1';
-        const urlsToCache = [
-          '/',
-          '/index.optimized.html',
-          '/home.png',
-          '/reminders.png',
-          '/property_info.png',
-          '/inspection.png',
-          'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css'
-        ];
-        
-        self.addEventListener('install', event => {
-          event.waitUntil(
-            caches.open(CACHE_NAME)
-              .then(cache => cache.addAll(urlsToCache))
-          );
-        });
-        
-        self.addEventListener('fetch', event => {
-          event.respondWith(
-            caches.match(event.request)
-              .then(response => {
-                if (response) {
-                  return response;
-                }
-                return fetch(event.request);
-              }
-            )
-          );
-        });
-        \`;
+          const sw = "const CACHE_NAME = 'dwellable-v1';\\n" +
+            "const urlsToCache = [\\n" +
+            "  '/',\\n" +
+            "  '/index.optimized.html',\\n" +
+            "  '/home.png',\\n" +
+            "  '/reminders.png'\\n" +
+            "];\\n" +
+            "self.addEventListener('install', event => {\\n" +
+            "  event.waitUntil(\\n" +
+            "    caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))\\n" +
+            "  );\\n" +
+            "});\\n" +
+            "self.addEventListener('fetch', event => {\\n" +
+            "  event.respondWith(\\n" +
+            "    caches.match(event.request).then(response => response || fetch(event.request))\\n" +
+            "  );\\n" +
+            "});";
           
-          fs.writeFileSync('sw.js', sw.trim());
+          fs.writeFileSync('sw.js', sw);
           console.log('Service worker created!');
         }
         

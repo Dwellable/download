@@ -222,18 +222,4 @@ function cleanup() {
 process.on('exit', cleanup);
 process.on('SIGINT', cleanup);
 
-main();`;
-
-console.log('\n📁 Files created:');
-console.log('   • .github/workflows/optimize-and-deploy.yml (GitHub Actions)');
-console.log('   • optimize-local.js (Local optimization script)');
-
-console.log('\n🚀 To run locally:');
-console.log('   npm install html-minifier imagemin imagemin-webp imagemin-pngquant');
-console.log('   node optimize-local.js');
-
-console.log('\n🚀 To use GitHub Actions:');
-console.log('   1. Commit and push these files');
-console.log('   2. Actions will run automatically on push to main');
-console.log('   3. Optimized files will be available as artifacts');
-console.log('   4. Enable GitHub Pages to auto-deploy optimized site');
+main();
