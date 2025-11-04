@@ -835,6 +835,8 @@
                     store_name: 'Play Store',
                     content_category: 'App Download'
                 });
+                e.preventDefault();
+                setTimeout(() => { window.location.href = this.href; }, 150);
             }
         });
         document.querySelectorAll("[id='app-store-btn']").forEach(function(btn) {
@@ -850,6 +852,8 @@
                     store_name: 'App Store',
                     content_category: 'App Download'
                 });
+                e.preventDefault();
+                setTimeout(() => { window.location.href = this.href; }, 150);
             }
         });
 
