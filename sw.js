@@ -1,7 +1,8 @@
 const CACHE_NAME = 'dwellable-v1';
 const urlsToCache = [
   '/',
-  '/index.min.html',
+  '/index.html',
+  '/join.html',
   '/home.png',
   '/reminders.png', 
   '/property_info.png',

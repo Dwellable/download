@@ -14,10 +14,7 @@ try {
 async function optimizeHTML() {
   console.log('📄 Optimizing HTML...');
   
-  const html = fs.readFileSync('index.html', 'utf8');
-  
-  // Minify HTML (html-minifier-terser returns a Promise)
-  const minified = await minify(html, {
+  const minifyOptions = {
     removeComments: true,
     collapseWhitespace: true,
     removeRedundantAttributes: true,
@@ -25,26 +22,58 @@ async function optimizeHTML() {
     removeEmptyAttributes: true,
     minifyCSS: true,
     minifyJS: true
-  });
+  };
   
-  fs.writeFileSync('index.min.html', minified);
+  // Optimize index.html
+  const html = fs.readFileSync('index.html', 'utf8');
+  const minified = await minify(html, minifyOptions);
   
-  // Create gzipped version for size comparison
+  // Keep original for comparison, then replace with minified
+  fs.writeFileSync('index.original.html', html);
+  fs.writeFileSync('index.html', minified);
+  
+  // Create gzipped version
   const zlib = require('zlib');
   const gzipped = zlib.gzipSync(minified);
-  fs.writeFileSync('index.min.html.gz', gzipped);
+  fs.writeFileSync('index.html.gz', gzipped);
   
-  console.log('✅ HTML optimized and minified');
+  // Optimize join.html if it exists
+  if (fs.existsSync('join.html')) {
+    const joinHtml = fs.readFileSync('join.html', 'utf8');
+    const joinMinified = await minify(joinHtml, minifyOptions);
+    
+    // Keep original for comparison, then replace with minified
+    fs.writeFileSync('join.original.html', joinHtml);
+    fs.writeFileSync('join.html', joinMinified);
+    
+    const joinGzipped = zlib.gzipSync(joinMinified);
+    fs.writeFileSync('join.html.gz', joinGzipped);
+    console.log('✅ join.html optimized and minified');
+  }
   
-  // Show size comparison
-  const originalSize = fs.statSync('index.html').size;
-  const minifiedSize = fs.statSync('index.min.html').size;
-  const gzippedSize = fs.statSync('index.min.html.gz').size;
+  console.log('✅ HTML files optimized and minified');
   
-  console.log(`📊 Size comparison:`);
+  // Show size comparison for index.html
+  const originalSize = fs.statSync('index.original.html').size;
+  const minifiedSize = fs.statSync('index.html').size;
+  const gzippedSize = fs.statSync('index.html.gz').size;
+  
+  console.log(`📊 index.html size comparison:`);
   console.log(`   Original:  ${(originalSize / 1024).toFixed(1)} KB`);
   console.log(`   Minified:  ${(minifiedSize / 1024).toFixed(1)} KB (${((1 - minifiedSize/originalSize) * 100).toFixed(1)}% smaller)`);
   console.log(`   Gzipped:   ${(gzippedSize / 1024).toFixed(1)} KB (${((1 - gzippedSize/originalSize) * 100).toFixed(1)}% smaller)`);
+  
+  // Show size comparison for join.html if it exists
+  if (fs.existsSync('join.original.html')) {
+    const joinOriginalSize = fs.statSync('join.original.html').size;
+    const joinMinifiedSize = fs.statSync('join.html').size;
+    const joinGzippedSize = fs.statSync('join.html.gz').size;
+    
+    console.log(`📊 join.html size comparison:`);
+    console.log(`   Original:  ${(joinOriginalSize / 1024).toFixed(1)} KB`);
+    console.log(`   Minified:  ${(joinMinifiedSize / 1024).toFixed(1)} KB (${((1 - joinMinifiedSize/joinOriginalSize) * 100).toFixed(1)}% smaller)`);
+    console.log(`   Gzipped:   ${(joinGzippedSize / 1024).toFixed(1)} KB (${((1 - joinGzippedSize/joinOriginalSize) * 100).toFixed(1)}% smaller)`);
+  }
 }
 
 function createServiceWorker() {
@@ -53,7 +82,8 @@ function createServiceWorker() {
   const sw = `const CACHE_NAME = 'dwellable-v1';
 const urlsToCache = [
   '/',
-  '/index.min.html',
+  '/index.html',
+  '/join.html',
   '/home.png',
   '/reminders.png', 
   '/property_info.png',

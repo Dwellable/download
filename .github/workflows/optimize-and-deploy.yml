@@ -29,15 +29,20 @@ jobs:
     - name: Check optimized files
       run: |
         echo "📁 Files created:"
-        ls -la index.min.html* .htaccess sw.js 2>/dev/null || echo "Optimization files will be created"
+        ls -la index.html* join.html* .htaccess sw.js 2>/dev/null || echo "Optimization files will be created"
         
         
     - name: Calculate size savings
       run: |
         echo "📊 File size comparison:"
-        echo "Original HTML: $(stat -f%z index.html 2>/dev/null || stat -c%s index.html) bytes"
-        echo "Optimized HTML: $(stat -f%z index.min.html 2>/dev/null || stat -c%s index.min.html) bytes"
-        echo "Gzipped HTML: $(stat -f%z index.min.html.gz 2>/dev/null || stat -c%s index.min.html.gz) bytes"
+        echo "index.html Original: $(stat -f%z index.original.html 2>/dev/null || stat -c%s index.original.html) bytes"
+        echo "index.html Optimized: $(stat -f%z index.html 2>/dev/null || stat -c%s index.html) bytes"
+        echo "index.html Gzipped: $(stat -f%z index.html.gz 2>/dev/null || stat -c%s index.html.gz) bytes"
+        if [ -f join.original.html ]; then
+          echo "join.html Original: $(stat -f%z join.original.html 2>/dev/null || stat -c%s join.original.html) bytes"
+          echo "join.html Optimized: $(stat -f%z join.html 2>/dev/null || stat -c%s join.html) bytes"  
+          echo "join.html Gzipped: $(stat -f%z join.html.gz 2>/dev/null || stat -c%s join.html.gz) bytes"
+        fi
         
     # Optional: Deploy to GitHub Pages
     - name: Deploy to GitHub Pages
@@ -55,8 +60,10 @@ jobs:
       with:
         name: optimized-website
         path: |
-          index.min.html
-          index.min.html.gz
+          index.html
+          index.html.gz
+          join.html
+          join.html.gz
           .htaccess
           sw.js
         retention-days: 30
