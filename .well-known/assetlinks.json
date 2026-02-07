@@ -8,5 +8,15 @@
         "82:9A:AB:64:3F:80:90:24:DF:79:1E:F5:80:37:5A:18:1B:64:52:56:8D:14:D5:24:91:D2:C3:31:8B:FA:E7:5C"
       ]
     }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.dwellable.debug",
+      "sha256_cert_fingerprints": [
+        "87:29:9A:88:DB:B9:C2:40:83:4B:CE:E3:C3:5C:4C:29:E7:26:52:7F:10:68:CE:75:F5:FF:9B:93:07:48:B2:4C"
+      ]
+    }
   }
 ]
