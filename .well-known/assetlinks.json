@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.dwellable",
+      "sha256_cert_fingerprints": [
+        "82:9A:AB:64:3F:80:90:24:DF:79:1E:F5:80:37:5A:18:1B:64:52:56:8D:14:D5:24:91:D2:C3:31:8B:FA:E7:5C"
+      ]
+    }
+  }
+]
