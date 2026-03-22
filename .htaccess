@@ -90,8 +90,10 @@ ServerSignature Off
 </IfModule>
 FileETag None
 
-# Block Cloudflare email decode script
+# Block Cloudflare email decode script and interstitial routing
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteRule ^email-decode\.js$ - [F,L]
+  # Interstitial page: /open → open.html (try deep link, show QR + store badges if app not installed)
+  RewriteRule ^open$ open.html [L,QSA]
 </IfModule>
