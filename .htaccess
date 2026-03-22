@@ -96,4 +96,6 @@ FileETag None
   RewriteRule ^email-decode\.js$ - [F,L]
   # Interstitial page: /open → open.html (try deep link, show QR + store badges if app not installed)
   RewriteRule ^open$ open.html [L,QSA]
+  # Feedback thank-you page (e.g. from email "Was this useful?" links)
+  RewriteRule ^feedback$ feedback.html [L,QSA]
 </IfModule>
