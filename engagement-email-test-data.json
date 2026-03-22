@@ -1,0 +1,23 @@
+{
+  "description": "Test data for spring engagement email. Paste into SendGrid template preview or use as dynamic_template_data.",
+  "case_1_with_upcoming_reminder": {
+    "given_name": "Sarah",
+    "has_upcoming_reminder": true,
+    "city_name": "North Reading",
+    "next_reminder_title": "Check gutters",
+    "next_reminder_due": "March 15",
+    "reminder_open_url": "https://dwellable.app/open?path=property/abc123/reminder/rem456"
+  },
+  "case_2_no_upcoming_reminder": {
+    "given_name": "Sarah",
+    "has_upcoming_reminder": false,
+    "city_name": "North Reading"
+  },
+  "case_1_minimal": {
+    "given_name": "Michael",
+    "has_upcoming_reminder": true,
+    "city_name": "Lexington",
+    "next_reminder_title": "Replace HVAC filter",
+    "next_reminder_due": "March 22"
+  }
+}
