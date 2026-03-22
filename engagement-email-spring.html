@@ -3,6 +3,7 @@
   Uses Handlebars conditionals - pass has_upcoming_reminder (boolean) to bifurcate.
   
   REQUIRED: given_name, has_upcoming_reminder, city_name
+  Unsubscribe: uses SendGrid ASM tag <%asm_group_unsubscribe_raw_url%>
   city_name: User's city (from primary property address via geocoding – locality from address_components).
   Fallback: "Your home" if city_name is missing.
   WHEN has_upcoming_reminder=true: next_reminder_title, next_reminder_due, reminder_open_url (optional - for deep link)
@@ -23,8 +24,17 @@
     <td style="padding: 32px 24px;">
       
       <p style="margin: 0 0 24px 0; font-size: 17px;">Hi {{given_name}},</p>
-      <p style="margin: 0 0 24px 0;">Your home just made it through a New England winter. I always find this the nicest time to take stock, before the rush of the season gets going.</p>
-      <p style="margin: 0 0 28px 0;">A few thoughts for March:</p>
+      <p style="margin: 0 0 28px 0;">Your home just made it through a New England winter. A few thoughts for March:</p>
+      
+      <!-- Section: {{city_name}} in March (lead with most compelling, personalized content) -->
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom: 28px;">
+        <tr>
+          <td style="padding: 20px; background: #f8faf8; border-radius: 12px; border-left: 4px solid #0d8c68;">
+            <p style="margin: 0 0 8px 0; font-size: 15px; font-weight: 600; color: #000;">{{#if city_name}}{{city_name}} in March{{else}}Your home in March{{/if}}</p>
+            <p style="margin: 0; font-size: 15px; color: #444;">Spring in New England brings freeze-thaw, moisture, and everything waking up again. A little attention now really does save headaches later.</p>
+          </td>
+        </tr>
+      </table>
       
       <!-- BIFURCATED SECTION: With reminder vs without -->
       {{#if has_upcoming_reminder}}
@@ -32,12 +42,7 @@
         <tr>
           <td style="padding: 20px; background: #f0fdf4; border-radius: 12px; border-left: 4px solid #0d8c68;">
             <p style="margin: 0 0 8px 0; font-size: 15px; font-weight: 600; color: #000;">Coming up</p>
-            <p style="margin: 0 0 16px 0; font-size: 15px; color: #444;">Your "{{next_reminder_title}}" reminder is due {{next_reminder_due}}. A good time to check that off the list.</p>
-            {{#if reminder_open_url}}
-            <a href="{{reminder_open_url}}" style="display: inline-block; padding: 10px 18px; background: #000; color: #fff !important; text-decoration: none; font-size: 14px; font-weight: 600; border-radius: 8px;">Open reminder</a>
-            {{else}}
-            <a href="https://dwellable.app/open?path=reminders/setup" style="display: inline-block; padding: 10px 18px; background: #000; color: #fff !important; text-decoration: none; font-size: 14px; font-weight: 600; border-radius: 8px;">Open Dwellable</a>
-            {{/if}}
+            <p style="margin: 0; font-size: 15px; color: #444;">Your "{{next_reminder_title}}" reminder is due {{next_reminder_due}}. A good time to check that off the list.</p>
           </td>
         </tr>
       </table>
@@ -46,29 +51,18 @@
         <tr>
           <td style="padding: 20px; background: #fafafa; border-radius: 12px;">
             <p style="margin: 0 0 8px 0; font-size: 15px; font-weight: 600; color: #000;">Set up your reminders</p>
-            <p style="margin: 0 0 16px 0; font-size: 15px; color: #444;">Run your pre-spring checklist and set up reminders for your home so nothing slips through the cracks.</p>
-            <a href="https://dwellable.app/open?path=reminders/setup" style="display: inline-block; padding: 10px 18px; background: #000; color: #fff !important; text-decoration: none; font-size: 14px; font-weight: 600; border-radius: 8px;">Set up reminders for your home</a>
+            <p style="margin: 0; font-size: 15px; color: #444;">Run your pre-spring checklist and set up reminders for your home so nothing slips through the cracks.</p>
           </td>
         </tr>
       </table>
       {{/if}}
       
-      <!-- Section: {{city_name}} in March -->
+      <!-- Section: One thing this week -->
       <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom: 28px;">
         <tr>
           <td style="padding: 20px; background: #fafafa; border-radius: 12px;">
-            <p style="margin: 0 0 8px 0; font-size: 15px; font-weight: 600; color: #000;">{{#if city_name}}{{city_name}} in March{{else}}Your home in March{{/if}}</p>
-            <p style="margin: 0; font-size: 15px; color: #444;">Spring in New England brings freeze-thaw, moisture, and everything waking up again. A little attention now really does save headaches later.</p>
-          </td>
-        </tr>
-      </table>
-      
-      <!-- Section: One thing this weekend -->
-      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom: 28px;">
-        <tr>
-          <td style="padding: 20px; background: #fafafa; border-radius: 12px;">
-            <p style="margin: 0 0 8px 0; font-size: 15px; font-weight: 600; color: #000;">One thing to do this weekend</p>
-            <p style="margin: 0 0 12px 0; font-size: 15px; color: #444;">Take a slow walk around the outside. Look for cracks in steps or walkways, gutters that have come loose, or paint starting to peel. Five minutes can catch a lot.</p>
+            <p style="margin: 0 0 8px 0; font-size: 15px; font-weight: 600; color: #000;">One thing to do this week</p>
+            <p style="margin: 0; font-size: 15px; color: #444;">Take a slow walk around the outside. Look for cracks in steps or walkways, gutters that have come loose, or paint starting to peel. Five minutes can catch a lot. Jot these in the notebook section of the app.</p>
           </td>
         </tr>
       </table>
@@ -89,18 +83,6 @@
           <td style="padding: 20px; background: #fafafa; border-radius: 12px;">
             <p style="margin: 0 0 8px 0; font-size: 15px; font-weight: 600; color: #000;">Already did your walk-through?</p>
             <p style="margin: 0 0 12px 0; font-size: 15px; color: #444;">Good for you. If you spotted anything (a window that didn't make it through, wear on the siding, signs of water), the home assistant can help you figure out the next step.</p>
-            <p style="margin: 0 0 16px 0; font-size: 14px; color: #555;">For Dwellable Pro: the assistant already knows your home. Ask it anything about your property, your systems, or what to do next.</p>
-            <a href="https://dwellable.app/open?path=assistant" style="display: inline-block; padding: 10px 18px; background: #000; color: #fff !important; text-decoration: none; font-size: 14px; font-weight: 600; border-radius: 8px;">Ask your home assistant</a>
-          </td>
-        </tr>
-      </table>
-      
-      <!-- Section: Keep track -->
-      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom: 28px;">
-        <tr>
-          <td style="padding: 20px; background: #fafafa; border-radius: 12px;">
-            <p style="margin: 0 0 8px 0; font-size: 15px; font-weight: 600; color: #000;">As you go</p>
-            <p style="margin: 0; font-size: 15px; color: #444;">Jot down notes, snap photos of what needs work, and mark things as you fix them. You'll thank yourself when you look back.</p>
           </td>
         </tr>
       </table>
@@ -110,19 +92,9 @@
       <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #e8e8e8;">
         <tr>
           <td>
-            <p style="margin: 0 0 8px 0; font-size: 13px; color: #888;">Was this useful? We can send more like it.</p>
-            <a href="https://dwellable.app/feedback?helpful=yes" style="display: inline-block; margin-right: 8px; padding: 6px 14px; background: #0d8c68; color: #fff !important; text-decoration: none; font-size: 13px; font-weight: 600; border-radius: 6px;">Yes</a>
-            <a href="https://dwellable.app/feedback?helpful=no" style="display: inline-block; padding: 6px 14px; background: #e8e8e8; color: #333 !important; text-decoration: none; font-size: 13px; font-weight: 600; border-radius: 6px;">No</a>
-          </td>
-        </tr>
-      </table>
-      
-      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top: 24px;">
-        <tr>
-          <td>
-            <a href="https://dwellable.app" style="text-decoration: none; color: #000; font-weight: 600; font-size: 14px;">
-              <img src="https://dwellable.app/email_logo.png" alt="Dwellable" width="24" height="24" style="vertical-align: middle; margin-right: 8px;" /> Dwellable
-            </a>
+            <img src="https://dwellable.app/email_logo.png" alt="Dwellable" width="24" height="24" style="vertical-align: middle; margin-right: 8px;" />
+            <span style="font-size: 14px; font-weight: 600; color: #000;">Dwellable</span>
+            <p style="margin: 16px 0 0 0; font-size: 12px; color: #888;"><a href="<%asm_group_unsubscribe_raw_url%>" style="color: #888; text-decoration: underline;">Unsubscribe</a></p>
           </td>
         </tr>
       </table>
