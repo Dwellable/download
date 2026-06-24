@@ -822,39 +822,43 @@
         }
     </script>
     <script>
+        function dwGetCookie(name) {
+            var m = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+            return m ? decodeURIComponent(m.pop()) : '';
+        }
+        function dwGetFbc() {
+            var fbclid = new URLSearchParams(window.location.search).get('fbclid');
+            if (fbclid) return 'fb.1.' + Date.now() + '.' + fbclid;
+            return dwGetCookie('_fbc');
+        }
+        function dwTrackStoreClick(storeName) {
+            var eventId = (window.crypto && crypto.randomUUID)
+                ? crypto.randomUUID()
+                : (String(Date.now()) + Math.random().toString(16).slice(2));
+            gtag('event', 'store-link-clicked', { "store_name": storeName });
+            gtag_report_conversion();
+            amplitude.track('store-link-clicked', { "store_name": storeName });
+            // Browser Pixel — shared eventID lets Meta dedupe this against the server copy below.
+            fbq('trackCustom', 'StoreClick',
+                { store_name: storeName, content_category: 'App Download' },
+                { eventID: eventId });
+            // Server-side copy via the CAPI relay. sendBeacon survives the imminent navigation
+            // to the store, so this fires even when the browser Pixel gets cut off (iOS/ITP).
+            try {
+                navigator.sendBeacon('https://admin.dwellable.app/webhooks/capi-web-event', JSON.stringify({
+                    event_name: 'StoreClick',
+                    event_id: eventId,
+                    event_source_url: window.location.href,
+                    fbp: dwGetCookie('_fbp'),
+                    fbc: dwGetFbc()
+                }));
+            } catch (err) { /* non-fatal: the browser Pixel still fired */ }
+        }
         document.querySelectorAll("[id='play-store-btn']").forEach(function(btn) {
-            btn.onclick = function () {
-                gtag('event', 'store-link-clicked', {
-                    "store_name": "Play Store"
-                });
-                gtag_report_conversion();
-                amplitude.track('store-link-clicked', {
-                    "store_name": "Play Store"
-                });
-                fbq('trackCustom', 'StoreClick', {
-                    store_name: 'Play Store',
-                    content_category: 'App Download'
-                });
-                e.preventDefault();
-                setTimeout(() => { window.location.href = this.href; }, 150);
-            }
+            btn.onclick = function () { dwTrackStoreClick('Play Store'); };
         });
         document.querySelectorAll("[id='app-store-btn']").forEach(function(btn) {
-            btn.onclick = function () {
-                gtag('event', 'store-link-clicked', {
-                    "store_name": "App Store"
-                });
-                gtag_report_conversion();
-                amplitude.track('store-link-clicked', {
-                    "store_name": "App Store"
-                });
-                fbq('trackCustom', 'StoreClick', {
-                    store_name: 'App Store',
-                    content_category: 'App Download'
-                });
-                e.preventDefault();
-                setTimeout(() => { window.location.href = this.href; }, 150);
-            }
+            btn.onclick = function () { dwTrackStoreClick('App Store'); };
         });
 
 
