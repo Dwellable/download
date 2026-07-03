@@ -897,18 +897,30 @@
                 { eventID: eventId });
             // Server-side copy via the CAPI relay. sendBeacon survives the imminent navigation
             // to the store, so this fires even when the browser Pixel gets cut off (iOS/ITP).
+            // The backend also persists this click (by eventId) so a later install/signup can be
+            // matched back to it for deferred attribution.
             try {
                 navigator.sendBeacon('https://admin.dwellable.app/webhooks/capi-web-event', JSON.stringify({
                     event_name: 'StoreClick',
                     event_id: eventId,
                     event_source_url: window.location.href,
+                    store_name: storeName,
                     fbp: dwGetCookie('_fbp'),
                     fbc: dwGetFbc()
                 }));
             } catch (err) { /* non-fatal: the browser Pixel still fired */ }
+            return eventId;
         }
         document.querySelectorAll("[id='play-store-btn']").forEach(function(btn) {
-            btn.onclick = function () { dwTrackStoreClick('Play Store'); };
+            btn.onclick = function () {
+                var eventId = dwTrackStoreClick('Play Store');
+                // Carry the click id into the Play Store install referrer (dw_aid=<eventId>) so the
+                // Android app can deterministically match this click to its install on first launch.
+                try {
+                    var href = btn.getAttribute('href').split('&referrer=')[0];
+                    btn.setAttribute('href', href + '&referrer=' + encodeURIComponent('dw_aid=' + eventId));
+                } catch (e) { /* fall back to non-referrer link */ }
+            };
         });
         document.querySelectorAll("[id='app-store-btn']").forEach(function(btn) {
             btn.onclick = function () { dwTrackStoreClick('App Store'); };
