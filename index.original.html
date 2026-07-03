@@ -926,6 +926,31 @@
             btn.onclick = function () { dwTrackStoreClick('App Store'); };
         });
 
+        // Persist campaign landing visits (not relayed to Meta — the browser Pixel already sends
+        // PageView). Only when the visit carries an ad signal (fbclid/utm), so we widen the deferred
+        // attribution match pool to ad visitors who install via Smart Banner / App Store search
+        // without tapping a store button — while ignoring organic/direct traffic.
+        (function dwTrackCampaignVisit() {
+            try {
+                var params = new URLSearchParams(window.location.search);
+                var hasSignal = params.get('fbclid') ||
+                    params.get('utm_source') || params.get('utm_medium') ||
+                    params.get('utm_campaign') || params.get('utm_content') ||
+                    params.get('utm_term') || params.get('utm_id');
+                if (!hasSignal) return;
+                var eventId = (window.crypto && crypto.randomUUID)
+                    ? crypto.randomUUID()
+                    : (String(Date.now()) + Math.random().toString(16).slice(2));
+                navigator.sendBeacon('https://admin.dwellable.app/webhooks/capi-web-event', JSON.stringify({
+                    event_name: 'PageView',
+                    event_id: eventId,
+                    event_source_url: window.location.href,
+                    fbp: dwGetCookie('_fbp'),
+                    fbc: dwGetFbc()
+                }));
+            } catch (err) { /* non-fatal */ }
+        })();
+
 
         let os = getMobileOperatingSystem();
         // Show both buttons on all platforms for now
