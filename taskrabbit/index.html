@@ -21,14 +21,12 @@
   .brand { display: flex; align-items: center; gap: 14px; }
   .brand .name { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 22px; }
   .brand .x { font-size: 20px; font-weight: 500; color: #4A5A52; }
-  .cap { display: flex; flex-direction: column; gap: 18px; max-width: 520px; animation: fade .45s ease both; }
-  .cap .num { font-size: 15px; font-weight: 600; letter-spacing: .06em; color: var(--accent); }
-  .cap h1 { margin: 0; font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 52px; line-height: 1.05; letter-spacing: -.02em; }
-  .cap p { margin: 0; font-size: 20px; line-height: 1.5; color: var(--muted); }
-  .flow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-  .step { font-size: 14px; font-weight: 600; padding: 8px 12px; border-radius: 10px; color: #4A5A52; border: 1px solid #B5C3BB; transition: all .3s; }
-  .step.done { background: var(--accent); border-color: var(--accent); color: #fff; }
-  .foot { display: flex; align-items: center; gap: 16px; margin-top: 18px; }
+  .pitch { display: flex; flex-direction: column; gap: 20px; max-width: 520px; }
+  .pitch h1 { margin: 0; font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 44px; line-height: 1.08; letter-spacing: -.02em; }
+  .pitch p { margin: 0; font-size: 18px; line-height: 1.5; color: var(--muted); }
+  .pitch ul { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 10px; font-size: 17px; line-height: 1.45; }
+  .pitch .ask { font-size: 16px; } .pitch .ask strong { color: var(--ink); }
+  .foot { display: flex; align-items: center; gap: 16px; }
   .foot button { font: 600 14px Inter, sans-serif; color: var(--ink); background: #fff; border: 1px solid #9DB0A6; border-radius: 999px; padding: 12px 18px; min-height: 44px; cursor: pointer; }
   .foot span { font-size: 13px; line-height: 1.4; color: #4A5A52; max-width: 420px; }
 
@@ -82,9 +80,18 @@
       <span class="x">×</span>
       <img src="tr_logo.svg" alt="TaskRabbit" style="height: 22px; width: auto">
     </div>
-    <div id="cap" aria-live="polite"></div>
+    <div class="pitch">
+      <h1>Book a Tasker from a text message</h1>
+      <p>Homeowners text Dwellable when something in their house needs attention. When the job is a good fit for a Tasker, Dwellable would book it through TaskRabbit.</p>
+      <ul>
+        <li>Dwellable works out what the job is and which TaskRabbit category it fits.</li>
+        <li>It gets an estimate and open times from TaskRabbit and shows them in the chat.</li>
+        <li>The homeowner confirms before anything is booked. Payment goes through TaskRabbit.</li>
+        <li>After the job, Dwellable saves it to the home’s records.</li>
+      </ul>
+      <p class="ask"><strong>What we need:</strong> a server-to-server API for estimates, availability, booking and job status.</p>
+    </div>
     <div>
-      <div class="flow" id="flow"></div>
       <div class="foot">
         <button type="button" id="replay">Replay</button>
         <span>Concept demo. Illustrative only, not a live integration. Names and prices are samples. Photo: dalazzarato, CC BY 2.0.</span>
@@ -107,16 +114,6 @@
 </div>
 
 <script>
-const SCENES = [
-  ['A homeowner reports a problem.', 'They text Dwellable a description and a photo of what broke.'],
-  ['Dwellable explains the problem.', 'It uses the photo and the home’s details to explain the likely cause and how urgent it is.'],
-  ['Dwellable gets a TaskRabbit estimate.', 'It picks the right TaskRabbit category and shows the estimate in the chat.'],
-  ['The homeowner picks a time and confirms.', 'Open time slots are sent as an iMessage poll. Dwellable only books after the homeowner confirms.'],
-  ['The job is booked.', 'Booking details and Tasker updates arrive in the same iMessage thread.'],
-  ['The job is saved to the home’s records.', 'Dwellable records what was fixed, when, and by whom, so it can use that later.'],
-  ['Report a problem and book a Tasker in one conversation.', 'Dwellable connects homeowners to TaskRabbit when they need help with a job.'],
-];
-const FLOW = [['Estimate', 2], ['Availability', 3], ['Book', 4], ['Status', 4], ['Home history', 5]];
 const EVENTS = [
   { kind: 'user', scene: 0, hold: 1500, text: 'The towel bar in the upstairs bath came off the wall on one side. Drywall is torn where the screws were.' },
   { kind: 'photo', scene: 0, hold: 1300 },
@@ -142,17 +139,7 @@ const $ = (id) => document.getElementById(id);
 const thread = $('thread');
 const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
 
-let i = -1, typing = null, timer = null, scene = -1, lastPoll = null;
-
-function setScene(s) {
-  if (s === scene) return;
-  scene = s;
-  const [title, body] = SCENES[s];
-  const cap = el('div', 'cap');
-  cap.append(el('span', 'num', s === 6 ? 'DWELLABLE × TASKRABBIT' : `0${s + 1} / 06`), el('h1', null, title), el('p', null, body));
-  $('cap').replaceChildren(cap);
-  document.querySelectorAll('.step').forEach((n, k) => n.classList.toggle('done', s >= FLOW[k][1]));
-}
+let i = -1, typing = null, timer = null, lastPoll = null;
 
 function render(e) {
   let n;
@@ -190,10 +177,7 @@ function schedule(ms) { clearTimeout(timer); timer = setTimeout(tick, ms); }
 
 function tick() {
   const next = EVENTS[i + 1];
-  if (!next) {
-    if (scene === 6) return reset();
-    setScene(6); return schedule(5200);
-  }
+  if (!next) return i === EVENTS.length ? reset() : (i = EVENTS.length, schedule(5200));
   const agentSide = next.kind === 'agent' || next.kind === 'card' || next.kind === 'poll';
   if (agentSide && !typing) {
     typing = el('div', 'typing msg');
@@ -204,15 +188,13 @@ function tick() {
   if (typing) { typing.remove(); typing = null; }
   i += 1;
   render(next);
-  setScene(next.scene);
   schedule(next.hold);
 }
 
 function reset() {
   clearTimeout(timer);
   thread.replaceChildren();
-  i = -1; typing = null; lastPoll = null; scene = -1;
-  setScene(0);
+  i = -1; typing = null; lastPoll = null;
   schedule(900);
 }
 
@@ -223,10 +205,6 @@ function fit() {
   $('fit').style.height = 720 * s + 'px';
 }
 
-FLOW.forEach(([label], k) => {
-  $('flow').append(el('span', 'step', label));
-  if (k < FLOW.length - 1) $('flow').insertAdjacentHTML('beforeend', '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C8F85" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>');
-});
 $('replay').addEventListener('click', reset);
 window.addEventListener('resize', fit);
 fit();
