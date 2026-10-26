@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Dwellable × TaskRabbit</title>
+<meta name="description" content="From “something broke” to booked, in one conversation.">
+<link rel="icon" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --accent: #1F6B4A; --ground: #EEF2EF; --ink: #14231C; --muted: #3D4F46; --blue: #0A66D8; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--ground); color: var(--ink); font-family: Inter, system-ui, sans-serif; }
+  body { display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  #fit { position: relative; }
+  #stage { width: 1280px; height: 720px; display: flex; transform-origin: top left; position: absolute; top: 0; left: 0; }
+
+  .left { width: 660px; padding: 64px 0 48px 80px; display: flex; flex-direction: column; justify-content: space-between; }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand .name { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 22px; }
+  .brand .x { font-size: 20px; font-weight: 500; color: #4A5A52; }
+  .cap { display: flex; flex-direction: column; gap: 18px; max-width: 520px; animation: fade .45s ease both; }
+  .cap .num { font-size: 15px; font-weight: 600; letter-spacing: .06em; color: var(--accent); }
+  .cap h1 { margin: 0; font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 52px; line-height: 1.05; letter-spacing: -.02em; }
+  .cap p { margin: 0; font-size: 20px; line-height: 1.5; color: var(--muted); }
+  .flow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .step { font-size: 14px; font-weight: 600; padding: 8px 12px; border-radius: 10px; color: #4A5A52; border: 1px solid #B5C3BB; transition: all .3s; }
+  .step.done { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .foot { display: flex; align-items: center; gap: 16px; margin-top: 18px; }
+  .foot button { font: 600 14px Inter, sans-serif; color: var(--ink); background: #fff; border: 1px solid #9DB0A6; border-radius: 999px; padding: 12px 18px; min-height: 44px; cursor: pointer; }
+  .foot span { font-size: 13px; line-height: 1.4; color: #4A5A52; max-width: 420px; }
+
+  .right { flex-grow: 1; display: flex; align-items: center; justify-content: center; }
+  .phone { width: 340px; height: 680px; padding: 12px; border-radius: 52px; background: #111413; box-shadow: 0 30px 60px rgba(20,35,28,.22); }
+  .screen { width: 100%; height: 100%; border-radius: 40px; background: #fff; overflow: hidden; display: flex; flex-direction: column; }
+  .head { padding: 34px 16px 10px; display: flex; flex-direction: column; align-items: center; gap: 4px; border-bottom: 1px solid #E5E5EA; background: #F7F7F8; }
+  .avatar { width: 46px; height: 46px; border-radius: 50%; background: #fff; border: 1px solid #E5E5EA; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .head span { font-size: 12px; font-weight: 500; color: #111; }
+  #thread { flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; padding: 10px 12px; overflow: hidden; font-size: 14px; line-height: 1.35; }
+  .input { padding: 8px 12px 22px; }
+  .input div { border: 1px solid #D1D1D6; border-radius: 999px; padding: 8px 14px; font-size: 14px; color: #8A8A8E; }
+
+  .msg { flex-shrink: 0; animation: rise .32s cubic-bezier(.2,.8,.2,1) both; }
+  .user { align-self: flex-end; max-width: 78%; background: var(--blue); color: #fff; padding: 8px 12px; border-radius: 18px 18px 4px 18px; }
+  .agent { align-self: flex-start; max-width: 82%; background: #E9E9EB; color: #111; padding: 8px 12px; border-radius: 18px 18px 18px 4px; }
+  .photo { align-self: flex-end; width: 135px; height: 180px; object-fit: cover; border-radius: 16px; }
+  .divider { align-self: center; font-size: 11px; font-weight: 500; color: #6B6B70; padding: 8px 0 2px; }
+  .card { align-self: flex-start; width: 82%; border: 1px solid #DADDE0; border-radius: 16px; overflow: hidden; background: #fff; }
+  .card .ch { padding: 10px 12px; display: flex; align-items: center; gap: 8px; background: #F2F3F4; color: #111; font-weight: 600; }
+  .card.booked .ch { background: var(--accent); color: #fff; }
+  .card .cb { padding: 8px 12px 10px; display: flex; flex-direction: column; gap: 5px; }
+  .card .sub { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #5B5B60; }
+  .card .row { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; }
+  .card .row span:first-child { color: #5B5B60; } .card .row span:last-child { font-weight: 600; color: #111; }
+  .poll { align-self: flex-start; width: 84%; background: #E9E9EB; border-radius: 18px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+  .poll .lbl { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; letter-spacing: .05em; color: #5B5B60; }
+  .poll .q { font-weight: 600; font-size: 15px; color: #111; }
+  .opt { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #111; background: #fff; border-radius: 12px; padding: 9px 10px; transition: all .25s; }
+  .opt .ring { width: 16px; height: 16px; flex-shrink: 0; border-radius: 50%; border: 2px solid #A1A1A6; transition: all .25s; }
+  .opt .n { margin-left: auto; font-size: 12px; color: #5B5B60; }
+  .opt.on { box-shadow: inset 0 0 0 2px var(--blue); }
+  .opt.on .ring { background: var(--blue); border: 4px solid #CFE0F7; }
+  .typing { align-self: flex-start; display: flex; gap: 4px; background: #E9E9EB; padding: 12px 14px; border-radius: 18px 18px 18px 4px; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: #8A8A8E; animation: blink 1.1s infinite; }
+  .dot:nth-child(2) { animation-delay: .15s; } .dot:nth-child(3) { animation-delay: .3s; }
+
+  @keyframes rise { from { opacity: 0; transform: translateY(10px) scale(.98); } to { opacity: 1; transform: none; } }
+  @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  @keyframes blink { 0%, 80%, 100% { opacity: .25; } 40% { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .msg, .cap { animation: none; } }
+</style>
+</head>
+<body>
+<div id="fit">
+<div id="stage">
+  <div class="left">
+    <div class="brand">
+      <img src="dwellable_logo.png" alt="Dwellable logo" width="44" height="44">
+      <span class="name">Dwellable</span>
+      <span class="x">×</span>
+      <img src="tr_logo.svg" alt="TaskRabbit" style="height: 22px; width: auto">
+    </div>
+    <div id="cap" aria-live="polite"></div>
+    <div>
+      <div class="flow" id="flow"></div>
+      <div class="foot">
+        <button type="button" id="replay">Replay</button>
+        <span>Concept demo. Illustrative only, not a live integration. Names and prices are samples. Photo: dalazzarato, CC BY 2.0.</span>
+      </div>
+    </div>
+  </div>
+  <div class="right">
+    <div class="phone">
+      <div class="screen">
+        <div class="head">
+          <div class="avatar"><img src="dwellable_logo.png" alt="" width="38" height="38"></div>
+          <span>Dwellable</span>
+        </div>
+        <div id="thread"></div>
+        <div class="input"><div>iMessage</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+const SCENES = [
+  ['Something breaks.', 'The homeowner texts Dwellable a photo, the way they would text a friend who knows houses.'],
+  ['Dwellable figures out what’s wrong.', 'It reads the photo and what it knows about this home, then says how urgent it is.'],
+  ['It prices the job with TaskRabbit.', 'An estimate for the right task category shows up right in the thread.'],
+  ['They pick a time and say yes.', 'Open slots arrive as a native iMessage poll. Nothing is booked without a clear yes.'],
+  ['Booked, with updates by text.', 'Tasker status comes through the same conversation. No new app, no new login.'],
+  ['The job becomes part of the home’s history.', 'Next time something breaks, Dwellable knows what was done, when, and by whom.'],
+  ['From “something broke” to booked, in one conversation.', 'Dwellable brings TaskRabbit to homeowners at the exact moment they need help.'],
+];
+const FLOW = [['Estimate', 2], ['Availability', 3], ['Book', 4], ['Status', 4], ['Home history', 5]];
+const EVENTS = [
+  { kind: 'user', scene: 0, hold: 1500, text: 'The towel bar in the upstairs bath came off the wall on one side. Drywall is torn where the screws were.' },
+  { kind: 'photo', scene: 0, hold: 1300 },
+  { kind: 'agent', scene: 1, hold: 2600, text: 'That end pulled its anchors out of the drywall, which is common on plain drywall. Not urgent, but it needs new anchors and a small patch, about an hour of work.' },
+  { kind: 'agent', scene: 1, hold: 700, text: 'Want me to get a price from TaskRabbit?' },
+  { kind: 'user', scene: 2, hold: 900, text: 'Yes, get a price' },
+  { kind: 'card', scene: 2, hold: 2200, tr: true, title: 'Mounting & wall repair', sub: 'Upstairs bath', rows: [['Estimate', '$65–85 (sample)'], ['Time', 'about 1 hr']] },
+  { kind: 'agent', scene: 3, hold: 700, text: 'Taskers near you are open these times:' },
+  { kind: 'poll', scene: 3, hold: 1500, title: 'Pick a time', opts: ['Tue 9–11am', 'Thu 1–3pm', 'Sat 10am–12pm'], pick: 'Sat 10am–12pm' },
+  { kind: 'divider', scene: 3, hold: 1100, vote: true, text: 'You voted for Sat 10am–12pm' },
+  { kind: 'agent', scene: 3, hold: 700, text: 'Book Saturday 10am to 12pm for about $65–85? You pay through TaskRabbit after the job.' },
+  { kind: 'user', scene: 4, hold: 900, text: 'Yes, book it' },
+  { kind: 'card', scene: 4, hold: 2200, booked: true, tr: true, title: 'Booked', sub: 'Mounting & wall repair', rows: [['When', 'Sat, 10am–12pm'], ['Tasker', 'Jordan (sample)']] },
+  { kind: 'divider', scene: 4, hold: 700, text: 'Saturday 9:42 AM' },
+  { kind: 'agent', scene: 4, hold: 1800, text: 'Jordan is on the way, about 15 minutes out.' },
+  { kind: 'divider', scene: 5, hold: 700, text: 'Saturday 11:05 AM' },
+  { kind: 'agent', scene: 5, hold: 900, text: 'Jordan marked the job done. I added it to your home’s history.' },
+  { kind: 'card', scene: 5, hold: 1600, title: 'Towel bar re-anchored', sub: 'Upstairs bath · home history', rows: [['Done', 'Saturday'], ['By', 'Jordan via TaskRabbit']] },
+  { kind: 'user', scene: 5, hold: 1600, text: 'Looks great, thanks!' },
+];
+
+const $ = (id) => document.getElementById(id);
+const thread = $('thread');
+const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+
+let i = -1, typing = null, timer = null, scene = -1, lastPoll = null;
+
+function setScene(s) {
+  if (s === scene) return;
+  scene = s;
+  const [title, body] = SCENES[s];
+  const cap = el('div', 'cap');
+  cap.append(el('span', 'num', s === 6 ? 'DWELLABLE × TASKRABBIT' : `0${s + 1} / 06`), el('h1', null, title), el('p', null, body));
+  $('cap').replaceChildren(cap);
+  document.querySelectorAll('.step').forEach((n, k) => n.classList.toggle('done', s >= FLOW[k][1]));
+}
+
+function render(e) {
+  let n;
+  if (e.kind === 'user' || e.kind === 'agent') n = el('div', e.kind, e.text);
+  else if (e.kind === 'divider') n = el('div', 'divider', e.text);
+  else if (e.kind === 'photo') { n = el('img', 'photo'); n.src = 'towel_bar.jpg'; n.alt = 'Photo of a towel bar that has come loose from the wall on one side'; }
+  else if (e.kind === 'card') {
+    n = el('div', 'card' + (e.booked ? ' booked' : ''));
+    const ch = el('div', 'ch');
+    if (e.booked) ch.insertAdjacentHTML('beforeend', '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>');
+    ch.append(el('span', null, e.title));
+    const cb = el('div', 'cb'), sub = el('div', 'sub');
+    if (e.tr) { const logo = el('img'); logo.src = 'tr_logo.svg'; logo.alt = 'TaskRabbit'; logo.style.height = '11px'; sub.append(logo, el('span', null, '·')); }
+    sub.append(el('span', null, e.sub));
+    cb.append(sub);
+    for (const [k, v] of e.rows) { const r = el('div', 'row'); r.append(el('span', null, k), el('span', null, v)); cb.append(r); }
+    n.append(ch, cb);
+  } else if (e.kind === 'poll') {
+    n = el('div', 'poll');
+    const lbl = el('div', 'lbl');
+    lbl.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 6h10M4 12h16M4 18h7"></path></svg><span>POLL</span>';
+    n.append(lbl, el('span', 'q', e.title));
+    for (const o of e.opts) { const r = el('div', 'opt'); r.dataset.label = o; r.append(el('span', 'ring'), el('span', null, o), el('span', 'n', '')); n.append(r); }
+    lastPoll = { node: n, pick: e.pick };
+  }
+  n.classList.add('msg');
+  thread.append(n);
+  if (e.vote && lastPoll) {
+    const on = lastPoll.node.querySelector(`.opt[data-label="${lastPoll.pick}"]`);
+    on.classList.add('on'); on.querySelector('.n').textContent = '1';
+  }
+}
+
+function schedule(ms) { clearTimeout(timer); timer = setTimeout(tick, ms); }
+
+function tick() {
+  const next = EVENTS[i + 1];
+  if (!next) {
+    if (scene === 6) return reset();
+    setScene(6); return schedule(5200);
+  }
+  const agentSide = next.kind === 'agent' || next.kind === 'card' || next.kind === 'poll';
+  if (agentSide && !typing) {
+    typing = el('div', 'typing msg');
+    typing.append(el('span', 'dot'), el('span', 'dot'), el('span', 'dot'));
+    thread.append(typing);
+    return schedule(850);
+  }
+  if (typing) { typing.remove(); typing = null; }
+  i += 1;
+  render(next);
+  setScene(next.scene);
+  schedule(next.hold);
+}
+
+function reset() {
+  clearTimeout(timer);
+  thread.replaceChildren();
+  i = -1; typing = null; lastPoll = null; scene = -1;
+  setScene(0);
+  schedule(900);
+}
+
+function fit() {
+  const s = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
+  $('stage').style.transform = `scale(${s})`;
+  $('fit').style.width = 1280 * s + 'px';
+  $('fit').style.height = 720 * s + 'px';
+}
+
+FLOW.forEach(([label], k) => {
+  $('flow').append(el('span', 'step', label));
+  if (k < FLOW.length - 1) $('flow').insertAdjacentHTML('beforeend', '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C8F85" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>');
+});
+$('replay').addEventListener('click', reset);
+window.addEventListener('resize', fit);
+fit();
+reset();
+</script>
+</body>
+</html>
