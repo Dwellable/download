@@ -17,7 +17,7 @@
   #fit { position: relative; }
   #stage { width: 1280px; height: 720px; display: flex; transform-origin: top left; position: absolute; top: 0; left: 0; }
 
-  .left { width: 660px; padding: 64px 0 48px 80px; display: flex; flex-direction: column; justify-content: space-between; }
+  .left { width: 720px; padding: 52px 0 40px 72px; display: flex; flex-direction: column; justify-content: space-between; }
   .brand { display: flex; align-items: center; gap: 14px; }
   .brand .name { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 22px; }
   .brand .x { font-size: 20px; font-weight: 500; color: #4A5A52; }
@@ -80,16 +80,51 @@
       <span class="x">×</span>
       <img src="tr_logo.svg" alt="TaskRabbit" style="height: 22px; width: auto">
     </div>
-    <div class="pitch">
-      <h1>Book a Tasker from a text message</h1>
-      <p>Homeowners text Dwellable when something in their house needs attention. When the job is a good fit for a Tasker, Dwellable would book it through TaskRabbit.</p>
-      <ul>
-        <li>Dwellable works out what the job is and which TaskRabbit category it fits.</li>
-        <li>It gets an estimate and open times from TaskRabbit and shows them in the chat.</li>
-        <li>The homeowner confirms before anything is booked. Payment goes through TaskRabbit.</li>
-        <li>After the job, Dwellable saves it to the home’s records.</li>
-      </ul>
-      <p class="ask"><strong>What we need:</strong> a server-to-server API for estimates, availability, booking and job status.</p>
+    <div style="display: flex; flex-direction: column; gap: 22px; max-width: 600px">
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <span style="font-size: 12px; font-weight: 600; letter-spacing: .12em; color: #1F6B4A">PARTNERSHIP PROPOSAL</span>
+        <h1 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 38px; line-height: 1.1; letter-spacing: -.02em; color: #14231C">Book a Tasker from a text message</h1>
+        <p style="margin: 0; font-size: 16px; line-height: 1.5; color: #3D4F46">Homeowners text Dwellable when something in their house needs attention. When the job fits a Tasker, Dwellable books it through TaskRabbit.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+        <div style="background: #FFFFFF; border: 1px solid #D5DDD8; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px">
+          <div style="display: flex; align-items: center; gap: 10px">
+            <span style="width: 28px; height: 28px; border-radius: 8px; background: #E3EEE8; color: #1F6B4A; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4.5 4.5"></path></svg></span>
+            <span style="font-size: 15px; font-weight: 600; color: #14231C">Diagnose</span>
+          </div>
+          <span style="font-size: 13px; line-height: 1.45; color: #3D4F46">Dwellable identifies the job and matches it to the right TaskRabbit category.</span>
+        </div>
+        <div style="background: #FFFFFF; border: 1px solid #D5DDD8; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px">
+          <div style="display: flex; align-items: center; gap: 10px">
+            <span style="width: 28px; height: 28px; border-radius: 8px; background: #E3EEE8; color: #1F6B4A; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5"></rect><path d="M3.5 10h17M8 3v4M16 3v4"></path></svg></span>
+            <span style="font-size: 15px; font-weight: 600; color: #14231C">Quote and schedule</span>
+          </div>
+          <span style="font-size: 13px; line-height: 1.45; color: #3D4F46">Estimates and open time slots appear right in the conversation.</span>
+        </div>
+        <div style="background: #FFFFFF; border: 1px solid #D5DDD8; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px">
+          <div style="display: flex; align-items: center; gap: 10px">
+            <span style="width: 28px; height: 28px; border-radius: 8px; background: #E3EEE8; color: #1F6B4A; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="m8.5 12.5 2.5 2.5 4.5-5"></path></svg></span>
+            <span style="font-size: 15px; font-weight: 600; color: #14231C">Confirm and book</span>
+          </div>
+          <span style="font-size: 13px; line-height: 1.45; color: #3D4F46">Nothing is booked until the homeowner says yes. Payment stays with TaskRabbit.</span>
+        </div>
+        <div style="background: #FFFFFF; border: 1px solid #D5DDD8; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px">
+          <div style="display: flex; align-items: center; gap: 10px">
+            <span style="width: 28px; height: 28px; border-radius: 8px; background: #E3EEE8; color: #1F6B4A; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"></path><path d="M6 9.5V20h12V9.5"></path><path d="M10 20v-5h4v5"></path></svg></span>
+            <span style="font-size: 15px; font-weight: 600; color: #14231C">Remember</span>
+          </div>
+          <span style="font-size: 13px; line-height: 1.45; color: #3D4F46">Completed jobs are saved to the home&#8217;s maintenance record.</span>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 16px; border-top: 1px solid #D5DDD8">
+        <span style="font-size: 12px; font-weight: 600; letter-spacing: .12em; color: #4A5A52">SERVER-TO-SERVER INTEGRATION</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px">
+          <span style="font-size: 13px; font-weight: 500; color: #14231C; background: #FFFFFF; border: 1px solid #D5DDD8; border-radius: 999px; padding: 6px 12px">Estimates</span>
+          <span style="font-size: 13px; font-weight: 500; color: #14231C; background: #FFFFFF; border: 1px solid #D5DDD8; border-radius: 999px; padding: 6px 12px">Availability</span>
+          <span style="font-size: 13px; font-weight: 500; color: #14231C; background: #FFFFFF; border: 1px solid #D5DDD8; border-radius: 999px; padding: 6px 12px">Booking</span>
+          <span style="font-size: 13px; font-weight: 500; color: #14231C; background: #FFFFFF; border: 1px solid #D5DDD8; border-radius: 999px; padding: 6px 12px">Job status</span>
+        </div>
+      </div>
     </div>
     <div>
       <div class="foot">
