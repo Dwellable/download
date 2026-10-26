@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Dwellable × TaskRabbit</title>
-<meta name="description" content="From “something broke” to booked, in one conversation.">
+<meta name="description" content="Report a problem and book a Tasker in one conversation.">
 <link rel="icon" href="/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -108,13 +108,13 @@
 
 <script>
 const SCENES = [
-  ['Something breaks.', 'The homeowner texts Dwellable a photo, the way they would text a friend who knows houses.'],
-  ['Dwellable figures out what’s wrong.', 'It reads the photo and what it knows about this home, then says how urgent it is.'],
-  ['It prices the job with TaskRabbit.', 'An estimate for the right task category shows up right in the thread.'],
-  ['They pick a time and say yes.', 'Open slots arrive as a native iMessage poll. Nothing is booked without a clear yes.'],
-  ['Booked, with updates by text.', 'Tasker status comes through the same conversation. No new app, no new login.'],
-  ['The job becomes part of the home’s history.', 'Next time something breaks, Dwellable knows what was done, when, and by whom.'],
-  ['From “something broke” to booked, in one conversation.', 'Dwellable brings TaskRabbit to homeowners at the exact moment they need help.'],
+  ['A homeowner reports a problem.', 'They text Dwellable a description and a photo of what broke.'],
+  ['Dwellable explains the problem.', 'It uses the photo and the home’s details to explain the likely cause and how urgent it is.'],
+  ['Dwellable gets a TaskRabbit estimate.', 'It picks the right TaskRabbit category and shows the estimate in the chat.'],
+  ['The homeowner picks a time and confirms.', 'Open time slots are sent as an iMessage poll. Dwellable only books after the homeowner confirms.'],
+  ['The job is booked.', 'Booking details and Tasker updates arrive in the same iMessage thread.'],
+  ['The job is saved to the home’s records.', 'Dwellable records what was fixed, when, and by whom, so it can use that later.'],
+  ['Report a problem and book a Tasker in one conversation.', 'Dwellable connects homeowners to TaskRabbit when they need help with a job.'],
 ];
 const FLOW = [['Estimate', 2], ['Availability', 3], ['Book', 4], ['Status', 4], ['Home history', 5]];
 const EVENTS = [
