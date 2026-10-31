@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Text Dwellable</title>
+  <link rel="icon" href="/favicon.png">
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; max-width: 440px;
+           margin: 0 auto; padding: 48px 20px; color: #1a1a1a; background: #fff; line-height: 1.6; text-align: center; }
+    img { width: 64px; height: 64px; }
+    h1 { font-size: 24px; margin: 16px 0 8px; }
+    p { color: #444; margin: 0 0 20px; }
+    a.btn { display: inline-block; background: #0d8c68; color: #fff; text-decoration: none; padding: 14px 28px; border-radius: 12px; font-weight: 600; }
+    .small { font-size: 14px; color: #888; margin-top: 20px; }
+    @media (prefers-color-scheme: dark) { body { background: #111; color: #eee; } p { color: #bbb; } }
+  </style>
+</head>
+<body>
+  <img src="/email_logo.png" alt="">
+  <h1>Text Dwellable</h1>
+  <p>Opening Messages so you can say hi.</p>
+  <a class="btn" id="go" href="#">Open Messages</a>
+  <p class="small" id="num"></p>
+  <script>
+    // dwellable.app/text?n=17174811829: email apps won't open Messages directly, so the invite links here.
+    var n = (new URLSearchParams(location.search).get('n') || '').replace(/\D/g, '');
+    var go = document.getElementById('go');
+    if (n.length === 11) {
+      var link = 'sms:+' + n + '&body=' + encodeURIComponent('Hi');
+      go.href = link;
+      document.getElementById('num').textContent = 'Or text "hi" to (' + n.slice(1, 4) + ') ' + n.slice(4, 7) + '-' + n.slice(7) + '.';
+      location.href = link;
+    } else {
+      go.hidden = true;
+      document.querySelector('p').textContent = 'This link is missing its number. Check your invite email.';
+    }
+  </script>
+</body>
+</html>
