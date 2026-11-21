@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- The sign-in token is in this page's URL; never send it to another site. -->
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex">
+  <title>Sign in to Dwellable</title>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #FFFFFF;
+      background-image: radial-gradient(circle at 1px 1px, rgb(158 158 158 / 24%) 1px, transparent 0);
+      background-size: 20px 20px;
+      color: #000;
+      font-family: 'PT Sans', sans-serif;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      height: 56px;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+    }
+    header a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #000;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.4rem;
+    }
+    header img { width: 24px; height: 24px; }
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      padding: 28px 24px;
+      width: 100%;
+      max-width: 380px;
+      text-align: center;
+    }
+    .card img.logo { width: 64px; height: 64px; border-radius: 14px; margin-bottom: 12px; }
+    h1 {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 1.5rem;
+      margin: 0 0 8px;
+    }
+    p { color: #555; font-size: 1rem; line-height: 1.45; margin: 0 0 16px; }
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: #0d8c68;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.05rem;
+      text-decoration: none;
+      border: 0;
+    }
+    .btn:active { opacity: 0.85; }
+    .small { font-size: 0.85rem; color: #777; margin: 16px 0 0; }
+    .stores {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+    }
+    .stores .app-store img { height: 40px; width: auto; }
+    .stores .play-store img { height: 58px; width: auto; }
+    .qr { margin: 4px auto 12px; width: 180px; height: 180px; }
+    .qr svg { width: 100%; height: 100%; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/"><img src="/favicon.png" alt="">Dwellable</a>
+  </header>
+
+  <main>
+    <!-- Phone: one button that opens the app with the sign-in link. -->
+    <div id="phone" class="card hidden">
+      <img class="logo" src="/favicon_large.png" alt="">
+      <h1>Finish signing in</h1>
+      <p>Tap the button to open Dwellable and sign in.</p>
+      <a id="open" class="btn" href="#">Open Dwellable</a>
+      <p class="small">Don't have the app yet? Get it, then tap the link in your email again.</p>
+      <div class="stores">
+        <a class="app-store" href="https://apps.apple.com/us/app/dwellable-home-maintenance/id6444394386">
+          <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+        </a>
+        <a class="play-store" href="https://play.google.com/store/apps/details?id=com.dwellable">
+          <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play">
+        </a>
+      </div>
+    </div>
+
+    <!-- Computer: the link only works on the phone, so show a code to scan. -->
+    <div id="desktop" class="card hidden">
+      <img class="logo" src="/favicon_large.png" alt="">
+      <h1>Open this on your phone</h1>
+      <p>Sign-in links open the Dwellable app. Scan this code with the phone that has Dwellable, or open the email on that phone.</p>
+      <div id="qr" class="qr"></div>
+      <p class="small">The link works once and expires 15 minutes after it was sent.</p>
+    </div>
+
+    <!-- No token in the URL. -->
+    <div id="missing" class="card hidden">
+      <img class="logo" src="/favicon_large.png" alt="">
+      <h1>This link is incomplete</h1>
+      <p>Open Dwellable and ask for a new sign-in link.</p>
+      <a id="openPlain" class="btn" href="#">Open Dwellable</a>
+    </div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+  <script>
+    (function () {
+      var token = new URLSearchParams(location.search).get('token') || '';
+      var ua = navigator.userAgent || '';
+      var isAndroid = /Android/i.test(ua);
+      // iPadOS reports itself as a Mac, so also check for touch.
+      var isIOS = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+      var show = function (id) { document.getElementById(id).classList.remove('hidden'); };
+
+      // iOS: the app's own scheme, which ScreenApp.handleDeepLink accepts as dwellable://auth?token=.
+      // Android: an intent URL that hands the https link straight to the app (it filters /auth).
+      function appLink(withToken) {
+        var q = withToken ? '?token=' + encodeURIComponent(token) : '';
+        if (isAndroid) {
+          return 'intent://dwellable.app/auth' + q +
+            '#Intent;scheme=https;package=com.dwellable;' +
+            'S.browser_fallback_url=' + encodeURIComponent('https://play.google.com/store/apps/details?id=com.dwellable') +
+            ';end';
+        }
+        return 'dwellable://auth' + q;
+      }
+
+      if (!token) {
+        document.getElementById('openPlain').href = isAndroid || isIOS ? appLink(false) : '/';
+        show('missing');
+        return;
+      }
+
+      if (isIOS || isAndroid) {
+        document.getElementById('open').href = appLink(true);
+        show('phone');
+        return;
+      }
+
+      // Computer: draw the QR in the page so the token never goes to a QR service.
+      show('desktop');
+      try {
+        var qr = qrcode(0, 'M');
+        qr.addData(location.origin + '/auth?token=' + encodeURIComponent(token));
+        qr.make();
+        document.getElementById('qr').innerHTML = qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
+      } catch (e) {
+        document.getElementById('qr').classList.add('hidden');
+      }
+    })();
+  </script>
+</body>
+</html>
