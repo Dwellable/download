@@ -1,24 +1,10 @@
-const CACHE_NAME = 'dwellable-v1';
-const urlsToCache = [
-  '/',
-  '/index.html',
-  '/join.html',
-  '/home.png',
-  '/reminders.png', 
-  '/property_info.png',
-  '/inspection.png'
-];
-
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(urlsToCache))
-  );
-});
-
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => response || fetch(event.request))
-  );
+self.addEventListener('install', () => self.skipWaiting());
+self.addEventListener('activate', event => {
+  event.waitUntil((async () => {
+    const keys = await caches.keys();
+    await Promise.all(keys.map(k => caches.delete(k)));
+    await self.registration.unregister();
+    const windows = await self.clients.matchAll({ type: 'window' });
+    windows.forEach(w => w.navigate(w.url));
+  })());
 });

@@ -1,1087 +1,917 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WBNM828NCM"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dwellable: Your AI Home Maintenance Assistant, by Text or App</title>
+<meta name="description" content="Text Dwellable a photo of anything odd at home and get a straight answer. It knows your home's age and systems, sends reminders made for your house, and finds a local pro when you need one. Free to start, on iOS, Android or text.">
+<link rel="canonical" href="https://dwellable.app/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#F6F1E7">
+<meta name="color-scheme" content="light">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/favicon_large.png">
+<link rel="preload" href="/assets/fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/stain.webp" as="image" fetchpriority="high">
+<link rel="preconnect" href="https://agent.dwellable.app" crossorigin>
 
-        gtag('config', 'G-WBNM828NCM');
-    </script>
-    <title>Dwellable - Free AI Home Maintenance App | Reminders, Checklists & Your AI Home Assistant</title>
-    <link rel="icon" type="image/x-icon" href="favicon.png">
-    <!-- Preload critical resources -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=PT+Sans:wght@700&family=PT+Sans&display=swap" as="style">
-    <link rel="preload" href="home_2026.jpg" as="image" fetchpriority="high">
-    <link rel="preload" href="assistant_chat.jpg" as="image" fetchpriority="high">
-    <link rel="prefetch" href="assistant_pros.jpg" as="image">
-    <link rel="prefetch" href="local_2026.jpg" as="image">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="preconnect" href="https://www.googletagmanager.com">
-    <link rel="preconnect" href="https://connect.facebook.net">
-    <!-- Dependencies -->
-    <!-- Critical CSS inline -->
-    <style>
-    .d-flex{display:flex!important}.gap-3{gap:1rem!important}.gap-5{gap:3rem!important}.align-items-center{align-items:center!important}.justify-content-center{justify-content:center!important}.flex-wrap{flex-wrap:wrap!important}.container{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}@media (min-width:576px){.container{max-width:540px}}@media (min-width:768px){.container{max-width:720px}}@media (min-width:992px){.container{max-width:960px}}@media (min-width:1200px){.container{max-width:1140px}}.row{display:flex;flex-wrap:wrap;margin-right:-15px;margin-left:-15px}.col-lg-6{position:relative;width:100%;padding-right:15px;padding-left:15px}@media (min-width:992px){.col-lg-6{flex:0 0 50%;max-width:50%}}.text-center{text-align:center!important}.d-none{display:none!important}@media (min-width:1200px){.d-xl-block{display:block!important}}.fixed-top{position:fixed!important;top:0;right:0;left:0;z-index:1030}
-    </style>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        crossorigin="anonymous" media="print" onload="this.media='all'">
-    <noscript><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"></noscript>
-    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
-    <!-- Remove lottie as it's not being used -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dwellable">
+<meta property="og:url" content="https://dwellable.app/">
+<meta property="og:title" content="Dwellable: your home, looked after">
+<meta property="og:description" content="Text a photo of anything odd at home and get a straight answer. Reminders made for your house, and a local pro when you need one.">
+<meta property="og:image" content="https://dwellable.app/og_image.png">
+<meta property="og:image:alt" content="The Dwellable home maintenance app">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dwellable: your home, looked after">
+<meta name="twitter:description" content="Text a photo of anything odd at home and get a straight answer. Reminders made for your house, and a local pro when you need one.">
+<meta name="twitter:image" content="https://dwellable.app/og_image.png">
+<meta name="apple-itunes-app" content="app-id=6444394386">
 
-    <!-- Amplitude analytics -->
-    <script type="text/javascript">
-        !function () { "use strict"; !function (e, t) { var r = e.amplitude || { _q: [], _iq: {} }; if (r.invoked) e.console && console.error && console.error("Amplitude snippet has been loaded."); else { var n = function (e, t) { e.prototype[t] = function () { return this._q.push({ name: t, args: Array.prototype.slice.call(arguments, 0) }), this } }, s = function (e, t, r) { return function (n) { e._q.push({ name: t, args: Array.prototype.slice.call(r, 0), resolve: n }) } }, o = function (e, t, r) { e._q.push({ name: t, args: Array.prototype.slice.call(r, 0) }) }, i = function (e, t, r) { e[t] = function () { if (r) return { promise: new Promise(s(e, t, Array.prototype.slice.call(arguments))) }; o(e, t, Array.prototype.slice.call(arguments)) } }, a = function (e) { for (var t = 0; t < g.length; t++)i(e, g[t], !1); for (var r = 0; r < m.length; r++)i(e, m[r], !0) }; r.invoked = !0; var c = t.createElement("script"); c.type = "text/javascript", c.integrity = "sha384-sBFQqoO3bx3qM8f+iksNzu/E3v0rdkVlvzRqpvP+ynsUk/uaCIsa+NPjw5N04mpg", c.crossOrigin = "anonymous", c.async = !0, c.src = "https://cdn.amplitude.com/libs/analytics-browser-2.3.3-min.js.gz", c.onload = function () { e.amplitude.runQueuedFunctions || console.log("[Amplitude] Error: could not load SDK") }; var u = t.getElementsByTagName("script")[0]; u.parentNode.insertBefore(c, u); for (var l = function () { return this._q = [], this }, p = ["add", "append", "clearAll", "prepend", "set", "setOnce", "unset", "preInsert", "postInsert", "remove", "getUserProperties"], d = 0; d < p.length; d++)n(l, p[d]); r.Identify = l; for (var v = function () { return this._q = [], this }, f = ["getEventProperties", "setProductId", "setQuantity", "setPrice", "setRevenue", "setRevenueType", "setEventProperties"], y = 0; y < f.length; y++)n(v, f[y]); r.Revenue = v; var g = ["getDeviceId", "setDeviceId", "getSessionId", "setSessionId", "getUserId", "setUserId", "setOptOut", "setTransport", "reset", "extendSession"], m = ["init", "add", "remove", "track", "logEvent", "identify", "groupIdentify", "setGroup", "revenue", "flush"]; a(r), r.createInstance = function (e) { return r._iq[e] = { _q: [] }, a(r._iq[e]), r._iq[e] }, e.amplitude = r } }(window, document) }();
-        amplitude.init("d5dc4f1beae8e0a5f613f4953f200ade", {
-            defaultTracking: true,
-        });
-    </script>
+<script>
+  // Analytics stubs: calls queue here and the libraries load once the page is usable (see the end of the page).
+  window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+  !function(f){if(f.fbq)return;var n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";n.queue=[]}(window);
+  fbq("init","1929895650928059");fbq("track","PageView");
+  if("serviceWorker" in navigator){navigator.serviceWorker.getRegistrations().then(function(rs){rs.forEach(function(r){r.unregister();});}).catch(function(){});}
+</script>
 
-    <!-- Meta -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Dwellable is your free AI-powered home maintenance app. Stay ahead of repairs and upkeep with smart maintenance reminders and seasonal checklists, ask your AI home assistant anything, find trusted local pros, and keep track of local updates.">
-    <meta name="keywords" content="home maintenance app, AI home maintenance, property maintenance, maintenance reminders, seasonal home checklist, home upkeep, AI home assistant, find contractors, home maintenance schedule, local home updates, free home app">
-    <meta name="author" content="Dwellable">
-    <meta name="robots" content="index, follow">
-    <meta name="cf-2fa-verify" content="false">
-    <meta name="cf-email-decode" content="false">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="Dwellable - Free AI Home Maintenance App" />
-    <meta property="og:description" content="Stay ahead of home repairs and upkeep with smart maintenance reminders and seasonal checklists, an AI home assistant, trusted local pros, and local updates. Free on iOS and Android." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://dwellable.app" />
-    <meta property="og:image" content="https://dwellable.app/og_image.png" />
-    <meta property="og:image:alt" content="Dwellable home maintenance app interface" />
-    <meta property="og:site_name" content="Dwellable" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"Organization","@id":"https://dwellable.app/#org","name":"Dwellable","legalName":"Dwellable LLC","url":"https://dwellable.app/","logo":"https://dwellable.app/favicon_large.png","email":"hello@dwellable.app",
+  "sameAs":["https://apps.apple.com/us/app/dwellable-home-maintenance/id6444394386","https://play.google.com/store/apps/details?id=com.dwellable"]},
+ {"@type":"WebSite","@id":"https://dwellable.app/#site","url":"https://dwellable.app/","name":"Dwellable","publisher":{"@id":"https://dwellable.app/#org"}},
+ {"@type":"MobileApplication","name":"Dwellable","url":"https://dwellable.app/","applicationCategory":"LifestyleApplication","operatingSystem":"iOS, Android",
+  "description":"An AI home maintenance assistant you can text or use in the app. It knows your home's age and systems, answers questions from a photo, sends maintenance reminders made for your house, and suggests local pros.",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@id":"https://dwellable.app/#org"},
+  "downloadUrl":["https://apps.apple.com/us/app/dwellable-home-maintenance/id6444394386","https://play.google.com/store/apps/details?id=com.dwellable"],
+  "featureList":["Answers from a photo, by text","Property info from public records","Maintenance reminders made for your home","Seasonal checklists","Local pros when you need one"]},
+ {"@type":"FAQPage","mainEntity":[
+  {"@type":"Question","name":"What is Dwellable?","acceptedAnswer":{"@type":"Answer","text":"Dwellable is a home maintenance assistant for homeowners. Text it a photo or a question and get a straight answer about your house, plus reminders made for your home and a local pro when you need one."}},
+  {"@type":"Question","name":"How does Dwellable know about my home?","acceptedAnswer":{"@type":"Answer","text":"When you add your home, Dwellable pulls its public records, like the year it was built, its size, and its heating and cooling. It uses them to plan reminders and to answer questions for your house, not a generic one."}},
+  {"@type":"Question","name":"Do I need to download an app?","acceptedAnswer":{"@type":"Answer","text":"No. You can start by text. The free iOS and Android apps add your property info, reminders and checklists in one place."}},
+  {"@type":"Question","name":"Is Dwellable free?","acceptedAnswer":{"@type":"Answer","text":"Yes, it's free to start, by text or in the app."}},
+  {"@type":"Question","name":"Can Dwellable find someone to fix it?","acceptedAnswer":{"@type":"Answer","text":"Yes. When a job needs a pro, Dwellable suggests well-reviewed local pros near you. You choose who to contact."}},
+  {"@type":"Question","name":"How can I stop the texts?","acceptedAnswer":{"@type":"Answer","text":"Reply STOP at any time and the texts stop. Reply HELP for help."}}]}
+]}
+</script>
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Dwellable - Free AI Home Maintenance App">
-    <meta name="twitter:description" content="Stay ahead of home repairs and upkeep with smart maintenance reminders and seasonal checklists, an AI home assistant, trusted local pros, and local updates.">
-    <meta name="twitter:image" content="https://dwellable.app/og_image.png">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://dwellable.app">
-    
-    <!-- App Store Meta -->
-    <meta name="apple-itunes-app" content="app-id=6444394386">
-    <meta name="google-play-app" content="app-id=com.dwellable">
+<style>@font-face{font-family:"Figtree";src:url(/assets/fonts/figtree-latin.woff2) format("woff2");font-weight:400 800;font-style:normal;font-display:swap;
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+/* metric-matched fallback so text doesn't jump when Figtree arrives */
+@font-face{font-family:"Figtree Fallback";src:local("Arial"),local("Helvetica Neue"),local("Roboto");ascent-override:95%;descent-override:25%;line-gap-override:0%;size-adjust:101%}
 
-    <!-- Meta Pixel Code -->
-    <script>
-        !function (f, b, e, v, n, t, s) {
-            if (f.fbq) return; n = f.fbq = function () {
-                n.callMethod ?
-                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-            };
-            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-            n.queue = []; t = b.createElement(e); t.async = !0;
-            t.src = v; s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t, s)
-        }(window, document, 'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '1929895650928059');
-        fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-            src="https://www.facebook.com/tr?id=1929895650928059&ev=PageView&noscript=1" /></noscript>
-    <!-- End Meta Pixel Code -->
-    
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "MobileApplication",
-        "name": "Dwellable",
-        "description": "Free AI-powered home maintenance app for homeowners. Stay ahead of repairs and upkeep with smart maintenance reminders and seasonal checklists, an AI home assistant that knows your property, trusted local contractors, and local updates.",
-        "url": "https://dwellable.app",
-        "applicationCategory": "UtilityApplication",
-        "operatingSystem": ["iOS", "Android"],
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-        },
-        "downloadUrl": [
-            "https://apps.apple.com/us/app/dwellable-home-maintenance/id6444394386",
-            "https://play.google.com/store/apps/details?id=com.dwellable"
-        ],
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dwellable"
-        },
-        "featureList": [
-            "Smart maintenance reminders tailored to your home",
-            "Seasonal home maintenance checklists and project plans",
-            "AI home assistant that knows your property",
-            "Find trusted local contractors",
-            "AI property summary and records",
-            "Room-by-room home checks",
-            "Local news and updates for your area"
-        ]
-    }
-    </script>
-</head>
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=PT+Sans:wght@700&family=PT+Sans&display=swap');
+/* Layout: hero with window-light cast across it and a light-framed 3D phone whose conversation lifts off the screen; the headline question rotates with the scenario. Then three short steps, the app fan, and a dusk street whose windows light up. Light-only by design: this is the marketing site. */
+:root{
+  --linen:#F6F1E7; --cream:#FBF7EF; --paper:#FFFDF8;
+  --ink:#1F2A24; --ink-soft:#5E665F; --rule:#E2DACA;
+  --evergreen:#1D4A37; --sage:#DCE6DA; --moss:#7FA38A;
+  --lamp:#F2B544; --lamp-pale:#FFE7B0; --apricot:#F9DDB8;
+  --sky-top:#0C2219; --sky-low:#1C4434;
+  --frame:#E4DDCC; --frame-edge:#CFC6B1;
+  --sans:"Figtree","Figtree Fallback", ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{background:var(--linen)}
+body{background:var(--linen);color:var(--ink);font:18px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+h1,h2,h3,p{margin:0}
+.gut{padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.inner{max-width:1200px;margin:0 auto}
+.grain{position:relative;isolation:isolate}
+.grain::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;opacity:.12;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.house{display:inline-block;flex:none;object-fit:contain}
+.wordmark{font-weight:800;letter-spacing:-.045em;font-size:1.6rem;color:var(--evergreen)}
+.btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:999px;background:var(--evergreen);color:var(--cream);font:650 1.05rem var(--sans);padding:.95rem 1.5rem;cursor:pointer;white-space:nowrap;text-decoration:none;transition:transform .2s ease, box-shadow .2s ease}
+.btn:hover{transform:translateY(-1px);box-shadow:0 10px 24px -12px rgba(29,74,55,.6)}
+.btn.sm{padding:.55rem 1.1rem;font-size:.92rem}
+.btn.lamp{background:var(--lamp);color:var(--ink)}
+.btn.soft{background:var(--sage);color:var(--evergreen)}
+:focus-visible{outline:3px solid var(--lamp);outline-offset:3px}
 
-    html {
-    }
+/* ---------- Hero ---------- */
+.hero{position:relative;overflow:clip;padding-block:1.1rem 3.5rem;
+  background:linear-gradient(180deg,#FBF4E6 0%,var(--linen) 70%)}
+/* window light: four panes of warm light cast across the wall, soft-edged like a lamp through glass */
+.cast{position:absolute;right:-2%;top:4%;width:min(800px,64vw);aspect-ratio:1.1;pointer-events:none;z-index:-1;
+  transform:translate(calc(var(--cx,0) * -26px),calc(var(--cy,0) * -16px)) rotate(-8deg) skewX(-16deg);filter:blur(7px);opacity:.75}
+.cast .panes{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1.2fr 1fr;gap:7%}
+.cast .panes i{border-radius:3% 3% 2% 2%;background:linear-gradient(200deg,rgba(255,204,115,.8),rgba(255,220,155,.42) 55%,rgba(255,232,190,.06))}
+.cast .panes i:nth-child(1){border-top-left-radius:46% 28%}
+.cast .panes i:nth-child(2){border-top-right-radius:46% 28%}
+nav.top{display:flex;align-items:center;justify-content:space-between;gap:1rem;position:relative}
+nav.top .brand{display:flex;align-items:center;gap:.55rem;text-decoration:none}
+nav.top .links{display:flex;align-items:center;gap:1.6rem;font-size:.98rem;font-weight:550}
+nav.top .links a:not(.btn){text-decoration:none;color:var(--ink-soft)}
+nav.top .links a:not(.btn):hover{color:var(--ink)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:1.5rem;align-items:center;padding-top:clamp(.5rem,2.5vw,2rem);position:relative}
+.copy{display:flex;flex-direction:column;gap:1.25rem;min-width:0}
+h1{font-size:clamp(2.6rem,5vw,4.4rem);font-weight:750;letter-spacing:-.035em;line-height:1.02;color:var(--evergreen)}
+.q{display:grid}
+.q > span{grid-area:1/1;align-self:end;transition:opacity .45s ease,transform .6s cubic-bezier(.16,.84,.24,1)}
+.q > span:not(.on){opacity:0;transform:translateY(.35em)}
+.q mark{background:linear-gradient(transparent 58%,var(--lamp-pale) 58%,var(--lamp-pale) 92%,transparent 92%);color:var(--ink);padding:0 .08em}
+.sub{font-size:clamp(1.15rem,1.6vw,1.35rem);color:var(--ink-soft);max-width:28rem}
+.capture{display:flex;gap:.4rem;background:var(--paper);border-radius:999px;padding:.45rem;max-width:31rem;
+  box-shadow:0 0 0 1px var(--rule),0 18px 40px -24px rgba(90,60,20,.45)}
+.capture input{flex:1;min-width:0;border:0;background:transparent;font:550 1.15rem var(--sans);color:var(--ink);padding:.7rem 1rem}
+.capture input::placeholder{color:#7A7468}
+.capture input:focus{outline:none}
+.capture:focus-within{box-shadow:0 0 0 2px var(--lamp),0 18px 40px -24px rgba(90,60,20,.45)}
+.fine{font-size:.88rem;color:var(--ink-soft);display:flex;flex-wrap:wrap;gap:.3rem 1rem;align-items:center}
+.swap{background:none;border:0;padding:0;font:600 .88rem var(--sans);color:var(--evergreen);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.note{font-size:.9rem;font-weight:650;color:var(--evergreen)}
 
-    body {
-        background: #FFFFFF;
-        background-image: 
-            radial-gradient(circle at 1px 1px, rgb(158 158 158 / 24%) 1px, transparent 0);
-        background-size: 20px 20px;
-        color: #000000;
-        font-family: 'PT Sans', sans-serif;
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
-    }
+/* 3D stage */
+.stage{position:relative;justify-self:center;width:32em;height:38em;font-size:clamp(10.5px,min(2.4vw,2.05vh),17px);perspective:1500px;perspective-origin:50% 40%;
+  --rx:6deg;--ry:-17deg;--cx:0;--cy:0;margin-bottom:3.4rem}
+.ctrl{position:absolute;left:50%;bottom:-2.2em;transform:translateX(-50%);display:flex;align-items:center;gap:.7rem;z-index:3}
+.arrow{width:42px;height:42px;border-radius:50%;border:0;display:grid;place-items:center;cursor:pointer;color:var(--evergreen);background:rgba(255,253,248,.85);box-shadow:0 0 0 1px var(--rule),0 8px 20px -12px rgba(90,60,20,.5);transition:transform .2s ease,background .2s ease}
+.arrow:hover{transform:scale(1.06);background:var(--paper)}
+.arrow svg{width:18px;height:18px}
+.dots{display:flex;gap:.4rem}
+.dots button{position:relative;width:26px;height:6px;border-radius:99px;border:0;padding:0;cursor:pointer;background:rgba(29,74,55,.18);overflow:hidden}
+.dots button::after{content:"";position:absolute;inset:0;width:var(--p,0%);background:var(--lamp);border-radius:inherit}
+.dots button[aria-current="true"]{background:rgba(29,74,55,.3)}
+.rig{cursor:pointer}
+.floor{position:absolute;left:20%;right:20%;bottom:-.4em;height:3em;border-radius:50%;background:radial-gradient(closest-side,rgba(110,80,30,.28),transparent);
+  transform:translateX(calc(var(--cx) * 1.6em));filter:blur(5px)}
+.rig{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(var(--rx)) rotateY(var(--ry)) rotateZ(-1.5deg)}
+.phone{position:absolute;left:50%;top:50%;width:17.4em;height:35em;margin:-17.5em 0 0 -8.7em;transform-style:preserve-3d}
+.slab{position:absolute;inset:0;border-radius:3.1em;background:var(--frame-edge)}
+.slab:nth-child(1){transform:translateZ(-1.2em);background:#BDB39C}
+.slab:nth-child(2){transform:translateZ(-.9em)}
+.slab:nth-child(3){transform:translateZ(-.6em)}
+.slab:nth-child(4){transform:translateZ(-.3em);background:#D9D1BE}
+.body{position:absolute;inset:0;border-radius:3.1em;background:linear-gradient(145deg,#EEE8DA,var(--frame));padding:.42em;box-shadow:inset 0 0 0 .1em #F8F4EA}
+.bezel{height:100%;border-radius:2.75em;background:#2C332E;padding:.28em}
+.screen{position:relative;height:100%;border-radius:2.5em;background:var(--paper);overflow:hidden;display:flex;flex-direction:column;color:var(--ink)}
+.island{position:absolute;top:.7em;left:50%;width:5.2em;height:1.5em;margin-left:-2.6em;border-radius:1em;background:#1E2420;z-index:2}
+.sheen{position:absolute;inset:.42em;border-radius:2.75em;pointer-events:none;mix-blend-mode:screen;
+  background:linear-gradient(112deg,transparent 30%,rgba(255,255,255,.3) 45%,rgba(255,255,255,.05) 55%,transparent 66%);
+  background-size:260% 100%;background-position:calc(50% + var(--cx) * 28%) 0}
+.contact{display:flex;flex-direction:column;align-items:center;gap:.25em;padding:2.9em 0 .7em;font-size:.78em;color:var(--ink-soft);background:#F8F3E8;border-bottom:1px solid #EDE6D6}
+.contact .house{width:3.1em;height:3.1em;border-radius:50%;background:#EEF0E6}
+.contact b{color:var(--ink);font-weight:650;font-size:1.1em}
+.thread{flex:1;min-height:0;overflow:hidden;justify-content:flex-end;display:flex;flex-direction:column;gap:.5em;padding:.9em .75em 1.4em;font-size:.9em;line-height:1.33;transition:opacity .35s ease}
+.msg{max-width:82%;padding:.55em .85em;border-radius:1.2em}
+.me{align-self:flex-end;background:var(--evergreen);color:#FBF7EF;border-bottom-right-radius:.35em}
+.it{align-self:flex-start;background:#EFE8D9;border-bottom-left-radius:.35em}
+.slot{flex:none;align-self:flex-end;width:38%;aspect-ratio:4/5;border-radius:1em;border:1.5px dashed #D6CDB9;background:repeating-linear-gradient(135deg,transparent 0 6px,rgba(214,205,185,.3) 6px 7px)}
+.typing{align-self:flex-start;display:flex;gap:.3em;background:#EFE8D9;border-radius:1.2em;padding:.75em .9em}
+.typing i{width:.45em;height:.45em;border-radius:50%;background:#A39B8B}
 
-    .header {
-        background: rgba(255, 255, 255, 0.3);
-        backdrop-filter: blur(15px);
-        border-bottom: 1px solid rgba(229, 231, 235, 0.2);
-        transition: all 0.3s ease;
-        z-index: 1030;
-        height: 80px;
-    }
+.float{position:absolute;transform:translateZ(var(--z));border-radius:1.2em;background:var(--paper);color:var(--ink);font-size:1em;line-height:1.3;
+  box-shadow:0 0 0 1px rgba(120,90,40,.08),0 1.6em 2.6em -1.2em rgba(90,60,20,.38)}
+.f-photo{left:-1.4em;top:3.8em;width:11.6em;padding:.5em .5em .6em;--z:6.5em;transform:translateZ(var(--z)) rotateZ(-4deg)}
+.f-photo img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:.75em;background:#E4DFD1}
+.f-photo p{font-size:.78em;color:var(--ink-soft);padding:.4em .2em 0}
+.f-diag{right:-2.6em;top:8.6em;padding:.85em 1.05em;--z:8.5em;display:flex;gap:.7em;align-items:flex-start;width:13em}
+.dot{flex:none;width:.75em;height:.75em;border-radius:50%;margin-top:.35em;background:var(--moss);box-shadow:0 0 0 .3em rgba(127,163,138,.25)}
+.dot.warn{background:var(--lamp);box-shadow:0 0 0 .3em rgba(242,181,68,.3)}
+.f-diag b{display:block;font-weight:700;font-size:1.05em}
+.f-diag span{color:var(--ink-soft);font-size:.9em}
+.f-facts{right:1.2em;top:1.4em;padding:.45em .9em;border-radius:999px;--z:3.5em;font-size:.82em;font-weight:650;color:var(--evergreen);background:var(--sage);white-space:nowrap}
+.f-list{right:-3.4em;top:20.5em;width:13.4em;padding:.9em 1em;--z:5em;display:flex;flex-direction:column;gap:.6em}
+.f-list .hd{font-size:.76em;font-weight:750;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:.6em}
+.row b{font-weight:650}
+.row .act{font-size:.82em;font-weight:700;color:var(--evergreen);background:var(--sage);border-radius:999px;padding:.3em .75em}
+.row .price{font-weight:750;font-variant-numeric:tabular-nums}
+.f-remind{left:-2.4em;top:26.5em;width:12.6em;padding:.85em 1em;--z:9.5em;background:linear-gradient(160deg,#FFF6E2,var(--lamp-pale));display:flex;gap:.7em;align-items:center}
+.bell{flex:none;width:2.2em;height:2.2em;border-radius:.75em;background:var(--lamp);display:grid;place-items:center;box-shadow:0 0 1.4em rgba(242,181,68,.7)}
+.bell svg{width:1.15em;height:1.15em}
+.f-remind small{display:block;font-weight:750;font-size:.78em;letter-spacing:.05em;text-transform:uppercase;color:#80601F}
+.f-remind b{font-weight:650}
 
-    .header.scrolled {
-        background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(20px);
-        border-bottom: 1px solid rgba(229, 231, 235, 0.5);
-    }
+/* scenario switch: the objects sink back into the screen, then lift out again */
+.float{transition:transform .9s cubic-bezier(.16,.84,.24,1),opacity .5s ease;transition-delay:calc(var(--i,0) * 90ms)}
+.rig.out .float{transform:translateZ(0) scale(.86);opacity:0;transition:transform .45s cubic-bezier(.5,0,.75,0),opacity .35s ease .1s;transition-delay:calc(var(--i,0) * 50ms)}
+.rig.out .f-photo{transform:translateZ(0) rotateZ(0) scale(.86)}
+.rig.out .thread{opacity:0}
+@media (prefers-reduced-motion:no-preference){
+  .rig.in .msg,.rig.in .typing{animation:msg .5s ease both;animation-delay:var(--d,0s)}
+  @keyframes msg{from{transform:translateY(.6em) scale(.97)}}
+  .rig.in.seq .msg,.rig.in.seq .typing{animation-name:msgseq}
+  @keyframes msgseq{from{transform:translateY(.6em) scale(.97);opacity:0}}
+  .typing i{animation:bob 1.2s ease-in-out infinite}
+  .typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+  @keyframes bob{0%,60%,100%{transform:none}30%{transform:translateY(-.3em)}}
+}
+@media (prefers-reduced-motion:reduce){.float,.rig.out .float,.thread,.q > span{transition:none}}
 
-    h1, h2, h3, h4, h5, h6, p, span {
-        color: #000000;
-    }
+/* ---------- How it works: a road through the neighborhood ---------- */
+.how{padding-block:clamp(3.5rem,8vw,6rem) clamp(2rem,5vw,4rem)}
+.how h2{font-size:clamp(2.1rem,4.2vw,3.4rem);font-weight:750;letter-spacing:-.035em;line-height:1.04;color:var(--evergreen);max-width:16ch;text-wrap:balance}
+.map{position:relative;margin-top:clamp(-11rem,-9vw,1rem);font-size:clamp(12px,1.25vw,16px)}
+.map svg{display:block;width:100%;height:auto;overflow:visible}
+.road-base{fill:none;stroke:#E4D9C3;stroke-width:40;stroke-linecap:round}
+.road-edge{fill:none;stroke:#D4C7AC;stroke-width:46;stroke-linecap:round}
+.road-mid{fill:none;stroke:#FFFDF8;stroke-width:3;stroke-dasharray:14 16;stroke-linecap:round}
+.trail{fill:none;stroke:var(--lamp);stroke-width:7;stroke-linecap:round;opacity:.9}
+.stop circle.ring{fill:var(--paper);stroke:var(--evergreen);stroke-width:4;transition:fill .4s ease}
+.stop circle.halo{fill:rgba(242,181,68,.35);transform-box:fill-box;transform-origin:center;transform:scale(0);transition:transform .5s cubic-bezier(.2,1.6,.4,1)}
+.stop text{font:750 15px var(--sans);fill:var(--evergreen);text-anchor:middle;dominant-baseline:central}
+.stop.on circle.ring{fill:var(--lamp)}
+.stop.on circle.halo{transform:scale(1)}
+.leader{stroke:var(--evergreen);stroke-width:1.5;stroke-dasharray:3 4;opacity:.55}
+.lab{position:absolute;transform:translate(-50%,-100%);width:15.5em;display:flex;flex-direction:column;gap:.3em;padding:.85em 1em;border-radius:1em;background:rgba(255,253,248,.92);box-shadow:0 0 0 1px var(--rule),0 1.2em 2em -1.4em rgba(90,60,20,.45);transition:transform .5s cubic-bezier(.16,.84,.24,1),box-shadow .4s ease}
+.lab b{font-size:1.12em;font-weight:750;letter-spacing:-.02em;color:var(--evergreen);line-height:1.15}
+.lab span{font-size:.92em;color:var(--ink-soft);line-height:1.4}
+.lab.on{transform:translate(-50%,calc(-100% - .35em));box-shadow:0 0 0 2px var(--lamp),0 1.4em 2.2em -1.4em rgba(90,60,20,.5)}
+.how-list{display:none}
+.map:not(.ready) .lab,.map:not(.ready) .leader{display:none}
+.map:not(.ready)+.how-list{display:flex;flex-direction:column;gap:1rem;margin:1.5rem 0 0;padding:0;list-style:none}
+@media (max-width:760px){
+  .lab,.leader{display:none}
+  .how-list{display:flex;flex-direction:column;gap:1rem;margin:1.5rem 0 0;padding:0;list-style:none}
+  .how-list li{display:grid;grid-template-columns:2rem 1fr;gap:.8rem;align-items:start}
+  .how-list .n{width:2rem;height:2rem;border-radius:50%;display:grid;place-items:center;font-weight:750;color:var(--evergreen);background:var(--lamp-pale)}
+  .how-list b{display:block;color:var(--evergreen);font-size:1.1rem}
+  .how-list span{color:var(--ink-soft)}
+}
+/* ---------- App ---------- */
+.app{padding-block:clamp(3rem,7vw,6rem);background:linear-gradient(180deg,var(--linen),#F1EBDD)}
+.app-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:2.5rem;align-items:center}
+.app-copy{display:flex;flex-direction:column;gap:1.3rem;min-width:0}
+.app-copy h2{font-size:clamp(2.2rem,4.4vw,3.5rem);font-weight:750;letter-spacing:-.035em;line-height:1.02;color:var(--evergreen)}
+.app-copy p{color:var(--ink-soft);max-width:26rem}
+.stores{display:flex;gap:.6rem;flex-wrap:wrap}
+.fan{position:relative;justify-self:center;width:36em;height:36em;font-size:clamp(9px,2vw,14.5px);perspective:1600px}
+.fan-rig{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(14deg) rotateY(-16deg) rotateZ(4deg);transition:transform .8s cubic-bezier(.16,.84,.24,1)}
+.fan:hover .fan-rig{transform:rotateX(8deg) rotateY(-8deg) rotateZ(1deg)}
+.card{position:absolute;margin:0;width:14.5em;height:31.4em;border-radius:2.3em;background:linear-gradient(145deg,#EEE8DA,var(--frame));padding:.42em;box-shadow:0 2.4em 3em -1.6em rgba(90,60,20,.4);transform-style:preserve-3d}
+.card img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;border-radius:1.95em;box-shadow:0 0 0 .25em #2C332E;background:var(--paper)}
+.card figcaption{position:absolute;left:50%;bottom:-1.2em;transform:translate(-50%,0) translateZ(2.5em);white-space:nowrap;font-size:.95em;font-weight:700;color:var(--evergreen);background:var(--paper);padding:.45em 1em;border-radius:999px;box-shadow:0 0 0 1px var(--rule),0 1em 1.6em -1em rgba(90,60,20,.5)}
+.card:nth-child(1){left:0;top:2.2em;transform:translateZ(-4em)}
+.card:nth-child(2){left:10.8em;top:1.1em;transform:translateZ(0)}
+.card:nth-child(3){left:21.6em;top:0;transform:translateZ(4em)}
+.feats{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.feats li{color:var(--ink-soft)}
+.feats b{color:var(--evergreen);font-weight:700}
+.btn .ico{width:1.1em;height:1.1em;margin-right:.5em;background:currentColor;-webkit-mask:center/contain no-repeat;mask:center/contain no-repeat}
+.btn .ico.apple{-webkit-mask-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiB4PSIwIiB5PSIwIiB2aWV3Qm94PSIwIDAgMjIuNzczIDIyLjc3MyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgY2xhc3M9IiI+PGc+PHBhdGggZD0iTTE1Ljc2OSAwaC4xNjJjLjEzIDEuNjA2LS40ODMgMi44MDYtMS4yMjggMy42NzUtLjczMS44NjMtMS43MzIgMS43LTMuMzUxIDEuNTczLS4xMDgtMS41ODMuNTA2LTIuNjk0IDEuMjUtMy41NjFDMTMuMjkyLjg3OSAxNC41NTcuMTYgMTUuNzY5IDB6TTIwLjY3IDE2LjcxNnYuMDQ1Yy0uNDU1IDEuMzc4LTEuMTA0IDIuNTU5LTEuODk2IDMuNjU1LS43MjMuOTk1LTEuNjA5IDIuMzM0LTMuMTkxIDIuMzM0LTEuMzY3IDAtMi4yNzUtLjg3OS0zLjY3Ni0uOTAzLTEuNDgyLS4wMjQtMi4yOTcuNzM1LTMuNjUyLjkyNmgtLjQ2MmMtLjk5NS0uMTQ0LTEuNzk4LS45MzItMi4zODMtMS42NDItMS43MjUtMi4wOTgtMy4wNTgtNC44MDgtMy4zMDYtOC4yNzZ2LTEuMDE5Yy4xMDUtMi40ODIgMS4zMTEtNC41IDIuOTE0LTUuNDc4Ljg0Ni0uNTIgMi4wMDktLjk2MyAzLjMwNC0uNzY1LjU1NS4wODYgMS4xMjIuMjc2IDEuNjE5LjQ2NC40NzEuMTgxIDEuMDYuNTAyIDEuNjE4LjQ4NS4zNzgtLjAxMS43NTQtLjIwOCAxLjEzNS0uMzQ3IDEuMTE2LS40MDMgMi4yMS0uODY1IDMuNjUyLS42NDggMS43MzMuMjYyIDIuOTYzIDEuMDMyIDMuNzIzIDIuMjItMS40NjYuOTMzLTIuNjI1IDIuMzM5LTIuNDI3IDQuNzQuMTc2IDIuMTgxIDEuNDQ0IDMuNDU3IDMuMDI4IDQuMjA5eiIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMSIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9IiI+PC9wYXRoPjwvZz48L3N2Zz4=");mask-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiB4PSIwIiB5PSIwIiB2aWV3Qm94PSIwIDAgMjIuNzczIDIyLjc3MyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgY2xhc3M9IiI+PGc+PHBhdGggZD0iTTE1Ljc2OSAwaC4xNjJjLjEzIDEuNjA2LS40ODMgMi44MDYtMS4yMjggMy42NzUtLjczMS44NjMtMS43MzIgMS43LTMuMzUxIDEuNTczLS4xMDgtMS41ODMuNTA2LTIuNjk0IDEuMjUtMy41NjFDMTMuMjkyLjg3OSAxNC41NTcuMTYgMTUuNzY5IDB6TTIwLjY3IDE2LjcxNnYuMDQ1Yy0uNDU1IDEuMzc4LTEuMTA0IDIuNTU5LTEuODk2IDMuNjU1LS43MjMuOTk1LTEuNjA5IDIuMzM0LTMuMTkxIDIuMzM0LTEuMzY3IDAtMi4yNzUtLjg3OS0zLjY3Ni0uOTAzLTEuNDgyLS4wMjQtMi4yOTcuNzM1LTMuNjUyLjkyNmgtLjQ2MmMtLjk5NS0uMTQ0LTEuNzk4LS45MzItMi4zODMtMS42NDItMS43MjUtMi4wOTgtMy4wNTgtNC44MDgtMy4zMDYtOC4yNzZ2LTEuMDE5Yy4xMDUtMi40ODIgMS4zMTEtNC41IDIuOTE0LTUuNDc4Ljg0Ni0uNTIgMi4wMDktLjk2MyAzLjMwNC0uNzY1LjU1NS4wODYgMS4xMjIuMjc2IDEuNjE5LjQ2NC40NzEuMTgxIDEuMDYuNTAyIDEuNjE4LjQ4NS4zNzgtLjAxMS43NTQtLjIwOCAxLjEzNS0uMzQ3IDEuMTE2LS40MDMgMi4yMS0uODY1IDMuNjUyLS42NDggMS43MzMuMjYyIDIuOTYzIDEuMDMyIDMuNzIzIDIuMjItMS40NjYuOTMzLTIuNjI1IDIuMzM5LTIuNDI3IDQuNzQuMTc2IDIuMTgxIDEuNDQ0IDMuNDU3IDMuMDI4IDQuMjA5eiIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMSIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9IiI+PC9wYXRoPjwvZz48L3N2Zz4=")}
+.btn .ico.android{-webkit-mask-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiB4PSIwIiB5PSIwIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PGc+PHBhdGggZD0iTTM3My44MjUgMzI3LjI4OWMtMTEuNzc2LjAwMi0yMS4zMjQtOS41NDItMjEuMzI2LTIxLjMxOC0uMDAyLTExLjc3NiA5LjU0Mi0yMS4zMjMgMjEuMzE4LTIxLjMyNiAxMS43NzYtLjAwMiAyMS4zMjMgOS41NDIgMjEuMzI2IDIxLjMxOC0uMDEzIDExLjc2OS05LjU0OCAyMS4zMDgtMjEuMzE4IDIxLjMyNm0tMjM1LjY1IDBjLTExLjc3Ni4wMDItMjEuMzIzLTkuNTQyLTIxLjMyNi0yMS4zMTgtLjAwMi0xMS43NzYgOS41NDItMjEuMzIzIDIxLjMxOC0yMS4zMjYgMTEuNzc2LS4wMDIgMjEuMzIzIDkuNTQyIDIxLjMyNiAyMS4zMTgtLjAxMiAxMS43Ny05LjU0OCAyMS4zMS0yMS4zMTggMjEuMzI2bTI0My4yOTYtMTI4LjQyNCA0Mi42MDctNzMuNzk2YTguODY2IDguODY2IDAgMCAwLTMuMjM4LTEyLjExMyA4Ljg2NiA4Ljg2NiAwIDAgMC0xMi4xMTMgMy4yMzhsLTQzLjE0NiA3NC43MjhjLTMyLjk5My0xNS4wNTgtNzAuMDQ3LTIzLjQ0My0xMDkuNTg1LTIzLjQ0M3MtNzYuNTg4IDguMzk3LTEwOS41ODEgMjMuNDQzbC00My4xNDItNzQuNzI4YTguODY0IDguODY0IDAgMCAwLTEyLjEwOS0zLjI0NiA4Ljg2NCA4Ljg2NCAwIDAgMC0zLjI0NiAxMi4xMDlsNDIuNjExIDczLjgwOEM1Ny4zNjQgMjM4LjY2IDcuMzIgMzEyLjcyOSAwIDQwMC4yNDFoNTEyYy03LjMyOC04Ny41MTItNTcuMzY4LTE2MS41ODEtMTMwLjUyOS0yMDEuMzc2IiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIxIiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIj48L3BhdGg+PC9nPjwvc3ZnPg==");mask-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiB4PSIwIiB5PSIwIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PGc+PHBhdGggZD0iTTM3My44MjUgMzI3LjI4OWMtMTEuNzc2LjAwMi0yMS4zMjQtOS41NDItMjEuMzI2LTIxLjMxOC0uMDAyLTExLjc3NiA5LjU0Mi0yMS4zMjMgMjEuMzE4LTIxLjMyNiAxMS43NzYtLjAwMiAyMS4zMjMgOS41NDIgMjEuMzI2IDIxLjMxOC0uMDEzIDExLjc2OS05LjU0OCAyMS4zMDgtMjEuMzE4IDIxLjMyNm0tMjM1LjY1IDBjLTExLjc3Ni4wMDItMjEuMzIzLTkuNTQyLTIxLjMyNi0yMS4zMTgtLjAwMi0xMS43NzYgOS41NDItMjEuMzIzIDIxLjMxOC0yMS4zMjYgMTEuNzc2LS4wMDIgMjEuMzIzIDkuNTQyIDIxLjMyNiAyMS4zMTgtLjAxMiAxMS43Ny05LjU0OCAyMS4zMS0yMS4zMTggMjEuMzI2bTI0My4yOTYtMTI4LjQyNCA0Mi42MDctNzMuNzk2YTguODY2IDguODY2IDAgMCAwLTMuMjM4LTEyLjExMyA4Ljg2NiA4Ljg2NiAwIDAgMC0xMi4xMTMgMy4yMzhsLTQzLjE0NiA3NC43MjhjLTMyLjk5My0xNS4wNTgtNzAuMDQ3LTIzLjQ0My0xMDkuNTg1LTIzLjQ0M3MtNzYuNTg4IDguMzk3LTEwOS41ODEgMjMuNDQzbC00My4xNDItNzQuNzI4YTguODY0IDguODY0IDAgMCAwLTEyLjEwOS0zLjI0NiA4Ljg2NCA4Ljg2NCAwIDAgMC0zLjI0NiAxMi4xMDlsNDIuNjExIDczLjgwOEM1Ny4zNjQgMjM4LjY2IDcuMzIgMzEyLjcyOSAwIDQwMC4yNDFoNTEyYy03LjMyOC04Ny41MTItNTcuMzY4LTE2MS41ODEtMTMwLjUyOS0yMDEuMzc2IiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIxIiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIj48L3BhdGg+PC9nPjwvc3ZnPg==")}
 
-    .hero-section {
-        min-height: calc(100vh - 80px);
-        display: flex;
-        align-items: center;
-        padding: 80px 0;
-        margin-top: 80px;
-    }
+/* ---------- Dusk street ---------- */
+.dusk{position:relative;overflow:hidden;color:var(--cream);padding-top:clamp(4rem,9vw,6.5rem);
+  /* evening sky: deep green overhead, warming toward the horizon where the town's lights are */
+  background:linear-gradient(180deg,var(--sky-top) 0%,#13301F 40%,var(--sky-low) 72%,#5A5A34 100%)}
+.dusk .inner{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.2rem}
+.moon{position:absolute;top:2.2rem;right:12%;width:46px;height:46px;border-radius:50%;box-shadow:-10px 6px 0 0 #F3E6C4;transform:rotate(-20deg);opacity:.9}
+.stars{position:absolute;inset:0 0 40% 0;pointer-events:none;
+  background-image:radial-gradient(1.2px 1.2px at 12% 22%,rgba(255,240,210,.8),transparent),radial-gradient(1px 1px at 28% 12%,rgba(255,240,210,.6),transparent),radial-gradient(1.4px 1.4px at 47% 30%,rgba(255,240,210,.7),transparent),radial-gradient(1px 1px at 63% 9%,rgba(255,240,210,.6),transparent),radial-gradient(1.2px 1.2px at 78% 26%,rgba(255,240,210,.7),transparent),radial-gradient(1px 1px at 90% 14%,rgba(255,240,210,.5),transparent),radial-gradient(1px 1px at 6% 38%,rgba(255,240,210,.5),transparent),radial-gradient(1.2px 1.2px at 36% 42%,rgba(255,240,210,.5),transparent)}
+.dusk h2{font-size:clamp(2.4rem,5.2vw,4.2rem);font-weight:750;letter-spacing:-.035em;line-height:1.02;color:#FFF4DE}
+.dusk p{color:rgba(251,247,239,.75);max-width:30rem}
+.dusk .capture{width:min(31rem,100%);box-shadow:0 20px 50px -20px rgba(0,0,0,.55)}
+.street{display:block;width:100%;max-width:1400px;height:auto;margin:.5rem auto 0}
+.street .h{cursor:pointer}
+.street .w{fill:#2E5040;transition:fill .5s ease}
+.street .w.lit{fill:#FFD27A;filter:url(#winglow)}
+.street .spill{fill:url(#spill);opacity:0;transition:opacity .6s ease}
+.street .h.on .spill{opacity:1}
+footer{padding-block:3rem 2.2rem;font-size:.95rem;color:var(--ink-soft);display:grid;grid-template-columns:minmax(0,1.6fr) repeat(3,minmax(0,1fr));gap:2rem 1.5rem}
+footer .brand{display:flex;align-items:center;gap:.45rem}
+.f-brand{display:flex;flex-direction:column;gap:.6rem;min-width:0}
+.f-col{display:flex;flex-direction:column;gap:.5rem;min-width:0}
+.f-col b{color:var(--ink);font-weight:700;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase}
+.f-col a{color:var(--ink-soft);text-decoration:none}
+.f-col a:hover{color:var(--evergreen);text-decoration:underline;text-underline-offset:3px}
+.f-legal{grid-column:1/-1;border-top:1px solid var(--rule);padding-top:1.2rem;font-size:.85rem}
+.consent{font-size:.78rem;line-height:1.45;color:#676357;max-width:31rem}
+.consent a{color:inherit}
+.consent .links{white-space:nowrap}
+.consent,.dusk p,.sub{text-wrap:balance}
+.dusk .consent{color:rgba(251,247,239,.72);text-align:center;margin-inline:auto}
+@media (max-width:700px){footer{grid-template-columns:1fr 1fr}.f-brand{grid-column:1/-1}}
 
-    .feature-section {
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        padding: 80px 0;
-    }
+@media (max-width:900px){
+  .hero-grid,.app-grid{grid-template-columns:minmax(0,1fr)}
+  .stage{font-size:clamp(9px,2.5vw,15px)}
+  nav.top .links a.opt{display:none}
+  .cast{width:120vw;right:-40%;top:30%}
+}
 
-    .feature-content {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .feature-image {
-        max-width: 400px;
-        max-height: 70vh;
-        width: auto;
-        height: auto;
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        object-fit: contain;
-        opacity: 0;
-        transform: translateX(100px);
-        transition: all 0.8s ease-out;
-    }
-
-    .feature-image.animate-in {
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-    .feature-title-large {
-        font-size: 3rem;
-        font-weight: bold;
-        line-height: 1.2;
-        margin-bottom: 1.5rem;
-        color: #000000;
-    }
-
-    .feature-description-large {
-        font-size: 1.25rem;
-        color: #666666;
-        margin-bottom: 2rem;
-        max-width: 500px;
-        line-height: 1.6;
-    }
-
-    .hero-text {
-        text-align: left;
-    }
-
-    .hero-title {
-        font-size: 3.5rem;
-        font-weight: bold;
-        line-height: 1.2;
-        margin-bottom: 1.5rem;
-        color: #000000;
-    }
-
-    .shimmer {
-        background: linear-gradient(90deg, #000000 0%, #000000 40%, #666666 50%, #000000 60%, #000000 100%);
-        background-size: 250% 100%;
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: shimmer 8s ease-in-out infinite;
-    }
-
-    @keyframes shimmer {
-        0% {
-            background-position: 100% 0;
-        }
-        25% {
-            background-position: -150% 0;
-        }
-        26% {
-            background-position: 100% 0;
-        }
-        100% {
-            background-position: 100% 0;
-        }
-    }
-
-    .hero-subtitle-main {
-        font-size: 3.5rem;
-        font-weight: normal;
-        line-height: 1.2;
-        margin-bottom: 1rem;
-        color: #000000;
-    }
-
-    .hero-description {
-        font-size: 0.95rem;
-        color: #666666;
-        margin-bottom: 2rem;
-        max-width: 500px;
-        line-height: 1.5;
-    }
-
-    .gradient-text {
-        background: linear-gradient(90deg, #000000 0%, #0d8c68 25%, #22c55e 50%, #0d8c68 75%, #000000 100%);
-        background-size: 200% 100%;
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: gradientSlide 8s ease-in-out infinite;
-    }
-
-    @keyframes gradientSlide {
-        0% {
-            background-position: 0% 0;
-        }
-        50% {
-            background-position: 100% 0;
-        }
-        100% {
-            background-position: 0% 0;
-        }
-    }
-
-    #cycling-text {
-        display: inline-block;
-        transition: all 0.5s ease-in-out;
-        text-decoration: underline;
-        text-decoration-color: #0d8c68;
-        text-decoration-thickness: 1px;
-        text-underline-offset: 4px;
-        min-width: 280px;
-        text-align: left;
-    }
-
-    .text-fade-out {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-
-    .text-fade-in {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .device-img {
-        max-width: 400px;
-        max-height: 70vh;
-        width: auto;
-        height: auto;
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        object-fit: contain;
-        opacity: 0;
-        transform: translateX(100px);
-        transition: all 0.3s ease;
-        z-index: 1;
-    }
-
-    .device-img:hover {
-        transform: scale(1.1);
-        z-index: 10;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-    }
-
-    .device-img.animate {
-        animation: slideInFromRight 1s ease-out forwards;
-    }
-
-    .device-img:nth-child(1).animate {
-        animation-delay: 0s;
-    }
-
-    .device-img:nth-child(2).animate {
-        animation-delay: 0.3s;
-    }
-
-    .device-img:nth-child(3).animate {
-        animation-delay: 0.6s;
-    }
-
-    .hero-img-left {
-        transform: rotate(-8deg);
-        transition: all 0.3s ease;
-    }
-
-    .hero-img-right {
-        transform: rotate(8deg);
-        transition: all 0.3s ease;
-    }
-
-    .hero-img-left.animate {
-        animation: slideInLeftAngled 1s ease-out forwards;
-        animation-fill-mode: forwards;
-    }
-
-    .hero-img-right.animate {
-        animation: slideInRightAngled 1s ease-out forwards;
-        animation-fill-mode: forwards;
-    }
-
-    .hero-img-left.hover-enabled:hover {
-        transform: scale(1.1) rotate(0deg) !important;
-        transition: all 0.3s ease !important;
-    }
-
-    .hero-img-right.hover-enabled:hover {
-        transform: scale(1.1) rotate(0deg) !important;
-        transition: all 0.3s ease !important;
-    }
-
-    @keyframes slideInLeftAngled {
-        from {
-            transform: translateX(100px) rotate(0deg);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0) rotate(-8deg);
-            opacity: 1;
-            transition: all 3s ease;
-        }
-    }
-
-    @keyframes slideInRightAngled {
-        from {
-            transform: translateX(100px) rotate(8deg);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0) rotate(8deg);
-            opacity: 1;
-            transition: all 3s ease;
-        }
-    }
-
-    @keyframes slideInFromRight {
-        from {
-            transform: translateX(100px);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
-    }
-
-    .features-section {
-        padding: 80px 0;
-        background: #f8f9fa;
-    }
-
-    .feature-item {
-        text-align: center;
-        padding: 2rem;
-    }
-
-    .feature-title {
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin-bottom: 1rem;
-        color: #000000;
-    }
-
-    .feature-description {
-        color: #666666;
-        font-size: 1rem;
-        line-height: 1.6;
-    }
-
-    .btn-get-app {
-        background: #000000;
-        color: white;
-        border-radius: 12px;
-        padding: 12px 24px;
-        font-weight: 600;
-        transition: all 0.2s;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .btn-get-app:hover {
-        background: #333333;
-        color: white;
-        text-decoration: none;
-    }
-
-    .btn-get-app img {
-        width: 20px;
-        height: auto;
-    }
-
-    .footer {
-        background: #f8fffe;
-        border-top: 1px solid #e5e7eb;
-        padding: 60px 0 40px;
-        min-height: 250px;
-        display: flex;
-        align-items: center;
-        width: 100vw;
-        margin-left: calc(-50vw + 50%);
-    }
-
-    .footer-section {
-        margin-bottom: 2rem;
-    }
-
-    .footer-title {
-        font-weight: bold;
-        margin-bottom: 1rem;
-        color: #000000;
-    }
-
-    .footer-link {
-        color: #666666;
-        text-decoration: none;
-        display: block;
-        margin-bottom: 0.5rem;
-    }
-
-    .footer-link:hover {
-        color: #000000;
-        text-decoration: none;
-    }
-
-    @media (max-width: 768px) {
-        .hero-title {
-            font-size: 2.5rem;
-            line-height: 1.2;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-        }
-        
-        .hero-subtitle-main {
-            font-size: 2rem;
-            line-height: 1.2;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-        }
-        
-        .hero-description {
-            font-size: 0.9rem;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-        }
-        
-        .hero-section {
-            padding: 20px 15px 40px;
-            min-height: calc(100vh - 80px);
-            margin-top: 80px;
-        }
-        
-        .hero-text {
-            text-align: left;
-            margin-bottom: 2rem;
-            padding: 0;
-        }
-        
-        .hero-subtitle {
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            white-space: normal;
-            max-width: 100%;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        
-        .container {
-            padding-left: 15px;
-            padding-right: 15px;
-            max-width: 100%;
-            overflow-x: hidden;
-        }
-        
-        .hero-images {
-            margin-top: 2rem;
-            justify-content: center !important;
-            text-align: center;
-            align-items: center !important;
-        }
-        
-        .hero-img-left,
-        .hero-img-right {
-            transform: none !important;
-            max-width: 250px;
-            vertical-align: middle;
-        }
-        
-        #cycling-text {
-            min-width: 200px;
-        }
-        
-        .col-lg-6.text-center {
-            text-align: center !important;
-            padding-left: 15px !important;
-        }
-        
-        .feature-section {
-            min-height: auto;
-            padding: 60px 15px 80px;
-        }
-        
-        .feature-title-large {
-            font-size: 2rem;
-            text-align: center;
-        }
-        
-        .feature-description-large {
-            text-align: center;
-            max-width: 100%;
-        }
-        
-        .feature-image {
-            max-width: 300px;
-            max-height: 50vh;
-        }
-        
-        .col-lg-6.text-center {
-            padding-bottom: 40px !important;
-        }
-    }
+/* production additions */
+.sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:absolute;left:1rem;top:-3rem;z-index:20;background:var(--evergreen);color:var(--cream);padding:.6rem 1rem;border-radius:999px;font-weight:650;text-decoration:none}
+.skip:focus{top:max(1rem,env(safe-area-inset-top,0px))}
+.hp{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+.btn[disabled]{opacity:.7;cursor:progress}
+.msgbox{font-size:.95rem;font-weight:600;color:var(--evergreen);max-width:31rem}
+.msgbox.err{color:#9A3B2E}
+.dusk .msgbox{color:#FFE7B0}
+.dusk .msgbox.err{color:#FFB4A6}
+.done{display:flex;flex-direction:column;gap:.35rem;background:var(--paper);border-radius:1.2rem;padding:1rem 1.2rem;max-width:31rem;box-shadow:0 0 0 1px var(--rule),0 18px 40px -24px rgba(90,60,20,.45);color:var(--ink)}
+.done b{font-size:1.1rem;color:var(--evergreen)}
+.done a{color:var(--evergreen);font-weight:650}
+.dusk .done{text-align:left}
+.arrow.pause svg{width:14px;height:14px}
+.grain::after{mix-blend-mode:normal;opacity:.2;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.2 0 0 0 0 0.16 0 0 0 0 0.1 0 0 0 1.9 -0.95'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.dusk.grain::after{mix-blend-mode:normal;opacity:.18;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 0.95 0 0 0 0 0.85 0 0 0 1.9 -0.95'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.dots button::after{width:0}
+.dots.auto button[aria-current="true"]::after{animation:dwfill 7s linear forwards}
+.dots.hold button::after{animation-play-state:paused}
+@keyframes dwfill{from{width:0}to{width:100%}}
+.faq{padding-block:clamp(3rem,7vw,5.5rem)}
+.faq .inner{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:2.5rem;align-items:start}
+.faq h2{font-size:clamp(2rem,3.8vw,3rem);font-weight:750;letter-spacing:-.035em;line-height:1.04;color:var(--evergreen)}
+.faq details{border-bottom:1px solid var(--rule);padding:1.05rem 0}
+.faq details:first-of-type{border-top:1px solid var(--rule)}
+.faq summary{cursor:pointer;list-style:none;font-weight:700;font-size:1.12rem;color:var(--ink);display:flex;justify-content:space-between;gap:1rem;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";flex:none;width:.7rem;height:.7rem;border-right:2.5px solid var(--evergreen);border-bottom:2.5px solid var(--evergreen);transform:rotate(45deg) translate(-2px,-2px);transition:transform .25s ease}
+.faq details[open] summary::after{transform:rotate(-135deg) translate(-2px,-2px)}
+.faq details p{color:var(--ink-soft);padding-top:.6rem;max-width:40rem}
+.faq details a{color:var(--evergreen)}
+.app .store{min-height:48px}
+.faq-side{display:flex;flex-direction:column;gap:1rem}
+.faq-side p{color:var(--ink-soft)}
+.faq-side a{color:var(--evergreen);font-weight:650}
+dialog.cdlg{border:0;padding:0;border-radius:1.4rem;width:min(32rem,calc(100vw - 2rem));max-height:calc(100dvh - 2rem);overflow:auto;background:var(--paper);color:var(--ink);box-shadow:0 30px 80px -30px rgba(20,30,24,.6)}
+dialog.cdlg [hidden]{display:none!important}
+dialog.cdlg::backdrop{background:rgba(20,30,24,.45)}
+dialog.cdlg form,dialog.cdlg .c-done{display:flex;flex-direction:column;gap:.45rem;padding:1.5rem}
+dialog.cdlg .c-head{display:flex;justify-content:space-between;align-items:center;gap:1rem}
+dialog.cdlg h2{font-size:1.6rem;font-weight:750;letter-spacing:-.03em;color:var(--evergreen)}
+dialog.cdlg .c-sub{color:var(--ink-soft);margin-bottom:.5rem}
+dialog.cdlg label{font-weight:650;font-size:.92rem;margin-top:.45rem}
+dialog.cdlg label span{font-weight:450;color:var(--ink-soft)}
+dialog.cdlg input,dialog.cdlg textarea{font:500 1rem var(--sans);color:var(--ink);background:var(--cream);border:1px solid var(--rule);border-radius:.8rem;padding:.75rem .9rem;width:100%}
+dialog.cdlg textarea{resize:vertical;min-height:7.5rem}
+dialog.cdlg input:focus,dialog.cdlg textarea:focus{outline:2px solid var(--lamp);outline-offset:1px;border-color:var(--lamp)}
+dialog.cdlg .btn{margin-top:.6rem;align-self:flex-start}
+dialog.cdlg .x{width:40px;height:40px;border-radius:50%;border:0;background:var(--sage);color:var(--evergreen);display:grid;place-items:center;cursor:pointer;flex:none}
+dialog.cdlg .x svg{width:16px;height:16px}
+@media (max-width:900px){.faq .inner{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:560px){
+  .capture{flex-direction:column;border-radius:1.4rem}
+  .capture input{text-align:center}
+  .capture .btn{width:100%}
+  .stage{font-size:clamp(8.5px,2.6vw,13px)}
+  .moon{top:1rem;right:7%;width:30px;height:30px;box-shadow:-7px 4px 0 0 #F3E6C4}
+}
+.dusk h2{text-wrap:balance}
 </style>
-
+</head>
 <body>
-    <div class="header fixed-top">
-        <header class="container d-flex flex-wrap justify-content-between py-3">
-            <a href="/" class="d-flex align-items-center me-md-auto text-dark text-decoration-none">
-                <img src="favicon.png" alt="Dwellable" style="width: 24px; height: 24px; margin-right: 8px;">
-                <span class="fw-bold fs-4">Dwellable</span>
-            </a>
-            <div class="d-none d-lg-flex gap-3 align-items-center">
-                <a id="app-store-btn" target="_blank"
-                    href="https://apps.apple.com/us/app/dwellable-home-maintenance/id6444394386?itsct=apps_box_badge&amp;itscg=30200">
-                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
-                         alt="Download on the App Store" 
-                         style="height: 40px; width: auto;">
-                </a>
-                <a id="play-store-btn" target="_blank"
-                    href="https://play.google.com/store/apps/details?id=com.dwellable&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">
-                    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" 
-                         alt="Get it on Google Play" 
-                         style="height: 58px; width: auto;">
-                </a>
-            </div>
-        </header>
+<a class="skip" href="#top">Skip to content</a>
+
+<main id="main">
+<section class="hero grain gut" aria-label="Dwellable, home help by text">
+  <div class="cast" aria-hidden="true"><div class="panes"><i></i><i></i><i></i><i></i></div></div>
+  <div class="inner">
+    <header><nav class="top" aria-label="Main">
+      <a class="brand" href="/" aria-label="Dwellable home"><img class="house" src="/assets/house-96.webp" width="38" height="38" alt=""><span class="wordmark">dwellable</span></a>
+      <div class="links"><a class="opt" href="#how">How it works</a><a class="opt" href="#app">The app</a><a class="btn sm" href="#top" data-go="nav">Text us</a></div>
+    </nav></header>
+
+    <div class="hero-grid" id="top">
+      <div class="copy">
+        <h1><span class="q" id="q" aria-hidden="true"><span class=on><mark>Weird ceiling stain?</mark></span><span><mark>Green crust on a pipe?</mark></span><span><mark>Towel bar pulling out?</mark></span></span><span class="sr">Something wrong at home? </span>Text us a photo.</h1>
+        <p class="sub">Dwellable is the home maintenance assistant that knows your home and tells you what to do next.</p>
+        <form class="capture" id="capture" novalidate data-msg="msg1" data-consent="consent1" data-swap="swap1" data-where="hero">
+          <label for="contact-field" class="sr">Mobile number</label>
+          <input id="contact-field" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="12" placeholder="555-123-4567" aria-describedby="consent1 msg1">
+          <span class="hp" aria-hidden="true"><input tabindex="-1" autocomplete="off" name="company"></span>
+          <button class="btn" type="submit">Text me</button>
+        </form>
+        <p class="msgbox" id="msg1" aria-live="polite"></p>
+        <div class="fine"><span>Free to start. No app needed.</span><button class="swap" type="button" id="swap1">Use email instead</button></div>
+        <p class="consent" id="consent1">By entering your number, you agree to get texts from Dwellable. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. <span class="links"><a href="/terms.html">Terms</a> · <a href="/privacy-policy.html">Privacy</a></span></p>
+      </div>
+
+      <div class="stage" id="stage">
+        <div class="floor" aria-hidden="true"></div>
+        <div class="rig in" id="rig" role="img" aria-label="A phone showing a text conversation with Dwellable about a problem at home: the photo, the likely cause, and what to do next.">
+          <div class="phone">
+            <div class="slab"></div><div class="slab"></div><div class="slab"></div><div class="slab"></div>
+            <div class="body"><div class="bezel">
+              <div class="screen">
+                <div class="island"></div>
+                <div class="contact"><img class="house" src="/assets/house-96.webp" width="48" height="48" alt=""><b>Dwellable</b></div>
+                <div class="thread" id="thread"><div class="slot"></div><div class="msg me" style="--d:0.35s">What is this on my ceiling?</div><div class="msg it" style="--d:0.95s">Looks like a slow leak. Is there a bathroom above it?</div><div class="msg me" style="--d:1.55s">Yes, the upstairs shower</div><div class="msg it" style="--d:2.15s">Then it&#x27;s likely the drain. Two plumbers nearby can look this week.</div><div class="typing" style="--d:2.85s"><i></i><i></i><i></i></div></div>
+              </div>
+            </div><div class="sheen"></div></div>
+          </div>
+          <div class="float f-facts" id="f-facts" style="--i:0">1957 ranch · Boise</div>
+          <div class="float f-photo" id="f-photo" style="--i:1"><img src="/assets/stain.webp" width="400" height="609" alt="Water stain on a bedroom ceiling" fetchpriority="high"><p>Sent 7:40 PM</p></div>
+          <div class="float f-diag" id="f-diag" style="--i:2"><span class="dot"></span><div><b>Likely the shower drain</b><span>Not urgent</span></div></div>
+          <div class="float f-list" id="f-list" style="--i:3"><span class="hd">Plumbers nearby</span><div class="row"><b>0.8 mi · 4.9★</b><span class="act">Text</span></div><div class="row"><b>1.6 mi · 4.8★</b><span class="act">Call</span></div></div>
+          <div class="float f-remind" id="f-remind" style="--i:4"><span class="bell"><svg viewBox="0 0 24 24" fill="none" stroke="#1F2A24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></span><div><small>Sat · 9 AM</small><b>Check the grout seal</b></div></div>
+        </div>
+        <div class="ctrl" id="ctrl">
+          <button class="arrow" type="button" id="prev" aria-label="Previous example"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <div class="dots" id="dots"></div>
+          <button class="arrow" type="button" id="next" aria-label="Next example"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+          <button class="arrow pause" type="button" id="pause" aria-label="Pause the examples" aria-pressed="false" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button>
+        </div>
+      </div>
     </div>
-    <div class="container">
-        <!-- Hero Section -->
-        <div class="hero-section">
-            <div class="row align-items-center">
-                <div class="col-lg-6 hero-text">
-                    <h1 class="hero-title" style="font-weight: bold;">Meet Dwellable,</h1>
-                    <h2 class="hero-subtitle-main"><span id="cycling-text" class="gradient-text">Home maintenance</span>, made simple.</h2>
-                    <p class="hero-description">Dwellable is your AI-powered home maintenance companion. Stay ahead of repairs and upkeep with smart reminders and seasonal checklists, ask your AI assistant anything about your home, find trusted local pros, and keep track of what's happening nearby—all in one free app.</p>
-                    <div class="d-flex gap-3 flex-wrap align-items-center">
-                        <a id="app-store-btn" href="https://apps.apple.com/us/app/dwellable-home-maintenance/id6444394386?itsct=apps_box_badge&amp;itscg=30200" 
-                           target="_blank">
-                            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
-                                 alt="Download on the App Store" 
-                                 style="height: 50px; width: auto;">
-                        </a>
-                        <a id="play-store-btn" href="https://play.google.com/store/apps/details?id=com.dwellable&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" 
-                           target="_blank">
-                            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" 
-                                 alt="Get it on Google Play" 
-                                 style="height: 72px; width: auto;">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-6 text-center" style="padding-left: 3rem;">
-                    <div class="d-flex gap-5 justify-content-center align-items-center hero-images">
-                        <img class="device-img hero-img-left" src="home_2026.jpg" alt="Dwellable home screen with AI assistant">
-                        <img class="device-img hero-img-right d-none d-xl-block" src="assistant_chat.jpg" alt="Dwellable AI assistant answering a home question">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Smart Reminders Section -->
-        <div class="feature-section">
-            <div class="feature-content">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6">
-                            <h2 class="feature-title-large">Reminders that know your home</h2>
-                            <p class="feature-description-large">Get maintenance reminders suggested specifically for your property—based on its age, systems, and location. Add them with a single tap and never miss seasonal upkeep again.</p>
-                        </div>
-                        <div class="col-lg-6 text-center">
-                            <img class="feature-image" src="reminders_2026.jpg" alt="Smart maintenance reminders suggested for your home">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  </div>
+</section>
 
-        <!-- Checklists / Notebook Section -->
-        <div class="feature-section" style="background: rgba(248, 249, 250, 0.6); backdrop-filter: blur(10px);">
-            <div class="feature-content">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6 order-lg-2">
-                            <h2 class="feature-title-large">Seasonal checklists, built for your home</h2>
-                            <p class="feature-description-large">Generate seasonal maintenance checklists and project plans tailored to your home—each task tagged by effort and priority, so you always know what to tackle first.</p>
-                        </div>
-                        <div class="col-lg-6 order-lg-1 text-center">
-                            <img class="feature-image" src="notebook_2026.jpg" alt="Personalized seasonal maintenance checklist with effort and priority tags">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<section class="how gut" id="how" aria-labelledby="how-h">
+  <div class="inner">
+  <h2 id="how-h">From your home to a plan made for it.</h2>
+  <div class="map" id="map">
+    <svg viewBox="0 0 1200 600" width="1200" height="600" role="img" aria-label="A winding road through a neighborhood with four stops, ending at a house with its lights on.">
+      <defs><linearGradient id="hillfade" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".1" stop-color="#fff"/><stop offset=".9" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+        <linearGradient id="hillfadev" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".55" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+        <mask id="hillmask" maskContentUnits="userSpaceOnUse"><rect x="-40" y="300" width="1300" height="400" fill="url(#hillfade)"/></mask>
+        <mask id="hillmaskv" maskContentUnits="userSpaceOnUse"><rect x="-40" y="360" width="1300" height="300" fill="url(#hillfadev)"/></mask></defs>
+      <g mask="url(#hillmaskv)"><g mask="url(#hillmask)"><path d="M-40 600 C 200 470 420 520 640 470 S 1000 360 1260 400 L1260 640 L-40 640 Z" fill="#E6EDE1"/>
+      <path d="M-40 640 C 260 560 520 600 760 560 S 1080 520 1260 540 L1260 660 L-40 660 Z" fill="#DCE6D7"/></g></g>
+      <g id="scenery"></g>
+      <path class="road-edge" id="road-edge" d="M30 540"/>
+      <path class="road-base" id="road" d="M30 540 C 120 540 150 480 230 480 S 380 370 480 370 S 650 440 760 440 S 930 260 1030 260 S 1120 215 1150 200"/>
+      <path class="road-mid" id="road-mid" d="M30 540"/>
+      <path class="trail" id="trail" d="M30 540"/>
+      <g id="leaders"></g>
+      <g id="stops"></g>
+      <g id="car"><rect x="-17" y="-9" width="34" height="18" rx="7" fill="#1D4A37"/><rect x="-6" y="-6.5" width="13" height="13" rx="3" fill="#FFE7B0"/><circle cx="15" cy="-5" r="2.2" fill="#FFD27A"/><circle cx="15" cy="5" r="2.2" fill="#FFD27A"/></g>
+    </svg>
+    <div class="lab" data-k="0" aria-hidden="true"><b>Add your home</b><span>By text or in the app. It takes about a minute.</span></div>
+    <div class="lab" data-k="1" aria-hidden="true"><b>We pull your home's records</b><span>Year built, size, heating, cooling and more, from public records.</span></div>
+    <div class="lab" data-k="2" aria-hidden="true"><b>You get a plan for your house</b><span>Reminders and seasonal checklists made for its age, systems and weather.</span></div>
+    <div class="lab" data-k="3" aria-hidden="true"><b>Text us anytime</b><span>Send a photo of anything odd. Get a straight answer, and a pro if you need one.</span></div>
+  </div>
+  <ol class="how-list">
+    <li><span class="n">1</span><div><b>Add your home</b><span>By text or in the app. It takes about a minute.</span></div></li>
+    <li><span class="n">2</span><div><b>We pull your home's records</b><span>Year built, size, heating, cooling and more, from public records.</span></div></li>
+    <li><span class="n">3</span><div><b>You get a plan for your house</b><span>Reminders and seasonal checklists made for its age, systems and weather.</span></div></li>
+    <li><span class="n">4</span><div><b>Text us anytime</b><span>Send a photo of anything odd. Get a straight answer, and a pro if you need one.</span></div></li>
+  </ol>
+  </div>
+</section>
 
-        <!-- AI Assistant Section -->
-        <div class="feature-section">
-            <div class="feature-content">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6">
-                            <h2 class="feature-title-large">Ask anything about your home</h2>
-                            <p class="feature-description-large">Dwellable's AI assistant knows your specific property. Get instant answers, troubleshoot problems, see what's worth upgrading, and find trusted local contractors—complete with ratings and reviews—right from the chat.</p>
-                        </div>
-                        <div class="col-lg-6 text-center">
-                            <img class="feature-image" src="assistant_pros.jpg" alt="AI assistant recommending local contractors">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Local Updates Section -->
-        <div class="feature-section" style="background: rgba(248, 249, 250, 0.6); backdrop-filter: blur(10px);">
-            <div class="feature-content">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6 order-lg-2">
-                            <h2 class="feature-title-large">Know what's happening nearby</h2>
-                            <p class="feature-description-large">Stay in the loop on local updates that affect your home—trash and recycling changes, road work, and municipal news—organized by category and personalized to where you live.</p>
-                        </div>
-                        <div class="col-lg-6 order-lg-1 text-center">
-                            <img class="feature-image" src="local_2026.jpg" alt="Local updates feed for your town">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Property Records Section -->
-        <div class="feature-section">
-            <div class="feature-content">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6">
-                            <h2 class="feature-title-large">Your whole home, summarized</h2>
-                            <p class="feature-description-large">Dwellable builds an AI summary of your property—highlights, systems, and key details pulled together in one organized place. Everything you need to know about your home, instantly accessible, with the ability to ask follow-up questions any time.</p>
-                        </div>
-                        <div class="col-lg-6 text-center">
-                            <img class="feature-image" src="property_2026.jpg" alt="AI property summary and records">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Room-by-room Checks Section -->
-        <div class="feature-section" style="background: rgba(248, 249, 250, 0.6); backdrop-filter: blur(10px);">
-            <div class="feature-content">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6 order-lg-2">
-                            <h2 class="feature-title-large">Catch small issues early</h2>
-                            <p class="feature-description-large">Walk through your home room by room with guided checks. Simple questions help you spot maintenance needs and small problems before they turn into costly repairs.</p>
-                        </div>
-                        <div class="col-lg-6 order-lg-1 text-center">
-                            <img class="feature-image" src="inspection_2026.jpg" alt="Room-by-room home maintenance check">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Footer -->
-        <div class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <img src="favicon_large.png" alt="Dwellable" style="max-width: 50px; height: auto; margin-bottom: 1rem;">
-                        <h5 class="fw-bold">Dwellable</h5>
-                    </div>
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="footer-section">
-                            <h6 class="footer-title">Legal</h6>
-                            <a href="/privacy-policy.html" class="footer-link">Privacy Policy</a>
-                            <a href="/terms.html" class="footer-link">Terms of Use</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="footer-section">
-                            <h6 class="footer-title">Company</h6>
-                            <a href="mailto:hello@dwellable.app" class="footer-link">Contact</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-4 pt-4" style="border-top: 1px solid #e5e7eb;">
-                    <div class="col-12 text-center">
-                        <small class="text-muted">© 2026 Dwellable. All rights reserved.</small>
-                    </div>
-                </div>
-            </div>
-        </div>
+<section class="app gut" id="app" aria-labelledby="app-h">
+  <div class="inner app-grid">
+    <div class="app-copy">
+      <h2 id="app-h">Your whole home, in one place.</h2>
+      <p>Everything Dwellable learns about your house, kept in the app.</p>
+      <ul class="feats">
+        <li><b>Property info.</b> What your home has, and how old it is.</li>
+        <li><b>Reminders.</b> Suggested for your house, not a generic list.</li>
+      </ul>
+      <div class="stores">
+        <a class="btn store" data-store="App Store" href="https://apps.apple.com/us/app/dwellable-home-maintenance/id6444394386?itsct=apps_box_badge&amp;itscg=30200" target="_blank" rel="noopener"><span class="ico apple" aria-hidden="true"></span>iOS<span class="sr"> app on the App Store</span></a>
+        <a class="btn soft store" data-store="Play Store" href="https://play.google.com/store/apps/details?id=com.dwellable&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" target="_blank" rel="noopener"><span class="ico android" aria-hidden="true"></span>Android<span class="sr"> app on Google Play</span></a>
+      </div>
     </div>
-    <script>
-        function respondToVisibility(element, callback) {
-            var options = {
-                root: document.documentElement,
-            };
+    <div class="fan">
+      <div class="fan-rig">
+        <figure class="card"><img src="/assets/app-property.webp" width="480" height="1040" loading="lazy" decoding="async" alt="Property info screen: a summary of a 1957 raised ranch with year built, bedrooms, lot size and systems"><figcaption>Property info</figcaption></figure>
+        <figure class="card"><img src="/assets/app-home.webp" width="480" height="1040" loading="lazy" decoding="async" alt="Dwellable home screen for 1428 Elm Street"><figcaption>Your home</figcaption></figure>
+        <figure class="card"><img src="/assets/app-reminders.webp" width="480" height="1040" loading="lazy" decoding="async" alt="Reminders suggested for this home, like testing smoke detectors every 6 months"><figcaption>Reminders</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
 
-            var observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    callback(entry.intersectionRatio > 0);
-                });
-            }, options);
+<section class="faq gut" id="faq" aria-labelledby="faq-h">
+  <div class="inner">
+    <div class="faq-side"><h2 id="faq-h">Questions, answered.</h2><p>Something else? <a href="mailto:hello@dwellable.app" data-contact="">Send us a message</a>.</p></div>
+    <div>
+      <details><summary>What is Dwellable?</summary><p>Dwellable is a home maintenance assistant for homeowners. Text it a photo or a question and get a straight answer about your house, plus reminders made for your home and a local pro when you need one.</p></details>
+      <details><summary>How does Dwellable know about my home?</summary><p>When you add your home, Dwellable pulls its public records, like the year it was built, its size, and its heating and cooling. It uses them to plan reminders and to answer questions for your house, not a generic one.</p></details>
+      <details><summary>Do I need to download an app?</summary><p>No. You can start by text. The free iOS and Android apps add your property info, reminders and checklists in one place.</p></details>
+      <details><summary>Is Dwellable free?</summary><p>Yes, it's free to start, by text or in the app.</p></details>
+      <details><summary>Can Dwellable find someone to fix it?</summary><p>Yes. When a job needs a pro, Dwellable suggests well-reviewed local pros near you. You choose who to contact.</p></details>
+      <details><summary>How can I stop the texts?</summary><p>Reply STOP at any time and the texts stop. Reply HELP for help. See our <a href="/terms.html">Terms</a> and <a href="/privacy-policy.html">Privacy Policy</a>.</p></details>
+    </div>
+  </div>
+</section>
 
-            observer.observe(element);
-        }
-        pages = ["page-0", "page-1", "page-2", "page-3", "page-4"];
-        let emittedPages = new Set();
-        for (let page of pages) {
-            const element = document.getElementById(page);
-            if (element) {
-                respondToVisibility(element, visible => {
-                    if (visible && !emittedPages.has(page)) {
-                        emittedPages.add(page);
-                        gtag('event', 'page-section-viewed', {
-                            "section-id": page
-                        });
-                        amplitude.track('page-section-viewed', {
-                            "section-id": page
-                        });
-                    }
-                });
-            }
-        }
-    </script>
-    <script>
-        // const VARIANT_DELAY_MS = 5000
-        // const ANIMATION_DELAY = 300
-        // const HEADER_PAGE_VARIANTS = [
-        //     "Open house visits",
-        //     "Home buying",
-        //     "Due-diligence",
-        //     "Property tours",
-        //     "Inspecting your home"
-        // ]
-        // let current_variant_idx = 0
-        // let header_variant_ele = document.getElementById("header_variant_text")
-        // header_variant_ele.classList.add("text-show-animation")
-        // header_variant_ele.innerHTML = HEADER_PAGE_VARIANTS[current_variant_idx];
-        // function showNextHeadingVariant() {
-        //     function afterHide() {
-        //         current_variant_idx = (current_variant_idx + 1) % HEADER_PAGE_VARIANTS.length
-        //         header_variant_ele.innerHTML = HEADER_PAGE_VARIANTS[current_variant_idx];
-        //         header_variant_ele.classList.remove("text-hide-animation")
-        //         header_variant_ele.classList.add("text-show-animation")
-        //         setTimeout(showNextHeadingVariant, VARIANT_DELAY_MS)
-        //     }
-        //     header_variant_ele.classList.remove("text-show-animation")
-        //     header_variant_ele.classList.add("text-hide-animation")
-        //     setTimeout(afterHide, ANIMATION_DELAY)
-        // }
-        // setTimeout(showNextHeadingVariant, VARIANT_DELAY_MS)
-    </script>
-    <script>
-        // var scrollDownBtnContainer = document.getElementById('scroll-down-button');
-        // var scrollDownBtn = document.getElementById('scroll-down-anchor');
-        // var scrollUpBtnContainer = document.getElementById('scroll-up-button');
-        // var scrollUpBtn = document.getElementById('scroll-up-anchor');
-        // var parent = document.getElementById('parent')
-        // scrollDownBtn.onclick = function () {
-        //     parent.scrollBy(0, document.body.scrollHeight)
-        // };
-        // scrollUpBtn.onclick = function () {
-        //     parent.scrollTo(0, 0)
-        // };
-        // parent.onscroll = function (ev) {
-        //     if (parent.scrollHeight - window.innerHeight - parent.scrollTop < 100) {
-        //         scrollDownBtnContainer.classList.add("hidden");
-        //         scrollUpBtnContainer.classList.remove("hidden");
-        //     } else {
-        //         scrollDownBtnContainer.classList.remove("hidden");
-        //         scrollUpBtnContainer.classList.add("hidden");
-        //     }
-        // };
-    </script>
-    <script>
-        function gtag_report_conversion(url) {
-            var callback = function () {
-                if (typeof (url) != 'undefined') {
-                    window.location = url;
-                }
-            };
-            gtag('event', 'conversion', {
-                'send_to': 'AW-11113901641/g2YICPn9te8YEMncwrMp',
-                'event_callback': callback
-            });
-            return false;
-        }
-    </script>
-    <script>
-        function dwGetCookie(name) {
-            var m = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
-            return m ? decodeURIComponent(m.pop()) : '';
-        }
-        function dwGetFbc() {
-            var fbclid = new URLSearchParams(window.location.search).get('fbclid');
-            if (fbclid) return 'fb.1.' + Date.now() + '.' + fbclid;
-            return dwGetCookie('_fbc');
-        }
-        function dwTrackStoreClick(storeName) {
-            var eventId = (window.crypto && crypto.randomUUID)
-                ? crypto.randomUUID()
-                : (String(Date.now()) + Math.random().toString(16).slice(2));
-            gtag('event', 'store-link-clicked', { "store_name": storeName });
-            gtag_report_conversion();
-            amplitude.track('store-link-clicked', { "store_name": storeName });
-            // Browser Pixel — shared eventID lets Meta dedupe this against the server copy below.
-            fbq('trackCustom', 'StoreClick',
-                { store_name: storeName, content_category: 'App Download' },
-                { eventID: eventId });
-            // Server-side copy via the CAPI relay. sendBeacon survives the imminent navigation
-            // to the store, so this fires even when the browser Pixel gets cut off (iOS/ITP).
-            // The backend also persists this click (by eventId) so a later install/signup can be
-            // matched back to it for deferred attribution.
-            try {
-                navigator.sendBeacon('https://admin.dwellable.app/webhooks/capi-web-event', JSON.stringify({
-                    event_name: 'StoreClick',
-                    event_id: eventId,
-                    event_source_url: window.location.href,
-                    store_name: storeName,
-                    fbp: dwGetCookie('_fbp'),
-                    fbc: dwGetFbc()
-                }));
-            } catch (err) { /* non-fatal: the browser Pixel still fired */ }
-            return eventId;
-        }
-        document.querySelectorAll("[id='play-store-btn']").forEach(function(btn) {
-            btn.onclick = function () {
-                var eventId = dwTrackStoreClick('Play Store');
-                // Carry the click id into the Play Store install referrer (dw_aid=<eventId>) so the
-                // Android app can deterministically match this click to its install on first launch.
-                try {
-                    var href = btn.getAttribute('href').split('&referrer=')[0];
-                    btn.setAttribute('href', href + '&referrer=' + encodeURIComponent('dw_aid=' + eventId));
-                } catch (e) { /* fall back to non-referrer link */ }
-            };
-        });
-        document.querySelectorAll("[id='app-store-btn']").forEach(function(btn) {
-            btn.onclick = function () { dwTrackStoreClick('App Store'); };
-        });
+<section class="dusk grain gut" id="dusk" aria-labelledby="dusk-h">
+  <div class="stars" aria-hidden="true"></div>
+  <div class="moon" aria-hidden="true"></div>
+  <div class="inner">
+    <h2 id="dusk-h">Your home, looked after.</h2>
+    <p>Every house on the street needs something. Dwellable keeps track of yours.</p>
+    <form class="capture" id="capture2" novalidate data-msg="msg2" data-consent="consent2" data-where="closing">
+      <label for="contact-field-2" class="sr">Mobile number</label>
+      <input id="contact-field-2" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="12" placeholder="555-123-4567" aria-describedby="consent2 msg2">
+      <span class="hp" aria-hidden="true"><input tabindex="-1" autocomplete="off" name="company"></span>
+      <button class="btn lamp" type="submit">Text me</button>
+    </form>
+    <p class="msgbox" id="msg2" aria-live="polite"></p>
+    <p class="consent" id="consent2">By entering your number, you agree to get texts from Dwellable. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. <span class="links"><a href="/terms.html">Terms</a> · <a href="/privacy-policy.html">Privacy</a></span></p>
+  </div>
+  <svg class="street" id="street" viewBox="0 80 1400 220" width="1400" height="220" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+    <defs>
+      <filter id="winglow" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <radialGradient id="spill" cx="50%" cy="0%" r="70%"><stop offset="0" stop-color="#FFD27A" stop-opacity=".45"/><stop offset="1" stop-color="#FFD27A" stop-opacity="0"/></radialGradient>
+    </defs>
+    <g id="houses"></g>
+    <rect x="0" y="282" width="1400" height="18" fill="#0E2218"/>
+  </svg>
+</section>
+</main>
 
-        // Persist campaign landing visits (not relayed to Meta — the browser Pixel already sends
-        // PageView). Only when the visit carries an ad signal (fbclid/utm), so we widen the deferred
-        // attribution match pool to ad visitors who install via Smart Banner / App Store search
-        // without tapping a store button — while ignoring organic/direct traffic.
-        (function dwTrackCampaignVisit() {
-            try {
-                var params = new URLSearchParams(window.location.search);
-                var hasSignal = params.get('fbclid') ||
-                    params.get('utm_source') || params.get('utm_medium') ||
-                    params.get('utm_campaign') || params.get('utm_content') ||
-                    params.get('utm_term') || params.get('utm_id');
-                if (!hasSignal) return;
-                var eventId = (window.crypto && crypto.randomUUID)
-                    ? crypto.randomUUID()
-                    : (String(Date.now()) + Math.random().toString(16).slice(2));
-                navigator.sendBeacon('https://admin.dwellable.app/webhooks/capi-web-event', JSON.stringify({
-                    event_name: 'PageView',
-                    event_id: eventId,
-                    event_source_url: window.location.href,
-                    fbp: dwGetCookie('_fbp'),
-                    fbc: dwGetFbc()
-                }));
-            } catch (err) { /* non-fatal */ }
-        })();
+<div class="gut"><footer class="inner">
+  <div class="f-brand">
+    <span class="brand"><img class="house" src="/assets/house-96.webp" width="28" height="28" alt="" loading="lazy"><span class="wordmark" style="font-size:1.25rem">dwellable</span></span>
+    <p>Your home, looked after.</p>
+  </div>
+  <nav class="f-col" aria-label="Product"><b>Product</b><a href="#how">How it works</a><a href="#app">The app</a><a href="#top" data-go="footer">Text Dwellable</a></nav>
+  <nav class="f-col" aria-label="Company"><b>Company</b><a href="mailto:hello@dwellable.app" data-contact="">Contact us</a><a href="mailto:hello@dwellable.app?subject=Partnership" data-contact="Partnership">Partner with us</a></nav>
+  <nav class="f-col" aria-label="Legal"><b>Legal</b><a href="/terms.html">Terms of Use</a><a href="/privacy-policy.html">Privacy Policy</a></nav>
+  <p class="f-legal">© 2026 Dwellable LLC. All rights reserved.</p>
+</footer></div>
 
+<dialog class="cdlg" id="contact" aria-labelledby="contact-h">
+  <form id="contact-form" novalidate>
+    <div class="c-head"><h2 id="contact-h">Contact us</h2>
+      <button type="button" class="x" data-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <p class="c-sub">Send us a note and we'll write back by email.</p>
+    <label for="c-name">Your name <span>(optional)</span></label>
+    <input id="c-name" name="name" autocomplete="name" maxlength="80">
+    <label for="c-email">Email</label>
+    <input id="c-email" name="email" type="email" autocomplete="email" maxlength="200" required>
+    <label for="c-subject">Subject</label>
+    <input id="c-subject" name="subject" maxlength="150" required>
+    <label for="c-message">Message</label>
+    <textarea id="c-message" name="message" rows="5" maxlength="5000" required></textarea>
+    <span class="hp" aria-hidden="true"><input tabindex="-1" autocomplete="off" name="company"></span>
+    <p class="msgbox" id="contact-msg" aria-live="polite"></p>
+    <button class="btn" type="submit">Send message</button>
+  </form>
+  <div class="c-done" id="contact-done" hidden tabindex="-1">
+    <div class="c-head"><h2>Thanks for writing.</h2>
+      <button type="button" class="x" data-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <p class="c-sub" id="contact-done-text">We'll reply by email soon.</p>
+    <button class="btn" type="button" data-close>Close</button>
+  </div>
+</dialog>
 
-        let os = getMobileOperatingSystem();
-        // Show both buttons on all platforms for now
-        // if (os == "Android") {
-        //     // Hide App Store buttons, show Play Store
-        //     document.querySelectorAll("[id='app-store-btn']").forEach(function(btn) {
-        //         btn.style.display = "none";
-        //     });
-        // } else if (os == "iOS") {
-        //     // Hide Play Store buttons, show App Store
-        //     document.querySelectorAll("[id='play-store-btn']").forEach(function(btn) {
-        //         btn.style.display = "none";
-        //     });
-        // }
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1929895650928059&amp;ev=PageView&amp;noscript=1"></noscript>
+<script>
 
-        /**
-         * Determine the mobile operating system.
-         * This function returns one of 'iOS', 'Android', 'Windows Phone', or 'unknown'.
-         *
-         * @returns {String}
-         */
-        function getMobileOperatingSystem() {
-            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-            // Windows Phone must come first because its UA also contains "Android"
-            if (/windows phone/i.test(userAgent)) {
-                return "Windows Phone";
-            }
-            if (/android/i.test(userAgent)) {
-                return "Android";
-            }
-            // iOS detection from: http://stackoverflow.com/a/9039885/177710
-            if (/Apple|Safari|iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                return "iOS";
-            }
-            return "unknown";
-        }
+(function(){
+  var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var stage=document.getElementById("stage"), hero=document.querySelector(".hero");
 
-        // Glassmorphic header effect on scroll
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
+  // ---------- pointer tilt + window light ----------
+  var BX=6, BY=-17, tx=0,ty=0,cx=0,cy=0,lastMove=-1e9,visible=true,raf=0;
+  function set(){
+    stage.style.setProperty("--ry",(BY+cx*11).toFixed(2)+"deg");
+    stage.style.setProperty("--rx",(BX-cy*8).toFixed(2)+"deg");
+    hero.style.setProperty("--cx",cx.toFixed(3)); hero.style.setProperty("--cy",cy.toFixed(3));
+    stage.style.setProperty("--cx",cx.toFixed(3));
+  }
+  function tick(t){
+    raf=0;
+    if(t-lastMove>2500){ tx=Math.sin(t/2700)*.38; ty=Math.cos(t/3300)*.28; }
+    cx+=(tx-cx)*.07; cy+=(ty-cy)*.07; set();
+    if(visible) raf=requestAnimationFrame(tick);
+  }
+  var fine=window.matchMedia&&matchMedia("(hover:hover) and (pointer:fine)").matches;
+  if(!reduce&&fine){
+    hero.addEventListener("pointermove",function(e){
+      if(e.pointerType==="touch") return;
+      var r=stage.getBoundingClientRect();
+      tx=Math.max(-1,Math.min(1,(e.clientX-(r.left+r.width/2))/(window.innerWidth*.45)));
+      ty=Math.max(-1,Math.min(1,(e.clientY-(r.top+r.height/2))/(window.innerHeight*.55)));
+      lastMove=performance.now();
+    });
+    hero.addEventListener("pointerleave",function(){tx=0;ty=0;});
+    if("IntersectionObserver" in window){
+      new IntersectionObserver(function(es){visible=es[0].isIntersecting; if(visible&&!raf) raf=requestAnimationFrame(tick);}).observe(hero);
+    }
+    raf=requestAnimationFrame(tick);
+  }
 
-        // Sequential animation for hero images
-        window.addEventListener('load', function() {
-            const images = document.querySelectorAll('.hero-section .device-img');
-            images.forEach(img => {
-                img.classList.add('animate');
-                // After animation completes, set final styles and remove animation
-                setTimeout(() => {
-                    img.style.opacity = '1';
-                    if (img.classList.contains('hero-img-left')) {
-                        img.style.transform = 'translateX(0) rotate(-8deg)';
-                    } else if (img.classList.contains('hero-img-right')) {
-                        img.style.transform = 'translateX(0) rotate(8deg)';
-                    }
-                    img.classList.remove('animate');
-                    
-                    // Add a slight delay before enabling hover to prevent snap
-                    setTimeout(() => {
-                        img.classList.add('hover-enabled');
-                    }, 100);
-                }, 1500);
-            });
-        });
+  // ---------- scenarios: the headline question and the phone change together ----------
+  var PAUSE='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>',
+      PLAY='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+  var BELL='<svg viewBox="0 0 24 24" fill="none" stroke="#1F2A24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>';
+  var S=[{"q": "Weird ceiling stain?", "facts": "1957 ranch · Boise", "photo": {"src": "/assets/stain.webp", "w": 400, "h": 609, "alt": "Water stain on a bedroom ceiling", "cap": "Sent 7:40 PM"}, "thread": [["me", "What is this on my ceiling?"], ["it", "Looks like a slow leak. Is there a bathroom above it?"], ["me", "Yes, the upstairs shower"], ["it", "Then it's likely the drain. Two plumbers nearby can look this week."]], "diag": {"t": "Likely the shower drain", "s": "Not urgent"}, "list": {"hd": "Plumbers nearby", "rows": [["0.8 mi · 4.9★", "Text"], ["1.6 mi · 4.8★", "Call"]]}, "remind": {"k": "Sat · 9 AM", "t": "Check the grout seal"}}, {"q": "Green crust on a pipe?", "facts": "Kitchen · Copper lines", "photo": {"src": "/assets/valve.webp", "w": 400, "h": 351, "alt": "Corroded shutoff valve under a kitchen sink", "cap": "Sent 8:12 AM"}, "thread": [["me", "Is this green stuff bad?"], ["it", "That's corrosion on your shutoff valve. It isn't leaking yet."], ["me", "Can I fix it myself?"], ["it", "Yes. Here's exactly what to buy."]], "diag": {"t": "Corroded shutoff valve", "s": "Replace this month", "warn": true}, "list": {"hd": "What to buy", "rows": [["Angle stop valve", "$12"], ["Supply line", "$9"]], "price": true}, "remind": {"k": "Next Sat", "t": "Swap the kitchen valve"}}, {"q": "Towel bar pulling out?", "facts": "Guest bath · Drywall", "photo": {"src": "/assets/towel.webp", "w": 400, "h": 533, "alt": "Towel bar pulling away from a bathroom wall", "cap": "Sent 6:05 PM"}, "thread": [["me", "The towel bar is coming off the wall"], ["it", "The anchors gave out. It's a 20 minute fix."], ["me", "I'd rather hire someone"], ["it", "Two handymen nearby do small jobs like this."]], "diag": {"t": "Drywall anchors failed", "s": "Easy fix"}, "list": {"hd": "Handymen nearby", "rows": [["1.1 mi · 4.9★", "Text"], ["2.3 mi · 4.8★", "Call"]]}, "remind": {"k": "Saved to notes", "t": "Guest bath towel bar"}}];
+  function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+  var rig=document.getElementById("rig"), thread=document.getElementById("thread"), q=document.getElementById("q");
+  var F={facts:document.getElementById("f-facts"),photo:document.getElementById("f-photo"),diag:document.getElementById("f-diag"),list:document.getElementById("f-list"),remind:document.getElementById("f-remind")};
+  function render(sc){
+    var h='<div class="slot"></div>',d=0;
+    sc.thread.forEach(function(m,k){d=.35+k*.6;h+='<div class="msg '+m[0]+'" style="--d:'+d.toFixed(2)+'s">'+esc(m[1])+'</div>';});
+    h+='<div class="typing" style="--d:'+(d+.7).toFixed(2)+'s"><i></i><i></i><i></i></div>';
+    thread.innerHTML=h;
+    F.facts.textContent=sc.facts;
+    F.photo.innerHTML='<img src="'+sc.photo.src+'" width="'+sc.photo.w+'" height="'+sc.photo.h+'" alt="'+esc(sc.photo.alt)+'"><p>'+esc(sc.photo.cap)+'</p>';
+    F.diag.innerHTML='<span class="dot'+(sc.diag.warn?' warn':'')+'"></span><div><b>'+esc(sc.diag.t)+'</b><span>'+esc(sc.diag.s)+'</span></div>';
+    F.list.innerHTML='<span class="hd">'+esc(sc.list.hd)+'</span>'+sc.list.rows.map(function(r){
+      return '<div class="row"><b>'+esc(r[0])+'</b><span class="'+(sc.list.price?'price':'act')+'">'+esc(r[1])+'</span></div>';}).join("");
+    F.remind.innerHTML='<span class="bell">'+BELL+'</span><div><small>'+esc(sc.remind.k)+'</small><b>'+esc(sc.remind.t)+'</b></div>';
+    rig.classList.remove("in"); void rig.offsetWidth; rig.classList.add("in");
+  }
+  var cur=0, DUR=7000, hovering=false, paused=false, busy=false, started=performance.now(), held=0, autoRaf=0;
+  // warm the other scenarios' photos once the page is idle
+  (window.requestIdleCallback||function(f){setTimeout(f,2500);})(function(){S.forEach(function(sc){var i=new Image();i.src=sc.photo.src;});});
+  var dots=document.getElementById("dots");
+  S.forEach(function(sc,k){var b=document.createElement("button"); b.type="button"; b.setAttribute("aria-label","Example "+(k+1)+": "+sc.q);
+    if(k===0) b.setAttribute("aria-current","true"); b.addEventListener("click",function(){go(k);}); dots.appendChild(b);});
+  function go(k){
+    if(busy||k===cur) return; busy=true; cur=k; started=performance.now(); held=0;
+    Array.prototype.forEach.call(dots.children,function(b,j){b.style.setProperty("--p","0%"); if(j===k) b.setAttribute("aria-current","true"); else b.removeAttribute("aria-current");});
+    Array.prototype.forEach.call(q.children,function(s,j){s.classList.toggle("on",j===k);});
+    track("hero_example_shown",{example:S[k].q});
+    if(reduce){render(S[k]); busy=false; return;}
+    rig.classList.add("out");
+    setTimeout(function(){rig.classList.add("seq"); render(S[k]); void rig.offsetWidth; rig.classList.remove("out"); busy=false;},620);
+  }
+  function step(d){go((cur+d+S.length)%S.length);}
+  document.getElementById("next").addEventListener("click",function(){step(1);});
+  document.getElementById("prev").addEventListener("click",function(){step(-1);});
+  rig.addEventListener("click",function(){step(1);});
+  // swipe on touch screens
+  var sx=null; stage.addEventListener("touchstart",function(e){sx=e.touches[0].clientX;},{passive:true});
+  stage.addEventListener("touchend",function(e){ if(sx===null) return; var dx=e.changedTouches[0].clientX-sx; if(Math.abs(dx)>40) step(dx<0?1:-1); sx=null; },{passive:true});
+  rig.classList.add("in");
+  if(!reduce){
+    rig.classList.add("out"); requestAnimationFrame(function(){requestAnimationFrame(function(){rig.classList.remove("out");});});
+    stage.addEventListener("pointerenter",function(){hovering=true; held=performance.now()-started;});
+    stage.addEventListener("pointerleave",function(){hovering=false; started=performance.now()-held;});
+    var pb=document.getElementById("pause");
+    pb.hidden=false;
+    pb.addEventListener("click",function(){paused=!paused; pb.setAttribute("aria-pressed",paused?"true":"false");
+      pb.setAttribute("aria-label",paused?"Play the examples":"Pause the examples");
+      pb.innerHTML=paused?PLAY:PAUSE; hold();});
+    var dotsEl=document.getElementById("dots");
+    function hold(){ dotsEl.classList.toggle("hold", hovering||paused||!visible||document.hidden||busy); }
+    dotsEl.addEventListener("animationend", function(ev){ if(ev.target.getAttribute("aria-current")==="true") step(1); });
+    stage.addEventListener("pointerenter", hold); stage.addEventListener("pointerleave", function(){ setTimeout(hold); });
+    document.addEventListener("visibilitychange", hold);
+    if("IntersectionObserver" in window) new IntersectionObserver(function(es){ visible=es[0].isIntersecting; hold(); }).observe(hero);
+    setInterval(hold, 500);
+    dotsEl.classList.add("auto");
+  }
 
-        // Intersection Observer for feature images
-        const observerOptions = {
-            threshold: 0.3,
-            rootMargin: '0px 0px -100px 0px'
-        };
+  function nearby(id, f){ var el=document.getElementById(id); if(!("IntersectionObserver" in window)) return f();
+    var io=new IntersectionObserver(function(es){ if(es[0].isIntersecting){ io.disconnect(); f(); } },{rootMargin:"600px 0px"}); io.observe(el); }
+  nearby("dusk", function(){
+  // ---------- dusk street: every kind of home, lights coming on ----------
+  // each house: x, width, wall height, roof type; windows as [x, height above ground, w, h]
+  var G=282, NS="http://www.w3.org/2000/svg";
+  var H=[
+    {x:40,  w:230,h:70, roof:"low",  c:"#24493A", win:[[30,46,34,22],[166,46,34,22]], door:[103,40]},
+    {x:300, w:150,h:132,roof:"gable",c:"#285140", win:[[22,112,30,26],[98,112,30,26],[22,52,30,28],[98,52,30,28]], door:[63,42]},
+    {x:480, w:130,h:0,  roof:"aframe",c:"#21443A",win:[[50,96,30,36],[38,40,22,26],[70,40,22,26]], door:null},
+    {x:640, w:110,h:118,roof:"flat", c:"#2B5545", win:[[18,96,28,26],[64,96,28,26],[18,50,28,26]], door:[68,42]},
+    {x:750, w:110,h:126,roof:"flat", c:"#264C3D", win:[[18,104,28,26],[64,104,28,26],[64,52,28,26]], door:[18,42]},
+    {x:890, w:170,h:86, roof:"steep",c:"#285140", win:[[24,58,30,26],[116,58,30,26],[70,140,30,22]], door:[73,44]},
+    {x:1090,w:180,h:96, roof:"gable",c:"#24493A", win:[[22,66,30,30],[128,66,30,30],[75,132,30,22]], door:[78,46], porch:true},
+    {x:1300,w:90, h:64, roof:"gable",c:"#21443A", win:[[30,44,30,22]], door:null}
+  ];
+  function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e;}
+  var gh=document.getElementById("houses"), groups=[];
+  H.forEach(function(h){
+    var g=el("g",{"class":"h"}), top=G-h.h, x=h.x, w=h.w;
+    g.appendChild(el("ellipse",{"class":"spill",cx:x+w/2,cy:G+2,rx:w*.75,ry:14}));
+    if(h.roof==="aframe"){
+      g.appendChild(el("polygon",{points:x+","+G+" "+(x+w/2)+","+(G-150)+" "+(x+w)+","+G,fill:h.c}));
+    }else{
+      g.appendChild(el("rect",{x:x,y:top,width:w,height:h.h,fill:h.c}));
+      if(h.roof==="gable") g.appendChild(el("polygon",{points:(x-10)+","+top+" "+(x+w/2)+","+(top-w*.38)+" "+(x+w+10)+","+top,fill:h.c}));
+      if(h.roof==="low") g.appendChild(el("polygon",{points:(x-14)+","+top+" "+(x+w/2)+","+(top-34)+" "+(x+w+14)+","+top,fill:h.c}));
+      if(h.roof==="steep") g.appendChild(el("polygon",{points:(x-8)+","+top+" "+(x+w/2)+","+(top-w*.6)+" "+(x+w+8)+","+top,fill:h.c}));
+      if(h.roof==="flat") g.appendChild(el("rect",{x:x-4,y:top-8,width:w+8,height:8,fill:h.c}));
+      if(h.porch) g.appendChild(el("rect",{x:x-16,y:G-40,width:w+32,height:6,fill:h.c}));
+    }
+    if(h.door) g.appendChild(el("rect",{x:x+h.door[0],y:G-h.door[1],width:24,height:h.door[1],rx:3,fill:"#10291F"}));
+    var mine=[];
+    h.win.forEach(function(v){var r=el("rect",{"class":"w",x:x+v[0],y:G-v[1],width:v[2],height:v[3],rx:2}); g.appendChild(r); mine.push(r);
+      g.appendChild(el("rect",{x:x+v[0]+v[2]/2-1,y:G-v[1],width:2,height:v[3],fill:h.c}));});
+    g._wins=mine; groups.push(g); gh.appendChild(g);
+  });
+  function light(g,on){g.classList.toggle("on",on); g._wins.forEach(function(r){r.classList.toggle("lit",on);});}
+  groups.forEach(function(g){
+    g.addEventListener("click",function(){light(g,!g.classList.contains("on"));});
+    g.addEventListener("pointerenter",function(e){ if(e.pointerType==="mouse"&&!g.classList.contains("on")) light(g,true); });
+  });
+  var dusk=document.getElementById("dusk"), lit=false;
+  function lightAll(stagger){ groups.forEach(function(g,k){ if(k===2||k===5) return; setTimeout(function(){light(g,true);}, stagger?300+k*380:0); }); }
+  if(reduce||!("IntersectionObserver" in window)){ lightAll(false); }
+  else{
+    new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting&&!lit){lit=true; lightAll(true);} });},{threshold:.3}).observe(dusk);
+    var flips=0, fl=setInterval(function(){ if(!lit||document.hidden) return; if(++flips>14) return clearInterval(fl);
+      var g=groups[Math.floor(Math.random()*groups.length)]; light(g,!g.classList.contains("on")); },4200);
+  }
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-in');
-                }
-            });
-        }, observerOptions);
+  });
+  // ---------- how it works: the road ----------
+  nearby("how", function(){
+    var SV="http://www.w3.org/2000/svg", road=document.getElementById("road"), d=road.getAttribute("d");
+    ["road-edge","road-mid","trail"].forEach(function(id){document.getElementById(id).setAttribute("d",d);});
+    function mk(n,a,parent){var e=document.createElementNS(SV,n);for(var k in a)e.setAttribute(k,a[k]);(parent||null)&&parent.appendChild(e);return e;}
+    // scenery: houses and trees along the road, daytime palette; the last house is "yours", windows lit
+    var sc=document.getElementById("scenery");
+    function house(x,y,w,h,roof,mine){var g=mk("g",{},sc);
+      mk("rect",{x:x,y:y-h,width:w,height:h,fill:"#FBF7EF",stroke:"#D9CFBA","stroke-width":2},g);
+      mk("polygon",{points:(x-8)+","+(y-h)+" "+(x+w/2)+","+(y-h-w*.45)+" "+(x+w+8)+","+(y-h),fill:roof},g);
+      mk("rect",{x:x+w*.18,y:y-h*.72,width:w*.22,height:h*.3,rx:2,fill:mine?"#FFD27A":"#E8EEE4"},g);
+      mk("rect",{x:x+w*.6,y:y-h*.72,width:w*.22,height:h*.3,rx:2,fill:mine?"#FFD27A":"#E8EEE4"},g);
+      mk("rect",{x:x+w*.42,y:y-h*.42,width:w*.16,height:h*.42,rx:2,fill:roof},g);
+      if(mine) mk("circle",{cx:x+w/2,cy:y-h/2,r:w*1.1,fill:"url(#homeglow)"},sc).parentNode.insertBefore(sc.lastChild,g);
+    }
+    function tree(x,y,r){mk("rect",{x:x-2,y:y-6,width:4,height:12,fill:"#8B7A5C"},sc);mk("circle",{cx:x,cy:y-6-r*.8,r:r,fill:"#9DB89F"},sc);mk("circle",{cx:x+r*.5,cy:y-6-r*1.1,r:r*.7,fill:"#B3C9B1"},sc);}
+    var defs=mk("defs",{},sc); var rg=mk("radialGradient",{id:"homeglow"},defs); mk("stop",{offset:"0","stop-color":"#FFD27A","stop-opacity":".55"},rg); mk("stop",{offset:"1","stop-color":"#FFD27A","stop-opacity":"0"},rg);
+    tree(90,470,16); house(120,600,70,48,"#7FA38A"); tree(330,560,18); house(560,330,64,44,"#C98F5B"); tree(640,330,14);
+    house(610,560,74,50,"#1D4A37"); tree(880,520,20); house(990,575,60,42,"#7FA38A"); tree(960,200,15); tree(1110,330,17);
+    house(1160,195,84,60,"#1D4A37",true);
+    // stops along the road
+    document.getElementById("map").classList.add("ready");
+    var L=road.getTotalLength(), FR=[.12,.38,.62,.86], pts=FR.map(function(f){return road.getPointAtLength(f*L);});
+    var stops=document.getElementById("stops"), leaders=document.getElementById("leaders"), labs=document.querySelectorAll(".lab");
+    var LIFT=[110,120,125,110];
+    var dots=pts.map(function(p,k){
+      mk("line",{"class":"leader",x1:p.x,y1:p.y-18,x2:p.x,y2:p.y-LIFT[k]},leaders);
+      var g=mk("g",{"class":"stop",transform:"translate("+p.x+" "+p.y+")"},stops);
+      mk("circle",{"class":"halo",r:30},g); mk("circle",{"class":"ring",r:17},g); var t=mk("text",{},g); t.textContent=k+1;
+      var lab=labs[k]; lab.style.left=(p.x/1200*100)+"%"; lab.style.top=((p.y-LIFT[k])/600*100)+"%";
+      return g;
+    });
+    var trail=document.getElementById("trail"), car=document.getElementById("car");
+    trail.style.strokeDasharray=L; trail.style.strokeDashoffset=L;
+    function place(len){var a=road.getPointAtLength(len), b=road.getPointAtLength(Math.min(L,len+2));
+      var ang=Math.atan2(b.y-a.y,b.x-a.x)*180/Math.PI; car.setAttribute("transform","translate("+a.x+" "+(a.y)+") rotate("+ang+")"); trail.style.strokeDashoffset=L-len;}
+    function lightStop(k){dots[k].classList.add("on"); labs[k].classList.add("on");}
+    var END=L*.985;
+    if(reduce||!("IntersectionObserver" in window)){ place(END); dots.forEach(function(g,k){lightStop(k);}); return; }
+    place(0);
+    var played=false;
+    new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting&&!played){played=true; drive();} });},{threshold:.45}).observe(document.getElementById("map"));
+    function drive(){
+      var marks=FR.map(function(f){return f*L;}).concat([END]), seg=0, from=0, t0=null, PAUSE=550;
+      function ease(x){return x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;}
+      function run(ts){
+        if(t0===null) t0=ts;
+        var to=marks[seg], dur=Math.max(700,(to-from)*3.2), x=Math.min(1,(ts-t0)/dur);
+        place(from+(to-from)*ease(x));
+        if(x<1){requestAnimationFrame(run);return;}
+        if(seg<FR.length) lightStop(seg);
+        from=to; seg++; t0=null;
+        if(seg<marks.length) setTimeout(function(){requestAnimationFrame(run);},PAUSE);
+      }
+      requestAnimationFrame(run);
+    }
+  });
 
-        // Observe all feature images
-        document.addEventListener('DOMContentLoaded', function() {
-            const featureImages = document.querySelectorAll('.feature-image');
-            featureImages.forEach(img => {
-                observer.observe(img);
-            });
-        });
+  // ---------- analytics: loaded after the page is usable; events wait in a queue until then ----------
+  var AQ=[], aReady=false;
+  function track(name, props){
+    if(!aReady){ AQ.push([name, props]); return; }
+    try{ gtag("event", name, props||{}); }catch(e){}
+    try{ amplitude.track(name, props||{}); }catch(e){}
+  }
+  function uuid(){ return (window.crypto&&crypto.randomUUID)?crypto.randomUUID():(String(Date.now())+Math.random().toString(16).slice(2)); }
+  function cookie(n){ var m=document.cookie.match("(^|;)\\s*"+n+"\\s*=\\s*([^;]+)"); return m?decodeURIComponent(m.pop()):""; }
+  function fbc(){ var id=new URLSearchParams(location.search).get("fbclid"); return id?("fb.1."+Date.now()+"."+id):cookie("_fbc"); }
+  function beacon(payload){ try{ navigator.sendBeacon("https://admin.dwellable.app/webhooks/capi-web-event", JSON.stringify(payload)); }catch(e){} }
+  function loadScript(src){ var s=document.createElement("script"); s.async=true; s.src=src; document.head.appendChild(s); return s; }
+  function loadAnalytics(){
+    if(aReady) return; aReady=true;
+    loadScript("https://www.googletagmanager.com/gtag/js?id=G-WBNM828NCM");
+    gtag("js", new Date()); gtag("config", "G-WBNM828NCM");
+    // Meta Pixel (fbq stub was defined in <head>, so early calls queued)
+    loadScript("https://connect.facebook.net/en_US/fbevents.js");
+    // Amplitude
+    var a=loadScript("https://cdn.amplitude.com/libs/analytics-browser-2.3.3-min.js.gz");
+    a.onload=function(){
+      try{ amplitude.init("d5dc4f1beae8e0a5f613f4953f200ade",{defaultTracking:true}); }catch(e){}
+      AQ.splice(0).forEach(function(x){ try{ amplitude.track(x[0], x[1]||{}); }catch(e){} });
+    };
+    AQ.forEach(function(x){ try{ gtag("event", x[0], x[1]||{}); }catch(e){} });
+  }
+  function whenIdle(f){ (window.requestIdleCallback||function(cb){ setTimeout(cb,1200); })(f,{timeout:3000}); }
+  if(document.readyState==="complete") whenIdle(loadAnalytics); else addEventListener("load", function(){ whenIdle(loadAnalytics); });
+  ["pointerdown","keydown","scroll"].forEach(function(ev){ addEventListener(ev, loadAnalytics, {once:true, passive:true}); });
+  // ad-signal visits still go to the attribution relay (see admin backend capi-web-event)
+  (function(){ var p=new URLSearchParams(location.search);
+    if(p.get("fbclid")||p.get("utm_source")||p.get("utm_medium")||p.get("utm_campaign")||p.get("utm_content")||p.get("utm_term")||p.get("utm_id"))
+      beacon({event_name:"PageView", event_id:uuid(), event_source_url:location.href, fbp:cookie("_fbp"), fbc:fbc()}); })();
 
-        // Cycling text animation
-        const cyclingTexts = [
-            "Home maintenance",
-            "Seasonal upkeep",
-            "Repairs & reminders",
-            "Your AI home expert",
-            "Trusted local pros"
-        ];
-        
-        let currentIndex = 0;
-        const cyclingElement = document.getElementById('cycling-text');
-        
-        function cycleThroughTexts() {
-            // Fade out
-            cyclingElement.classList.add('text-fade-out');
-            
-            setTimeout(() => {
-                // Change text
-                currentIndex = (currentIndex + 1) % cyclingTexts.length;
-                cyclingElement.textContent = cyclingTexts[currentIndex];
-                
-                // Fade in
-                cyclingElement.classList.remove('text-fade-out');
-                cyclingElement.classList.add('text-fade-in');
-                
-                setTimeout(() => {
-                    cyclingElement.classList.remove('text-fade-in');
-                }, 500);
-            }, 250);
-        }
-        
-        // Start cycling after page loads
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                cycleThroughTexts(); // Do first change immediately
-                setInterval(cycleThroughTexts, 3000); // Then continue every 3 seconds
-            }, 500); // Wait 0.5 seconds before starting
-        });
-    </script>
+  // which sections people reach
+  if("IntersectionObserver" in window){
+    var seen={};
+    var so=new IntersectionObserver(function(es){ es.forEach(function(en){ var id=en.target.id;
+      if(en.isIntersecting&&!seen[id]){ seen[id]=1; track("page-section-viewed",{"section-id":id}); } }); },{threshold:.35});
+    ["top","how","app","faq","dusk"].forEach(function(id){ var el=document.getElementById(id); if(el) so.observe(el); });
+  }
+
+  // ---------- store buttons: same tracking and attribution as before ----------
+  function storeClick(store){
+    var id=uuid();
+    track("store-link-clicked",{store_name:store});
+    try{ gtag("event","conversion",{send_to:"AW-11113901641/g2YICPn9te8YEMncwrMp"}); }catch(e){}
+    try{ fbq("trackCustom","StoreClick",{store_name:store, content_category:"App Download"},{eventID:id}); }catch(e){}
+    beacon({event_name:"StoreClick", event_id:id, event_source_url:location.href, store_name:store, fbp:cookie("_fbp"), fbc:fbc()});
+    return id;
+  }
+  document.querySelectorAll("[data-store]").forEach(function(a){
+    a.addEventListener("click", function(){
+      var store=a.getAttribute("data-store"), id=storeClick(store);
+      if(store==="Play Store"){ // the Android app reads dw_aid from the install referrer to match this click
+        try{ a.href=a.href.split("&referrer=")[0]+"&referrer="+encodeURIComponent("dw_aid="+id); }catch(e){}
+      }
+    });
+  });
+  document.querySelectorAll("[data-go]").forEach(function(a){
+    a.addEventListener("click", function(ev){
+      track("cta_clicked",{where:a.getAttribute("data-go")});
+      var f=document.getElementById("contact-field"); if(!f) return;
+      ev.preventDefault(); document.getElementById("top").scrollIntoView({behavior:reduce?"auto":"smooth", block:"start"});
+      setTimeout(function(){ f.focus({preventScroll:true}); }, reduce?0:450);
+    });
+  });
+
+  // ---------- the sign-up boxes ----------
+  var ENDPOINT="https://agent.dwellable.app/web/start", NUMBER="(989) 582-2545", SMS="sms:+19895822545?&body=YES";
+  var TERMS='<span class="links"><a href="/terms.html">Terms</a> · <a href="/privacy-policy.html">Privacy</a></span>';
+  var SMS_CONSENT="By entering your number, you agree to get texts from Dwellable. Message frequency varies. Msg & data rates may apply. Reply STOP to opt out, HELP for help.";
+  var EMAIL_CONSENT="By entering your email, you agree to get emails from Dwellable. Unsubscribe any time.";
+  function fmt(v){ var d=v.replace(/\D/g,""); if(d.length===11&&d[0]==="1") d=d.slice(1); d=d.slice(0,10);
+    return d.length>6?d.slice(0,3)+"-"+d.slice(3,6)+"-"+d.slice(6):d.length>3?d.slice(0,3)+"-"+d.slice(3):d; }
+  function setup(form){
+    var input=form.querySelector("input[type=tel],input[type=email]"), btn=form.querySelector("button[type=submit]"),
+        box=document.getElementById(form.getAttribute("data-msg")), consent=document.getElementById(form.getAttribute("data-consent")),
+        swap=document.getElementById(form.getAttribute("data-swap")), where=form.getAttribute("data-where"), email=false, label=btn.textContent;
+    input.addEventListener("input", function(){ if(!email){ var f=fmt(input.value); if(f!==input.value) input.value=f; } box.textContent=""; box.className="msgbox"; });
+    if(swap) swap.addEventListener("click", function(){
+      email=!email; input.value=""; input.type=email?"email":"tel"; input.inputMode=email?"email":"tel";
+      input.autocomplete=email?"email":"tel"; input.maxLength=email?254:12; input.placeholder=email?"you@example.com":"555-123-4567";
+      form.querySelector("label").textContent=email?"Email address":"Mobile number";
+      label=email?"Email me":"Text me"; btn.textContent=label;
+      consent.innerHTML=(email?EMAIL_CONSENT:SMS_CONSENT).replace(/&/g,"&amp;")+" "+TERMS;
+      swap.textContent=email?"Use my phone number instead":"Use email instead"; input.focus();
+    });
+    form.addEventListener("submit", function(ev){
+      ev.preventDefault();
+      var v=input.value.trim(), digits=v.replace(/\D/g,"");
+      if(!email && !(digits.length===10||(digits.length===11&&digits[0]==="1"))){ return fail("Enter a 10-digit US mobile number."); }
+      if(email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){ return fail("Enter an email address like you@example.com."); }
+      btn.disabled=true; btn.textContent=email?"Sending…":"Texting…";
+      var body={consent:true, consent_text:email?EMAIL_CONSENT:SMS_CONSENT, company:form.querySelector(".hp input").value};
+      body[email?"email":"phone"]=v;
+      track(email?"hero_email_submitted":"hero_phone_submitted",{where:where});
+      fetch(ENDPOINT,{method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(body)})
+        .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return {ok:r.ok, j:j}; }); })
+        .then(function(res){
+          if(!res.ok) return fail(res.j.error||"That didn't go through. Try again in a minute.");
+          track(email?"web_start_email_sent":"web_start_sms_sent",{where:where});
+          try{ fbq("track","Lead",{content_name:email?"email":"sms"}); }catch(e){}
+          var done=document.createElement("div"); done.className="done"; done.setAttribute("role","status"); done.tabIndex=-1;
+          done.innerHTML=email?'<b>Check your inbox.</b><span>We sent you an email with how to get started.</span>'
+            :'<b>Check your texts.</b><span>We just texted you from '+NUMBER+'. Reply <b>YES</b> and you\'re all set.</span>'
+             +'<span>Nothing yet? <a href="'+SMS+'">Text YES to '+NUMBER+'</a>.</span>';
+          form.replaceWith(done); if(swap) swap.hidden=true; done.focus();
+        })
+        .catch(function(){ fail("That didn't go through. Check your connection and try again."); });
+      function fail(msg){ btn.disabled=false; btn.textContent=label; box.textContent=msg; box.className="msgbox err"; input.focus();
+        track("web_start_error",{where:where, error:msg}); }
+    });
+  }
+  document.querySelectorAll("form.capture").forEach(setup);
+
+  // ---------- contact form (emails hello@dwellable.app; the sender is the reply-to) ----------
+  (function(){
+    var dlg=document.getElementById("contact"); if(!dlg||!dlg.showModal) return;   // old browsers keep the mailto link
+    var form=document.getElementById("contact-form"), done=document.getElementById("contact-done"),
+        box=document.getElementById("contact-msg"), btn=form.querySelector("button[type=submit]");
+    function open(subject){
+      form.hidden=false; done.hidden=true; box.textContent=""; box.className="msgbox";
+      if(subject) form.elements["subject"].value=subject;
+      dlg.showModal(); (form.elements["email"].value?(form.elements["subject"].value?form.elements["message"]:form.elements["subject"]):form.elements["email"]).focus();
+      track("contact_opened",{subject:subject||""});
+    }
+    document.querySelectorAll("[data-contact]").forEach(function(a){
+      a.addEventListener("click", function(ev){ ev.preventDefault(); open(a.getAttribute("data-contact")); });
+    });
+    dlg.addEventListener("click", function(ev){ if(ev.target===dlg || ev.target.closest("[data-close]")) dlg.close(); });
+    form.addEventListener("submit", function(ev){
+      ev.preventDefault();
+      var f={name:form.elements["name"].value, email:form.elements["email"].value.trim(), subject:form.elements["subject"].value.trim(), message:form.elements["message"].value.trim(), company:form.elements["company"].value};
+      function fail(msg, field){ box.textContent=msg; box.className="msgbox err"; btn.disabled=false; btn.textContent="Send message"; if(field) field.focus(); track("contact_error",{error:msg}); }
+      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.email)) return fail("Enter your email address so we can write back.", form.elements["email"]);
+      if(!f.subject) return fail("Add a subject.", form.elements["subject"]);
+      if(f.message.length<2) return fail("Write your message.", form.elements["message"]);
+      btn.disabled=true; btn.textContent="Sending…";
+      fetch("https://agent.dwellable.app/web/contact",{method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(f)})
+        .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return {ok:r.ok, j:j}; }); })
+        .then(function(res){
+          if(!res.ok) return fail(res.j.error||"That didn't send. Email us at hello@dwellable.app instead.");
+          track("contact_sent",{});
+          document.getElementById("contact-done-text").textContent="We'll reply to "+f.email+" soon.";
+          form.reset(); btn.disabled=false; btn.textContent="Send message";
+          form.hidden=true; done.hidden=false; done.focus();
+        })
+        .catch(function(){ fail("That didn't send. Check your connection, or email us at hello@dwellable.app."); });
+    });
+  })();
+
+})();
+
+</script>
 </body>
-
 </html>
