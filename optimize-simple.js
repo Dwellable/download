@@ -79,33 +79,22 @@ async function optimizeHTML() {
 function createServiceWorker() {
   console.log('🔧 Creating service worker...');
   
-  const sw = `const CACHE_NAME = 'dwellable-v1';
-const urlsToCache = [
-  '/',
-  '/index.html',
-  '/join.html',
-  '/home.png',
-  '/reminders.png', 
-  '/property_info.png',
-  '/inspection.png'
-];
-
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(urlsToCache))
-  );
-});
-
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => response || fetch(event.request))
-  );
+  // A kill switch, not a cache. An earlier version cached '/' cache-first under a fixed name, so
+  // browsers that registered it kept showing the old homepage. This one clears those caches,
+  // unregisters itself and reloads open pages from the network. Nothing registers a worker now.
+  const sw = `self.addEventListener('install', () => self.skipWaiting());
+self.addEventListener('activate', event => {
+  event.waitUntil((async () => {
+    const keys = await caches.keys();
+    await Promise.all(keys.map(k => caches.delete(k)));
+    await self.registration.unregister();
+    const windows = await self.clients.matchAll({ type: 'window' });
+    windows.forEach(w => w.navigate(w.url));
+  })());
 });`;
   
   fs.writeFileSync('sw.js', sw);
-  console.log('✅ Service worker created');
+  console.log('✅ Service worker kill switch written (sw.js)');
 }
 
 async function main() {
@@ -118,12 +107,11 @@ async function main() {
     console.log('\n🎉 Optimization complete!');
     console.log('\n📋 What was optimized:');
     console.log('   ✅ HTML minified and gzipped');
-    console.log('   ✅ Service worker created (sw.js)');
+    console.log('   ✅ Service worker kill switch (sw.js)');
     
     console.log('\n🚀 Next steps:');
     console.log('   1. Use index.min.html instead of index.html');
     console.log('   2. Upload .htaccess to your web server');
-    console.log('   3. Register service worker in your app');
     console.log('   4. Test with Chrome DevTools > Lighthouse');
     
   } catch (error) {
