@@ -11,6 +11,7 @@ index.optimized.html
 index.optimized.html.gz
 optimized/
 *.webp
+!assets/*.webp
 
 # OS generated files
 .DS_Store
